@@ -193,6 +193,8 @@ function chome() {
 }
 
 function urlchenge() {
+    hius();
+    delete_us();
     $("#hcond").show();
     if (window.location.hash == "#cping") {
       $('body,html').animate({ scrollTop: window.heighttmp }, 400);
