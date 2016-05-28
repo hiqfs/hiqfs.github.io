@@ -4,7 +4,7 @@
     background-image: url(http://qqfs.qiniudn.com/background.png);
     background-image: url(http://qqfs.qiniudn.com/bg.png);
     background-image: url(http://johnzhang.cn/bing.php);*/
-    background:url(http://hiqfs.image.alimmdn.com/bg.png) fixed center top;
+    background: url(http://hiqfs.image.alimmdn.com/bg.png) fixed center top;
     /*background-attachment: fixed; /
     /*background-color: rgba(249, 249, 249, 1);*/
     /*华康娃娃体W5,*/
@@ -21,8 +21,15 @@
     margin-left: 3%;
     /*此时宽和高都要固定*/
 }
-#root a:hover {text-decoration: none;}
-#b3 {float: right;}
+
+#root a:hover {
+    text-decoration: none;
+}
+
+#b3 {
+    float: right;
+}
+
 .footer p {
     color: darkslategray;
     font-family: clicker script, segoe script, Comic Sans MS;
@@ -33,51 +40,70 @@
     text-align: center;
     display: block;
 }
+
 .center {
     text-align: center;
     margin: 0px auto;
 }
+
 #hcon {
     text-align: center;
     margin-top: 100px;
 }
+
 .wrap {
     position: fixed;
     bottom: 100px;
     right: 25px;
 }
+
 .tianqi {
     width: 420px;
     height: 45px;
     float: right;
 }
+
 .tiao {
     width: 60%;
     margin-left: auto;
     margin-right: auto;
 }
+
 #commit div {
     word-break: break-all;
     font-size: 100%;
     text-shadow: 1px 1px 3px #000;
     margin-bottom: 0px;
 }
-p a {text-decoration: none;}
+
+p a {
+    text-decoration: none;
+}
+
 time {
     font-size: 70%;
     color: #A9A9A9;
     text-shadow: none;
 }
+
 p {
     margin-top: 0px;
     margin-bottom: 0px;
 }
-#commit {clear: both;}
+
+#commit {
+    clear: both;
+}
+
 .hitokoto a {
     text-decoration: none;
     text-align: center;
 }
-text {text-align: center;}
+
+text {
+    text-align: center;
+}
+
 #ti {
     text-shadow: 1px 1px 5px #000;
     //resize: none;
@@ -87,6 +113,7 @@ text {text-align: center;}
     background: rgba(254, 254, 254, 1) no-repeat right bottom;
     background-size: auto 70%;
 }
+
 #jiao {
     float: right;
     font-weight: normal;
@@ -96,24 +123,40 @@ text {text-align: center;}
     color: #fff;
     text-align: center;
 }
-a {text-decoration: none;}
-ys {text-shadow: 1px 1px 2px #000;}
+
+a {
+    text-decoration: none;
+}
+
+ys {
+    text-shadow: 1px 1px 2px #000;
+}
+
 #hitokoto {
     //text-shadow:1px 1px 1px #000;
     text-decoration: none;
 }
+
 #hitokoto p {
     max-width: 80%;
     margin-left: 10%;
     margin-bottom: 0px;
 }
-img{width: 200px;}
+
+img {
+    width: 200px;
+}
+
 .img,
-#ti img {width: 200px;}
+#ti img {
+    width: 200px;
+}
+
 .emojisize {
     width: 20px;
     height: 20px;
 }
+
 #musicd {
     position: fixed;
     bottom: 20%;
@@ -122,6 +165,7 @@ img{width: 200px;}
     height: 60%;
     //display: none;
 }
+
 #music div {
     position: fixed;
     top: 255px;
@@ -140,20 +184,30 @@ img{width: 200px;}
     margin-right: auto;
     max-width: 95%;
 }
-comment code {display: inline-block;}
-span a {color: #FFF;}
+
+comment code {
+    display: inline-block;
+}
+
+span a {
+    color: #FFF;
+}
+
 .status {
     font-size: 50%;
     display: none;
 }
+
 .comm code {
     display: inline-block;
     word-break: break-all;
 }
+
 .comm div {
-  max-width: 100%;
-  overflow :auto;
+    max-width: 100%;
+    overflow: auto;
 }
+
 .update {
     font-weight: normal;
     text-shadow: none;
@@ -162,6 +216,7 @@ span a {color: #FFF;}
     color: #fff;
     display: none;
 }
+
 #fileupload {
     width: 76px;
     height: 26px;
@@ -174,6 +229,7 @@ span a {color: #FFF;}
     position: relative;
     top: -26px;
 }
+
 input {
     opacity: 0;
     filter: alpha(opacity=0);
@@ -182,6 +238,7 @@ input {
     z-index: 9;
     height: 26px;
 }
+
 .upda {
     text-align: center;
     background: #55AA00;
@@ -190,13 +247,18 @@ input {
     cursor: pointer;
     float: right;
 }
+
 .din {
     color: #FFF;
     margin-bottom: 0px;
     height: 26px;
     margin-top: 1px;
 }
-#ping {text-align: left;}
+
+#ping {
+    text-align: left;
+}
+
 num {
     position: absolute;
     top: 0;
@@ -212,45 +274,242 @@ num {
     -webkit-transform: scale(0.625);
     transform: scale(0.625);
 }
+
 powered {
     font-size: 70%;
     color: #A9A9A9;
     text-align: center;
     display: block;
 }
-.qqkj {width: 200px;}
-video {width: 100%;}
+
+.qqkj {
+    width: 200px;
+}
+
+video {
+    width: 100%;
+}
+
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
 }
+
 ::-webkit-scrollbar-track {
     background-color: rgba(0, 0, 0, 0);
 }
+
 ::-webkit-scrollbar-thumb {
     background-color: #A9A9A9;
     border-radius: 4px;
 }
-#commitload{
-  width: 40px;
-  height: 40px;
+
+#commitload {
+    width: 40px;
+    height: 40px;
 }
-.footer{text-align: center;}
- i,#toux{
-    border-radius: 400px;/*设置图像圆角效果,在这里我直接设置了超过width/2的像素，即为圆形了*/
+
+.footer {
+    text-align: center;
+}
+
+i,
+#toux {
+    border-radius: 400px;
+    /*设置图像圆角效果,在这里我直接设置了超过width/2的像素，即为圆形了*/
     //-webkit-border-radius: 27px;/*圆角效果：兼容webkit浏览器*/
     //-moz-border-radius:27px;
-    box-shadow: inset 0 -1px 0 #3333sf;/*设置图像阴影效果*/
+    box-shadow: inset 0 -1px 0 #3333sf;
+    /*设置图像阴影效果*/
     -webkit-box-shadow: inset 0 -1px 0 #3333sf;
     -webkit-transition: 0.4s;
     -webkit-transition: -webkit-transform 0.4s ease-out;
-    transition: transform 0.4s ease-out;/*变化时间设置为0.4秒(变化动作即为下面的图像旋转360读）*/
+    transition: transform 0.4s ease-out;
+    /*变化时间设置为0.4秒(变化动作即为下面的图像旋转360读）*/
     -moz-transition: -moz-transform 0.4s ease-out;
 }
-i,#toux:hover{/*设置鼠标悬浮在头像时的CSS样式*/
-    box-shadow: 0 0 10px #fff; rgba(255,255,255,.6), inset 0 0 20px rgba(255,255,255,1);
-    -webkit-box-shadow: 0 0 10px #fff; rgba(255,255,255,.6), inset 0 0 20px rgba(255,255,255,1);
-    transform: rotateZ(360deg);/*图像旋转360度*/
+
+i,
+#toux:hover {
+    /*设置鼠标悬浮在头像时的CSS样式*/
+    box-shadow: 0 0 10px #fff;
+    rgba(255, 255, 255, .6),
+    inset 0 0 20px rgba(255, 255, 255, 1);
+    -webkit-box-shadow: 0 0 10px #fff;
+    rgba(255, 255, 255, .6),
+    inset 0 0 20px rgba(255, 255, 255, 1);
+    transform: rotateZ(360deg);
+    /*图像旋转360度*/
     -webkit-transform: rotateZ(360deg);
     -moz-transform: rotateZ(360deg);
 }
+
+
+/*多说UA开始*/
+
+ua{
+    font-size: 70%;
+    color: #FFF;
+    margin: 0 1px!important;
+    color: #FFFFFF!important;
+    /*text-transform: Capitalize!important;
+    float: right!important;*/
+    line-height: 22px!important;
+    text-shadow: 0px 0px 0px #FFF!important;
+}
+
+.ua_other.os_other {
+    background-color: #ccc!important;
+    color: #fff;
+    border: 1px solid #BBB!important;
+    border-radius: 4px;
+}
+
+.ua_ie {
+    background-color: #428bca!important;
+    border-color: #357ebd!important;
+    border-radius: 4px;
+    padding: 0 5px!important;
+}
+
+.ua_firefox {
+    background-color: #f0ad4e!important;
+    border-color: #eea236!important;
+    border-radius: 4px;
+    padding: 0 5px!important;
+}
+
+.ua_maxthon {
+    background-color: #7373B9!important;
+    border-color: #7373B9!important;
+    border-radius: 4px;
+    padding: 0 5px!important;
+}
+
+.ua_ucweb {
+    background-color: #FF740F!important;
+    border-color: #d43f3a!important;
+    border-radius: 4px;
+    padding: 0 5px!important;
+}
+
+.ua_sogou {
+    background-color: #78ACE9!important;
+    border-color: #4cae4c!important;
+    border-radius: 4px;
+    padding: 0 5px!important;
+}
+
+.ua_2345explorer {
+    background-color: #2478B8!important;
+    border-color: #4cae4c!important;
+    border-radius: 4px;
+    padding: 0 5px!important;
+}
+
+.ua_2345chrome {
+    background-color: #F9D024!important;
+    border-color: #4cae4c!important;
+    border-radius: 4px;
+    padding: 0 5px!important;
+}
+
+.ua_mi {
+    background-color: #FF4A00!important;
+    border-color: #4cae4c!important;
+    border-radius: 4px;
+    padding: 0 5px!important;
+}
+
+.ua_lbbrowser {
+    background-color: #FC9D2E!important;
+    border-color: #4cae4c!important;
+    border-radius: 4px;
+    padding: 0 5px!important;
+}
+
+.ua_chrome {
+    background-color: #EE6252!important;
+    border-color: #4cae4c!important;
+    border-radius: 4px;
+    padding: 0 5px!important;
+}
+
+.ua_qq {
+    background-color: #3D88A8!important;
+    border-color: #4cae4c!important;
+    border-radius: 4px;
+    padding: 0 5px!important;
+}
+
+.ua_apple {
+    background-color: #E95620!important;
+    border-color: #4cae4c!important;
+    border-radius: 4px;
+    padding: 0 5px!important;
+}
+
+.ua_opera {
+    background-color: #d9534f!important;
+    border-color: #d43f3a!important;
+    border-radius: 4px;
+    padding: 0 5px!important;
+}
+
+.os_vista,
+.os_2000,
+.os_windows,
+.os_xp,
+.os_7,
+.os_8,
+.os_8_1 {
+    background-color: #39b3d7!important;
+    border-color: #46b8da!important;
+    border-radius: 4px;
+    padding: 0 5px!important;
+}
+
+.os_android {
+    background-color: #98C13D!important;
+    border-color: #01B171!important;
+    border-radius: 4px;
+    padding: 0 5px!important;
+}
+
+.os_ubuntu {
+    background-color: #DD4814!important;
+    border-color: #01B171!important;
+    border-radius: 4px;
+    padding: 0 5px!important;
+}
+
+.os_linux {
+    background-color: #3A3A3A!important;
+    border-color: #1F1F1F!important;
+    border-radius: 4px;
+    padding: 0 5px!important;
+}
+
+.os_mac {
+    background-color: #666666!important;
+    border-color: #1F1F1F!important;
+    border-radius: 4px;
+    padding: 0 5px!important;
+}
+
+.os_unix {
+    background-color: #006600!important;
+    border-color: #1F1F1F!important;
+    border-radius: 4px;
+    padding: 0 5px!important;
+}
+
+.os_nokia {
+    background-color: #014485!important;
+    border-color: #1F1F1F!important;
+    border-radius: 4px;
+    padding: 0 5px!important;
+}
+
+
+/*多说UA结束*/
