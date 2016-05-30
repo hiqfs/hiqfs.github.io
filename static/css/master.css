@@ -358,7 +358,8 @@ ua{
     text-shadow: 0px 0px 0px #FFF!important;
 }
 
-.ua_other.os_other {
+.ua_other,.os_other {
+    display: none;
     background-color: #ccc!important;
     color: #fff;
     border: 1px solid #BBB!important;

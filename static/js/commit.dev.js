@@ -104,7 +104,7 @@ function tijiaopost() {
                     var text = [{
                         "comment": window.tmop,
                         "time": data.time,
-                        "ua":navigator.userAgent
+                        "ua": navigator.userAgent
                     }, "duang"];
                     $('#commit').prepend(Loading_xml(text));
                     iosocket.send(JSON.stringify(text));
@@ -196,7 +196,11 @@ function Loading_xml(argument) { //json生成评论返回dom
         commitfooter = "<br></div>";
         var commenttmp = "";
         for (i = 0; i < argument.length - 1; i++) {
-            commenttmp += commithaed + argument[i].comment + commitzhon + argument[i].time + "</time><ua>" + ua(argument[i].ua) + os(argument[i].ua) + "</ua>" + commitfooter;
+            if (argument[i].ua) {
+                commenttmp += commithaed + argument[i].comment + commitzhon + argument[i].time + "</time><ua>" + ua(argument[i].ua) + os(argument[i].ua) + "</ua>" + commitfooter;
+            } else {
+                commenttmp += commithaed + argument[i].comment + commitzhon + argument[i].time + "</time>" + commitfooter;
+            }
         }
         xml = commenttmp.replace(/\[em\]e[0-9]+\[\/em\]/g, function(em) {
             emid = em.substring(4, em.length - 5);
