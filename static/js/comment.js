@@ -15,7 +15,7 @@ $(document).ready(function() {
         json_comment(1); //评论加载
         htmlinit(); //处理图片和哈希资源
         var index = Math.floor(Math.random() * (11 - 1 + 1) + 1); //评论框随机背景
-        $("#ti").css("background-image", "url(http://hiqfs.image.alimmdn.com/bk" + index + ".jpg)");
+        $("#ti").css("background-image", "url(http://7xljsf.com1.z0.glb.clouddn.com//bk" + index + ".jpg)");
         //footer(); //底部加载脚本初始化
         if (window.status) { //服务器自动状态提醒
             $('status').text('已连接');

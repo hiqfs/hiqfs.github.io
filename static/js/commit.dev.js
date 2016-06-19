@@ -4,10 +4,10 @@ serverphp = "https://jaber.daoapp.io";
 //serverphp = "http://server-php.coding.io";
 //serverphp = "https://php-qqfs.rhcloud.com/";
 servercdn = [ //cdn服务器列表
-    "http://7xljsf.com1.z0.glb.clouddn.com/",
+    "http://7xljsf.com5.z0.glb.clouddn.com/",
     "http://7xr863.dl1.z0.glb.clouddn.com/",
-    "http://7xr867.com1.z0.glb.clouddn.com/",
-    "http://7xr9yh.com1.z0.glb.clouddn.com/"
+    "http://7xr867.com5.z0.glb.clouddn.com/",
+    "http://7xr9yh.com5.z0.glb.clouddn.com/"
 ]; //随机数分流
 function init_comment() {
     if (!window.id) {
@@ -44,7 +44,7 @@ function init(argument) { //脚本初始化函数
     //评论加载
     htmlinit(); //处理图片和哈希资源
     var index = Math.floor(Math.random() * (11 - 1 + 1) + 1); //评论框随机背景
-    $("#ti").css("background-image", "url(http://hiqfs.image.alimmdn.com/bk" + index + ".jpg)");
+    $("#ti").css("background-image", "url(http://7u2f38.com5.z0.glb.clouddn.com/bk" + index + ".jpg)");
     //footer(); //底部加载脚本初始化
     /*
     if (window.status) { //服务器自动状态提醒
@@ -171,7 +171,7 @@ function htmlinit() {
         } else if (this.status == 2) {
             this.onerror = null;
         } else {
-            this.src = "http://77flfx.com1.z0.glb.clouddn.com/404.jpg";
+            this.src = "http://77flfx.com5.z0.glb.clouddn.com/404.jpg";
             this.status = 2;
         }
     });
