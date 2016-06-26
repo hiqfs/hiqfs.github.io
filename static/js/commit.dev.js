@@ -4,10 +4,10 @@ serverphp = "https://jaber.daoapp.io";
 //serverphp = "http://server-php.coding.io";
 //serverphp = "https://php-qqfs.rhcloud.com/";
 servercdn = [ //cdn服务器列表
-    "http://7xljsf.com5.z0.glb.clouddn.com/",
+    "http://7xljsf.com1.z0.glb.clouddn.com/",
     "http://7xr863.dl1.z0.glb.clouddn.com/",
-    "http://7xr867.com5.z0.glb.clouddn.com/",
-    "http://7xr9yh.com5.z0.glb.clouddn.com/"
+    "http://7xr867.com1.z0.glb.clouddn.com/",
+    "http://7xr9yh.com1.z0.glb.clouddn.com/"
 ]; //随机数分流
 function init_comment() {
     if (!window.id) {
@@ -193,13 +193,13 @@ function Loading_xml(argument) { //json生成评论返回dom
     if (argument) {
         commithaed = "<div class='comm' style=\"display:none;\"><div>";
         commitzhon = "</div><time>";
-        commitfooter = "<br></div>";
+        commitfooter = "</div>";
         var commenttmp = "";
         for (i = 0; i < argument.length - 1; i++) {
             if (argument[i].ua) {
-                commenttmp += commithaed + argument[i].comment + commitzhon + argument[i].time + "</time><ua>" + ua(argument[i].ua) + os(argument[i].ua) + "</ua>" + commitfooter;
+                commenttmp += commithaed + argument[i].comment + commitzhon + argument[i].time + " </time><ua>" + ua(argument[i].ua) + os(argument[i].ua) + "</ua>" + commitfooter;
             } else {
-                commenttmp += commithaed + argument[i].comment + commitzhon + argument[i].time + "</time>" + commitfooter;
+                commenttmp += commithaed + argument[i].comment + commitzhon + argument[i].time + " </time>" + commitfooter;
             }
         }
         xml = commenttmp.replace(/\[em\]e[0-9]+\[\/em\]/g, function(em) {
