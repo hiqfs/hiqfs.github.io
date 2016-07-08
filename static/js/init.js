@@ -3,9 +3,11 @@ $("document").ready(function() {
     hius();
     //mobile();
     ash();
-    if (ashstatus) {
-        heighttmp = 0;
-    }
+    //var heighttmp;
+    /*
+        if (ashstatus) {
+            heighttmp = 0;
+        }*/
     $("#musica").click(function() {
         if ($(this).css("left") == "0px") {
             $(this).animate({ left: '280px' });
@@ -16,6 +18,7 @@ $("document").ready(function() {
         }
     });
 });
+
 function mobile() {
     if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
         $("#musica").css("display", "none");
@@ -75,68 +78,6 @@ function baidufen(argument) { //百度分享
         'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
 }
 //baidufen();
-
-function bar(argument) {
-    $("#hcond").show();
-    if (argument == "1") {
-        if ($(document).scrollTop() > $(window).height()) {
-            $('#b3').show("100");
-        }
-    } else {
-        $('#b3').hide("100");
-    }
-    $("#ping").hide();
-    $(window).unbind();
-    $("body,html").unbind();
-    $("#b3").unbind();
-    $("about").hide();
-    switch (argument) {
-        case '1':
-            $("#commitload").show();
-            $("#ping").show();
-            $("#hcond").animate({ marginTop: '100px' });
-            $("#b1").addClass(function() {
-                $("li a").removeClass("active");
-                return "active";
-            });
-            $("title").html("喵窝留言板⊙ω⊙");
-            $("#title").html("喵窝留言板⊙ω⊙");
-            $("#ping").show();
-            window.location.hash = "cping";
-            init_comment();
-            init();
-            sjmo();
-            $("#commitload").hide();
-            console.log("dd");
-            $('html').animate({ scrollTop: window.heighttmp }, 400);
-            break;
-        case '2':
-            $("#hcond").hide();
-            $("#b2").addClass(function() {
-                $("li a").removeClass("active");
-                return "active";
-            });
-            $("title").html("关于喵窝");
-            $("about").show();
-            window.location.hash = "cabout";
-            break;
-        case 'home':
-            $("#hcond").animate({ marginTop: '150px' });
-            $("#home").addClass(function() {
-                $("li a").removeClass("active");
-                return "active";
-            });
-            $("title").html("喵窝首页∩ω∩");
-            $("#title").html("欢迎来到喵窝∩ω∩");
-            window.location.hash = "";
-            break;
-        default:
-            window.location.href = "/";
-    }
-    hius();
-    delete_us();
-}
-
 function cping() {
     $("#commitload").show();
     $("#ping").show();
@@ -152,16 +93,14 @@ function cping() {
     init();
     $("#commitload").hide();
     sjmo();
-    $(document).ready(function() {
-        if (window.heighttmp) {
-            if ($(window).height() > window.heighttmp) {
-                $('body,html').animate({ scrollTop: window.heighttmp }, 400);
-            }
-        } else {
-            window.heighttmp = 0;
-            //$('body,html').animate({ scrollTop: window.heighttmp }, 400);
+    if (window.heighttmp) {
+        if ($(window).height() > window.heighttmp) {
+            $('body,html').animate({ scrollTop: window.heighttmp }, 400);
         }
-    });
+    } else {
+        //var window.heighttmp;
+        //$('body,html').animate({ scrollTop: window.heighttmp }, 400);
+    }
 }
 
 function cabout() {
@@ -190,14 +129,15 @@ function chome() {
     $("title").html("喵窝首页∩ω∩");
     $("#title").html("欢迎来到喵窝∩ω∩");
     window.location.hash = "";
+    $(window).unbind("scroll");
 }
 
 function urlchenge() {
     hius();
     delete_us();
     $("#hcond").show();
-    if (window.location.hash == "#cping") {
-      $('body,html').animate({ scrollTop: window.heighttmp }, 400);
+    if (window.location.hash == "#!/cping") {
+        $('body,html').animate({ scrollTop: window.heighttmp }, 400);
         if ($(document).scrollTop() > $(window).height()) {
             $('#b3').show("100");
         }
@@ -216,10 +156,10 @@ function ash() {
     if (window.location.hash == "") {
         chome();
     }
-    if (window.location.hash == "#cping") {
+    if (window.location.hash == "#!/cping") {
         cping();
     }
-    if (window.location.hash == "#cabout") {
+    if (window.location.hash == "#!/cabout") {
         cabout();
     }
     ashstatus = true;
