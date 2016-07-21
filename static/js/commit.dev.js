@@ -26,7 +26,7 @@ function init_comment() {
                 timetmp = (new Date).getTime() + 3000;
             }
             $(this).css("background-color", "#00a3cf");
-            $(this).text("发送");
+            $(this).html("<i class=\"fa fa-paper-plane\" aria-hidden=\"true\"></i>发送");
             $(this).attr("disabled", false);
         });
     }
