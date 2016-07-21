@@ -6,7 +6,7 @@
     background-image: url(http://johnzhang.cn/bing.php);*/
     background: url(http://ww3.sinaimg.cn/mw690/005xR7qygw1f58p2vc7ohj308c08cgln.jpg);
     /*background: url(http://7u2f38.com5.z0.glb.clouddn.com/bg.png) fixed center top;*/
-    /*background-attachment: fixed; /
+    /*background-attachment: fixed; */
     /*background-color: rgba(249, 249, 249, 1);*/
     /*华康娃娃体W5,*/
     font-family: Source Han Sans CN, 微软雅黑, Helvetica, STHeiti, Droid Sans Fallback;
@@ -21,6 +21,9 @@
     max-width: 94%;
     margin-left: 3%;
     /*此时宽和高都要固定*/
+}
+span,button#jiao,status,loadtime{
+    text-shadow: 1px 1px 3px #000;
 }
 
 #root a:hover {
@@ -196,7 +199,6 @@ span a {
 
 .status {
     font-size: 50%;
-    display: none;
 }
 
 .comm code {
@@ -313,8 +315,6 @@ video {
 .footer {
     text-align: center;
 }
-
-i,
 #toux {
     border-radius: 400px;
     /*设置图像圆角效果,在这里我直接设置了超过width/2的像素，即为圆形了*/
@@ -329,8 +329,6 @@ i,
     /*变化时间设置为0.4秒(变化动作即为下面的图像旋转360读）*/
     -moz-transition: -moz-transform 0.4s ease-out;
 }
-
-i,
 #toux:hover {
     /*设置鼠标悬浮在头像时的CSS样式*/
     box-shadow: 0 0 10px #fff;
@@ -356,7 +354,7 @@ ua{
     /*text-transform: Capitalize!important;
     float: right!important;*/
     line-height: 22px!important;
-    text-shadow: 0px 0px 0px #FFF!important;
+    /*text-shadow: 0px 0px 0px #FFF!important*/;
 }
 
 .ua_other,.os_other {
@@ -512,6 +510,4 @@ ua{
     border-radius: 4px;
     padding: 0 5px!important;
 }
-
-
 /*多说UA结束*/

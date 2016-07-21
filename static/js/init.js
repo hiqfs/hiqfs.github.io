@@ -17,6 +17,14 @@ $("document").ready(function() {
             $(this).animate({ left: '0px' });
         }
     });
+    $(document).keydown(function(event) {
+        if(window.location.hash != "#!/cping"&&event.altKey && event.keyCode == 90){
+            window.location.hash="#!/cping";
+            $("#b1").click();
+            console.log("获取到按键事件");
+        }
+    return true;
+    });
 });
 
 function mobile() {
@@ -77,6 +85,7 @@ function baidufen(argument) { //百度分享
     with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src =
         'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
 }
+var heighttmp
 //baidufen();
 function cping() {
     $("#commitload").show();
@@ -93,13 +102,12 @@ function cping() {
     init();
     $("#commitload").hide();
     sjmo();
-    if (window.heighttmp) {
-        if ($(window).height() > window.heighttmp) {
-            $('body,html').animate({ scrollTop: window.heighttmp }, 400);
+     //$('body,html').animate({ scrollTop:heighttmp }, 400);
+    //$("#jiao").focus(); 
+    if (heighttmp) {
+        if ($(window).height() > heighttmp) {
+            $('body,html').animate({ scrollTop:heighttmp }, 400);
         }
-    } else {
-        //var window.heighttmp;
-        //$('body,html').animate({ scrollTop: window.heighttmp }, 400);
     }
 }
 
@@ -137,7 +145,7 @@ function urlchenge() {
     delete_us();
     $("#hcond").show();
     if (window.location.hash == "#!/cping") {
-        $('body,html').animate({ scrollTop: window.heighttmp }, 400);
+        $('body,html').animate({ scrollTop:heighttmp }, 400);
         if ($(document).scrollTop() > $(window).height()) {
             $('#b3').show("100");
         }
@@ -145,13 +153,12 @@ function urlchenge() {
         $('#b3').hide("100");
     }
     $("#ping").hide();
-    $(window).unbind();
     $("body,html").unbind();
     $("#b3").unbind();
-    $("about").hide();
+    $("about").hide(); 
+    $(window).unbind();
     ash();
 }
-
 function ash() {
     if (window.location.hash == "") {
         chome();

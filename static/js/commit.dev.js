@@ -29,13 +29,6 @@ function init_comment() {
             $(this).text("发送");
             $(this).attr("disabled", false);
         });
-        $(document).keydown(function(event) {
-            if (event.ctrlKey && event.keyCode == 13) {
-                $("#jiao").click();
-                console.log("获取到点击事件");
-            }
-            return true;
-        });
     }
 }
 servercdnn = servercdn[Math.floor(Math.random() * servercdn.length)];
@@ -43,7 +36,7 @@ servercdnn = servercdn[Math.floor(Math.random() * servercdn.length)];
 function init(argument) { //脚本初始化函数
     //评论加载
     htmlinit(); //处理图片和哈希资源
-    var index = Math.floor(Math.random() * (11 - 1 + 1) + 1); //评论框随机背景
+    var index = Math.floor(Math.random() * (12 - 1 + 1) + 1); //评论框随机背景
     $("#ti").css("background-image", "url(http://7u2f38.com5.z0.glb.clouddn.com/bk" + index + ".jpg)");
     //footer(); //底部加载脚本初始化
     /*
@@ -276,11 +269,18 @@ function CommentNum(id) {
 }
 timetmp = (new Date).getTime() + 3000;
 websocketio();
-
+var heighttmp;
 function sjmo() {
     //蛋疼的封装了一堆函数
     // Jquery Code
     //开始处理点击事件
+    $(document).keydown(function(event) {
+        if (event.ctrlKey && event.keyCode == 13) {
+            $("#jiao").click();
+            console.log("获取到按键事件");
+        }
+        return true;
+    });
     $("status").click(function() {
         iosocket.connect();
     });
@@ -289,10 +289,13 @@ function sjmo() {
         $('body,html').animate({ scrollTop: 0 }, speed);
         return false;
     });
-    $(window).scroll(function(heighttmp) {
+    $(window).scroll(function(data) {
         //$(document).scrollTop() 获取垂直滚动的距离
         //$(document).scrollLeft() 这是获取水平滚动条的距离
-        window.heighttmp = $(document).scrollTop();
+        if($(document).scrollTop()!=0){
+            heighttmp = $(document).scrollTop();
+            console.log(heighttmp);
+        }
         if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
             if (Loading_xml(window.commentjson.responseJSON) == "<wbi></wbi>") {
                 $("loading").remove();
@@ -349,10 +352,10 @@ function ua(e) {
     var r = new Array;
     var outputer = '';
     if (r = e.match(/MSIE\s([^\s|;]+)/gi)) {
-        outputer = '<span class="ua_ie">Internet Explorer' + ' ' + r[0].replace('MSIE', '').split('.')[0]
+        outputer = '<span class="ua_ie"><i class="fa fa-internet-explorer" aria-hidden="true"></i> Internet Explorer' + ' ' + r[0].replace('MSIE', '').split('.')[0]
     } else if (r = e.match(/FireFox\/([^\s]+)/ig)) {
         var r1 = r[0].split("/");
-        outputer = '<span class="ua_firefox">Mozilla FireFox' + ' ' + r1[1]
+        outputer = '<span class="ua_firefox"><i class="fa fa-firefox" aria-hidden="true"></i> Mozilla FireFox' + ' ' + r1[1]
     } else if (r = e.match(/Maxthon([\d]*)\/([^\s]+)/ig)) {
         var r1 = r[0].split("/");
         outputer = '<span class="ua_maxthon">Maxthon'
@@ -369,27 +372,27 @@ function ua(e) {
         outputer = '<span class="ua_lbbrowser">猎豹安全浏览器'
     } else if (r = e.match(/MicroMessenger\/([^\s]+)/ig)) {
         var r1 = r[0].split("/");
-        outputer = '<span class="ua_qq">微信' + ' ' + r1[1].split('/')[0]
+        outputer = '<span class="ua_qq"><i class="fa fa-weixin" aria-hidden="true"></i> 微信' + ' ' + r1[1].split('/')[0]
     } else if (r = e.match(/QQBrowser\/([^\s]+)/ig)) {
         var r1 = r[0].split("/");
-        outputer = '<span class="ua_qq">QQ浏览器' + ' ' + r1[1].split('/')[0]
+        outputer = '<span class="ua_qq"><i class="fa fa-qq" aria-hidden="true"></i> QQ浏览器' + ' ' + r1[1].split('/')[0]
     } else if (r = e.match(/QQ\/([^\s]+)/ig)) {
         var r1 = r[0].split("/");
-        outputer = '<span class="ua_qq">QQ浏览器' + ' ' + r1[1].split('/')[0]
+        outputer = '<span class="ua_qq"><i class="fa fa-qq" aria-hidden="true"></i> QQ浏览器' + ' ' + r1[1].split('/')[0]
     } else if (r = e.match(/MiuiBrowser\/([^\s]+)/ig)) {
         var r1 = r[0].split("/");
         outputer = '<span class="ua_mi">Miui浏览器' + ' ' + r1[1].split('/')[0]
     } else if (r = e.match(/Chrome([\d]*)\/([^\s]+)/ig)) {
         var r1 = r[0].split("/");
-        outputer = '<span class="ua_chrome">Chrome' + ' ' + r1[1].split('.')[0]
+        outputer = '<span class="ua_chrome"><i class="fa fa-chrome" ></i> Chrome' + ' ' + r1[1].split('.')[0]
     } else if (r = e.match(/safari\/([^\s]+)/ig)) {
         var r1 = r[0].split("/");
-        outputer = '<span class="ua_apple">Apple Safari' + ' ' + r1[1]
+        outputer = '<span class="ua_apple"><i class="fa fa-safari" aria-hidden="true"></i> Apple Safari' + ' ' + r1[1]
     } else if (r = e.match(/Opera[\s|\/]([^\s]+)/ig)) {
         var r1 = r[0].split("/");
-        outputer = '<span class="ua_opera">Opera' + ' ' + r[1]
+        outputer = '<span class="ua_opera"><i class="fa fa-opera" aria-hidden="true"></i> Opera' + ' ' + r[1]
     } else if (r = e.match(/Trident\/7.0/gi)) {
-        outputer = '<span class="ua_ie">Internet Explorer 11'
+        outputer = '<span class="ua_ie"><i class="fa fa-internet-explorer" aria-hidden="true"></i> Internet Explorer 11'
     } else {
         outputer = '<span class="ua_other">其它浏览器'
     }
@@ -400,30 +403,30 @@ function os(e) {
     var os = '';
     if (e.match(/win/ig)) {
         if (e.match(/nt 5.1/ig)) {
-            os = '<span class="os_xp">Windows XP'
+            os = '<span class="os_xp"><i class="fa fa-windows" aria-hidden="true"></i> Windows XP'
         } else if (e.match(/nt 6.1/ig)) {
-            os = '<span class="os_7">Windows 7'
+            os = '<span class="os_7"><i class="fa fa-windows" aria-hidden="true"></i> Windows 7'
         } else if (e.match(/nt 6.2/ig)) {
-            os = '<span class="os_8">Windows 8'
+            os = '<span class="os_8"><i class="fa fa-windows" aria-hidden="true"></i> Windows 8'
         } else if (e.match(/nt 6.3/ig)) {
-            os = '<span class="os_8_1">Windows 8.1'
+            os = '<span class="os_8_1"><i class="fa fa-windows" aria-hidden="true"></i> Windows 8.1'
         } else if (e.match(/nt 10.0/ig)) {
-            os = '<span class="os_8_1">Windows 10'
+            os = '<span class="os_8_1"><i class="fa fa-windows" aria-hidden="true"></i> Windows 10'
         } else if (e.match(/nt 6.0/ig)) {
-            os = '<span class="os_vista">Windows Vista'
+            os = '<span class="os_vista"><i class="fa fa-windows" aria-hidden="true"></i> Windows Vista'
         } else if (e.match(/nt 5/ig)) {
-            os = '<span class="os_2000">Windows 2000'
+            os = '<span class="os_2000"><i class="fa fa-windows" aria-hidden="true"></i> Windows 2000'
         } else {
-            os = '<span class="os_windows">Windows'
+            os = '<span class="os_windows"><i class="fa fa-windows" aria-hidden="true"></i> Windows'
         }
     } else if (e.match(/android/ig)) {
-        os = '<span class="os_android">Android'
+        os = '<span class="os_android"><i class="fa fa-android" aria-hidden="true"></i> Android'
     } else if (e.match(/ubuntu/ig)) {
-        os = '<span class="os_ubuntu">Ubuntu'
+        os = '<span class="os_ubuntu"><i class="fa fa-linux" aria-hidden="true"></i> Ubuntu'
     } else if (e.match(/linux/ig)) {
-        os = '<span class="os_linux">Linux'
+        os = '<span class="os_linux"><i class="fa fa-linux" aria-hidden="true"></i> Linux'
     } else if (e.match(/mac/ig)) {
-        os = '<span class="os_mac">Mac OS X'
+        os = '<span class="os_mac"><i class="fa fa-apple" aria-hidden="true"></i> Mac OS X'
     } else if (e.match(/unix/ig)) {
         os = '<span class="os_unix">Unix'
     } else if (e.match(/symbian/ig)) {
