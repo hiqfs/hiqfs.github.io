@@ -26,7 +26,7 @@ function init_comment() {
                 timetmp = (new Date).getTime() + 3000;
             }
             $(this).css("background-color", "#00a3cf");
-            $(this).html("<i class=\"fa fa-paper-plane\" aria-hidden=\"true\"></i>发送");
+            $(this).html("<i class=\"fa fa-paper-plane\" aria-hidden=\"true\"></i> 发送");
             $(this).attr("disabled", false);
         });
     }
@@ -294,7 +294,7 @@ function sjmo() {
         //$(document).scrollLeft() 这是获取水平滚动条的距离
         if($(document).scrollTop()!=0){
             heighttmp = $(document).scrollTop();
-            console.log(heighttmp);
+            //console.log(heighttmp);
         }
         if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
             if (Loading_xml(window.commentjson.responseJSON) == "<wbi></wbi>") {
@@ -401,37 +401,43 @@ function ua(e) {
 
 function os(e) {
     var os = '';
+    var s = new Array();
     if (e.match(/win/ig)) {
         if (e.match(/nt 5.1/ig)) {
-            os = '<span class="os_xp"><i class="fa fa-windows" aria-hidden="true"></i> Windows XP'
+            os = '<span class="os_xp"><i class="fa fa-windows" aria-hidden="true"></i> Windows XP';
         } else if (e.match(/nt 6.1/ig)) {
-            os = '<span class="os_7"><i class="fa fa-windows" aria-hidden="true"></i> Windows 7'
+            os = '<span class="os_7"><i class="fa fa-windows" aria-hidden="true"></i> Windows 7';
         } else if (e.match(/nt 6.2/ig)) {
-            os = '<span class="os_8"><i class="fa fa-windows" aria-hidden="true"></i> Windows 8'
+            os = '<span class="os_8"><i class="fa fa-windows" aria-hidden="true"></i> Windows 8';
         } else if (e.match(/nt 6.3/ig)) {
-            os = '<span class="os_8_1"><i class="fa fa-windows" aria-hidden="true"></i> Windows 8.1'
+            os = '<span class="os_8_1"><i class="fa fa-windows" aria-hidden="true"></i> Windows 8.1';
         } else if (e.match(/nt 10.0/ig)) {
-            os = '<span class="os_8_1"><i class="fa fa-windows" aria-hidden="true"></i> Windows 10'
+            os = '<span class="os_8_1"><i class="fa fa-windows" aria-hidden="true"></i> Windows 10';
         } else if (e.match(/nt 6.0/ig)) {
-            os = '<span class="os_vista"><i class="fa fa-windows" aria-hidden="true"></i> Windows Vista'
+            os = '<span class="os_vista"><i class="fa fa-windows" aria-hidden="true"></i> Windows Vista';
         } else if (e.match(/nt 5/ig)) {
-            os = '<span class="os_2000"><i class="fa fa-windows" aria-hidden="true"></i> Windows 2000'
+            os = '<span class="os_2000"><i class="fa fa-windows" aria-hidden="true"></i> Windows 2000';
         } else {
-            os = '<span class="os_windows"><i class="fa fa-windows" aria-hidden="true"></i> Windows'
+            os = '<span class="os_windows"><i class="fa fa-windows" aria-hidden="true"></i> Windows';
         }
-    } else if (e.match(/android/ig)) {
-        os = '<span class="os_android"><i class="fa fa-android" aria-hidden="true"></i> Android'
+        if(e.match(/x[0-9][0-9]/)){
+            os +=" "+e.match(/x[0-9][0-9]/)[0];
+        }
+    } else if (s = e.match(/android \d+(\.\d+)*/ig)) {
+        os = '<span class="os_android"><i class="fa fa-android" aria-hidden="true"></i> ' + s;
     } else if (e.match(/ubuntu/ig)) {
         os = '<span class="os_ubuntu"><i class="fa fa-linux" aria-hidden="true"></i> Ubuntu'
     } else if (e.match(/linux/ig)) {
         os = '<span class="os_linux"><i class="fa fa-linux" aria-hidden="true"></i> Linux'
-    } else if (e.match(/mac/ig)) {
-        os = '<span class="os_mac"><i class="fa fa-apple" aria-hidden="true"></i> Mac OS X'
+    } else if (e.match(/Mac OS X \d+(\_\d+)*/ig)) {
+        os = '<span class="os_mac"><i class="fa fa-apple" aria-hidden="true"></i> ' + s.replace(/_/g, ".");
     } else if (e.match(/unix/ig)) {
         os = '<span class="os_unix">Unix'
     } else if (e.match(/symbian/ig)) {
         os = '<span class="os_nokia">Nokia SymbianOS'
-    } else {
+    } else if(s = e.match(/iPhone OS \d+(\_\d+)*/ig)){
+         os = '<span class="os_mac"><i class="fa fa-apple" aria-hidden="true"> ' + s.replace(/_/g, ".");
+    }else{
         os = '<span class="os_other">其它操作系统'
     }
     return os + "</span>";

@@ -196,6 +196,16 @@ comment code {
 span a {
     color: #FFF;
 }
+span a:hover{
+    color: #FFF;
+}
+span a:focus{
+    color: #FFF;
+    text-decoration:none;
+}
+a:focus {  
+    outline:none;  
+} 
 
 .status {
     font-size: 50%;
