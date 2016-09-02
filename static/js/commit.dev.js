@@ -233,10 +233,11 @@ function websocketio() {
         $('#commit').prepend(Loading_xml(text));
         window.msnum = window.msnum + 1;
         console.log("收到消息");
+        notifyMe(text);
         $("num").text(msnum);
         if ($(document).scrollTop() > $(window).height()) {
             $('num').show();
-        }
+        } else {}
         htmlinit();
     });
     iosocket.on('disconnect', function() {
@@ -270,6 +271,7 @@ function CommentNum(id) {
 timetmp = (new Date).getTime() + 3000;
 websocketio();
 var heighttmp;
+
 function sjmo() {
     //蛋疼的封装了一堆函数
     // Jquery Code
@@ -292,7 +294,7 @@ function sjmo() {
     $(window).scroll(function(data) {
         //$(document).scrollTop() 获取垂直滚动的距离
         //$(document).scrollLeft() 这是获取水平滚动条的距离
-        if($(document).scrollTop()!=0){
+        if ($(document).scrollTop() != 0) {
             heighttmp = $(document).scrollTop();
             //console.log(heighttmp);
         }
@@ -420,8 +422,8 @@ function os(e) {
         } else {
             os = '<span class="os_windows"><i class="fa fa-windows" aria-hidden="true"></i> Windows';
         }
-        if(e.match(/x[0-9][0-9]/)){
-            os +=" "+e.match(/x[0-9][0-9]/)[0];
+        if (e.match(/x[0-9][0-9]/)) {
+            os += " " + e.match(/x[0-9][0-9]/)[0];
         }
     } else if (s = e.match(/android \d+(\.\d+)*/ig)) {
         os = '<span class="os_android"><i class="fa fa-android" aria-hidden="true"></i> ' + s;
@@ -435,10 +437,31 @@ function os(e) {
         os = '<span class="os_unix">Unix'
     } else if (e.match(/symbian/ig)) {
         os = '<span class="os_nokia">Nokia SymbianOS'
-    } else if(s = e.match(/iPhone OS \d+(\_\d+)*/ig)){
-         os = '<span class="os_mac"><i class="fa fa-apple" aria-hidden="true"> ' + s.replace(/_/g, ".");
-    }else{
+    } else if (s = e.match(/iPhone OS \d+(\_\d+)*/ig)) {
+        os = '<span class="os_mac"><i class="fa fa-apple" aria-hidden="true"> ' + s.replace(/_/g, ".");
+    } else {
         os = '<span class="os_other">其它操作系统'
     }
     return os + "</span>";
 } //显UA结束
+function notifyMe(Messenger) {
+    //构建web Notificatio对象
+    Notification_options = {
+        icon: "http://77flfx.com5.z0.glb.clouddn.com/favicon.ico",
+        body: Messenger[0].time.substring(11,20)
+    };
+    if (!("Notification" in window)) {
+        console.log("呃.你的浏览器不支持Web Notification 提醒");
+    } else if (Notification.permission === "granted") {
+        var notification = new Notification(Messenger[0].comment, Notification_options);
+    } else if (Notification.permission !== 'denied') {
+        Notification.requestPermission(function(permission) {
+            if (permission === "granted") {
+                var notification = new Notification(Messenger[0].comment, Notification_options);
+            }
+        });
+        Notification.onclick(function() {
+            window.location.href = "http://www.hifs.tk/#cping";
+        });
+    }
+}
