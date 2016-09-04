@@ -172,14 +172,15 @@ function htmlinit() {
 
 }
 
-function json_comment(id) {
+function json_comment(id) {/*
     if (id == 1) {
         $('#commit').empty()
-    } else {}
+    } else {}*/
     $('#commit').html(Loading_xml(window.commentjson.responseJSON));
+     htmlinit();
     //$('#commit').html(json_commentxml(commentjson.responseJSON,id));
     console.log(window.id);
-    CommentNum(window.id);
+    //CommentNum(window.id);
 }
 
 function Loading_xml(argument) { //json生成评论返回dom
@@ -254,14 +255,24 @@ function CommentNum(id) {
     window.commentjson = $.ajax({
         url: serverphp + "/jsonread.php?start=" + start + "\&num=" + Num,
         cache: false,
-        async: false,
+        async: true,
         dataType: "json",
+        beforeSend: function() {
+            $("#commitload").show();
+        },
+        timeout: 3000,
+        completed: function() {
+            $("#commitload").hide();
+        },
         success: function() {
+            $('#commit').append(Loading_xml(window.commentjson.responseJSON));
             window.id++;
             window.error = undefined;
+            htmlinit();
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             alert("加载失败.");
+            $("#commitload").hide();
             window.error = 1;
             comment.error(); //迷之代码;
             //return false;
@@ -303,17 +314,17 @@ function sjmo() {
                 $("loading").remove();
                 $('wbi').html("<span class=\"glyphicon glyphicon-exclamation-sign\" style=\"color: rgb(255, 140, 60);\">加载完毕</span>");
             } else {
-                //$("#b3").fadeIn(500);
-                if (!window.error) {
-                    console.time("执行时间");
-                    $('#commit').append(Loading_xml(window.commentjson.responseJSON));
-                    htmlinit();
-                    console.timeEnd("执行时间");
-                    CommentNum(window.id);
-                } else {
-                    CommentNum(window.id);
-                }
+            //$("#b3").fadeIn(500);
+            if (!window.error) {
+                console.time("执行时间");
+                //$('#commit').append(Loading_xml(window.commentjson.responseJSON));
+                //htmlinit();
+                CommentNum(window.id);
+                console.timeEnd("执行时间");
+            } else {
+                CommentNum(window.id);
             }
+            //}
         }
         if ($(document).scrollTop() > $(window).height()) {
             $('#b3').show("100");
@@ -489,7 +500,8 @@ function notifyMe(Messenger) {
             }
         });
     }
-}/*
+}
+/*
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/static/js/sw.js').then(function(registration) {
         // Registration was successful
