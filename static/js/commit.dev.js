@@ -448,20 +448,54 @@ function notifyMe(Messenger) {
     //构建web Notificatio对象
     Notification_options = {
         icon: "http://77flfx.com5.z0.glb.clouddn.com/favicon.ico",
-        body: Messenger[0].time.substring(11,20)
+        body: Messenger[0].time.substring(11, 20),
     };
     if (!("Notification" in window)) {
         console.log("呃.你的浏览器不支持Web Notification 提醒");
     } else if (Notification.permission === "granted") {
         var notification = new Notification(Messenger[0].comment, Notification_options);
+        notification.onclick = function(event) {
+            if (document.hidden) {
+                //event.preventDefault(); // prevent the browser from focusing the Notification's tab
+                //window.open('http://www.hifs.tk/#!/cping', '_blank');
+            } else {
+                if (window.location.hash == "#!/cping") {
+                    $("#b3").click();
+                } else {
+                    window.location.hash = "!/cping";
+                    heighttmp = 0;
+                }
+            }
+            notification.close()
+        }
     } else if (Notification.permission !== 'denied') {
         Notification.requestPermission(function(permission) {
             if (permission === "granted") {
                 var notification = new Notification(Messenger[0].comment, Notification_options);
+                notification.onclick = function(event) {
+                    if (document.hidden) {
+                        event.preventDefault(); // prevent the browser from focusing the Notification's tab
+                        window.open('http://www.hifs.tk/#!/cping', '_blank');
+                    } else {
+                        if (window.location.hash == "#!/cping") {
+                            $("#b3").click();
+                        } else {
+                            window.location.hash = "!/cping";
+                            heighttmp = 0;
+                        }
+                    }
+                    notification.close()
+                }
             }
         });
-        Notification.onclick(function() {
-            window.location.href = "http://www.hifs.tk/#cping";
-        });
     }
+}
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/static/js/sw.js').then(function(registration) {
+        // Registration was successful
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }).catch(function(err) {
+        // registration failed :(
+        console.log('ServiceWorker registration failed: ', err);
+    });
 }
