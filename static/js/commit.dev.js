@@ -489,7 +489,7 @@ function notifyMe(Messenger) {
             }
         });
     }
-}
+}/*
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/static/js/sw.js').then(function(registration) {
         // Registration was successful
@@ -498,4 +498,4 @@ if ('serviceWorker' in navigator) {
         // registration failed :(
         console.log('ServiceWorker registration failed: ', err);
     });
-}
+}*/
