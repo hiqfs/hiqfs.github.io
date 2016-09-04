@@ -266,22 +266,17 @@ function CommentNum(id) {
             $("#commitload").hide();
         },
         success: function() {
-            if (!window.error) {
-                console.time("执行时间");
-                $('#commit').append(Loading_xml(window.commentjson.responseJSON));
-                htmlinit();
-                //CommentNum(window.id);
-                console.timeEnd("执行时间");
-            } else {
-                CommentNum(window.id);
-            }
+            console.time("执行时间");
+            $('#commit').append(Loading_xml(window.commentjson.responseJSON));
+            htmlinit();
             window.id++;
-            window.error = undefined;
+            //window.error = undefined;
+            //CommentNum(window.id);
+            console.timeEnd("执行时间");
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
-            alert("加载失败.");
             $("#commitload").hide();
-            window.error = 1;
+            alert("加载失败.");
             //comment.error(); //迷之代码;
             //return false;
         }
@@ -318,13 +313,13 @@ function sjmo() {
             //console.log(heighttmp);
         }
         if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
-            if (Loading_xml(window.commentjson.responseJSON) == "<wbi></wbi>") {
+            /*if (Loading_xml(window.commentjson.responseJSON) == "<wbi></wbi>") {
                 $("loading").remove();
                 $('wbi').html("<span class=\"glyphicon glyphicon-exclamation-sign\" style=\"color: rgb(255, 140, 60);\">加载完毕</span>");
-            } else {
-                //$("#b3").fadeIn(500);
-                CommentNum(window.id);
-            }
+            } else {*/
+            //$("#b3").fadeIn(500);
+            CommentNum(window.id);
+            //1}
         }
         if ($(document).scrollTop() > $(window).height()) {
             $('#b3').show("100");
