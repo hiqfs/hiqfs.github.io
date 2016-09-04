@@ -277,6 +277,9 @@ function CommentNum(id) {
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             $("#commitload").hide();
             alert("加载失败.");
+            if (window.id == "0") {
+                $("#comment_error").show();
+            }
             //comment.error(); //迷之代码;
             //return false;
         }
@@ -506,3 +509,7 @@ if ('serviceWorker' in navigator) {
         console.log('ServiceWorker registration failed: ', err);
     });
 }*/
+function errorload() {
+    CommentNum(window.id);
+    $("#comment_error").hide();
+}
