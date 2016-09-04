@@ -324,7 +324,7 @@ function sjmo() {
             } else {
                 CommentNum(window.id);
             }
-            //}
+            }
         }
         if ($(document).scrollTop() > $(window).height()) {
             $('#b3').show("100");
