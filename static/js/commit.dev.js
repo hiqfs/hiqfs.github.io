@@ -172,12 +172,13 @@ function htmlinit() {
 
 }
 
-function json_comment(id) {/*
-    if (id == 1) {
-        $('#commit').empty()
-    } else {}*/
+function json_comment(id) {
+    /*
+        if (id == 1) {
+            $('#commit').empty()
+        } else {}*/
     $('#commit').html(Loading_xml(window.commentjson.responseJSON));
-     htmlinit();
+    htmlinit();
     //$('#commit').html(json_commentxml(commentjson.responseJSON,id));
     console.log(window.id);
     //CommentNum(window.id);
@@ -265,16 +266,23 @@ function CommentNum(id) {
             $("#commitload").hide();
         },
         success: function() {
-            $('#commit').append(Loading_xml(window.commentjson.responseJSON));
+            if (!window.error) {
+                console.time("执行时间");
+                $('#commit').append(Loading_xml(window.commentjson.responseJSON));
+                htmlinit();
+                //CommentNum(window.id);
+                console.timeEnd("执行时间");
+            } else {
+                CommentNum(window.id);
+            }
             window.id++;
             window.error = undefined;
-            htmlinit();
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             alert("加载失败.");
             $("#commitload").hide();
             window.error = 1;
-            comment.error(); //迷之代码;
+            //comment.error(); //迷之代码;
             //return false;
         }
     });
@@ -314,16 +322,8 @@ function sjmo() {
                 $("loading").remove();
                 $('wbi').html("<span class=\"glyphicon glyphicon-exclamation-sign\" style=\"color: rgb(255, 140, 60);\">加载完毕</span>");
             } else {
-            //$("#b3").fadeIn(500);
-            if (!window.error) {
-                console.time("执行时间");
-                //$('#commit').append(Loading_xml(window.commentjson.responseJSON));
-                //htmlinit();
+                //$("#b3").fadeIn(500);
                 CommentNum(window.id);
-                console.timeEnd("执行时间");
-            } else {
-                CommentNum(window.id);
-            }
             }
         }
         if ($(document).scrollTop() > $(window).height()) {
