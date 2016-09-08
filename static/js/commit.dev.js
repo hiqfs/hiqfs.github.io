@@ -293,13 +293,6 @@ function sjmo() {
     //蛋疼的封装了一堆函数
     // Jquery Code
     //开始处理点击事件
-    $(document).keydown(function(event) {
-        if (event.ctrlKey && event.keyCode == 13) {
-            $("#jiao").click();
-            console.log("获取到按键事件");
-        }
-        return true;
-    });
     $("status").click(function() {
         iosocket.connect();
     });

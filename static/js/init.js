@@ -17,14 +17,7 @@ $("document").ready(function() {
             $(this).animate({ left: '0px' });
         }
     });
-    $(document).keydown(function(event) {
-        if(window.location.hash != "#!/cping"&&event.altKey && event.keyCode == 90){
-            window.location.hash="#!/cping";
-            $("#b1").click();
-            console.log("获取到按键事件");
-        }
-    return true;
-    });
+    scrollTo(0, 0);
 });
 
 function mobile() {
@@ -37,7 +30,7 @@ function mobile() {
         return false;
     }
 }
-mob=mobile();
+mob = mobile();
 
 function hitokoto(hi) {
     $('#hitokoto').empty();
@@ -86,7 +79,7 @@ function baidufen(argument) { //百度分享
         'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
 }
 var heighttmp
-//baidufen();
+    //baidufen();
 function cping() {
     $("#commitload").show();
     $("#ping").show();
@@ -102,11 +95,11 @@ function cping() {
     init();
     $("#commitload").hide();
     sjmo();
-     //$('body,html').animate({ scrollTop:heighttmp }, 400);
+    //$('body,html').animate({ scrollTop:heighttmp }, 400);
     //$("#jiao").focus(); 
     if (heighttmp) {
         if ($(window).height() > heighttmp) {
-            $('body,html').animate({ scrollTop:heighttmp }, 400);
+            $('body,html').animate({ scrollTop: heighttmp }, 400);
         }
     }
 }
@@ -146,7 +139,7 @@ function urlchenge() {
     $("#commitload").hide();
     $("#hcond").show();
     if (window.location.hash == "#!/cping") {
-        $('body,html').animate({ scrollTop:heighttmp }, 400);
+        $('body,html').animate({ scrollTop: heighttmp }, 400);
         if ($(document).scrollTop() > $(window).height()) {
             $('#b3').show("100");
         }
@@ -156,10 +149,11 @@ function urlchenge() {
     $("#ping").hide();
     $("body,html").unbind();
     $("#b3").unbind();
-    $("about").hide(); 
+    $("about").hide();
     $(window).unbind();
     ash();
 }
+
 function ash() {
     if (window.location.hash == "") {
         chome();
@@ -193,3 +187,20 @@ function show_date_time() {
     $("#span_dt_dt").text("瞄窝已经运行" + daysold + "天" + hrsold + "小时" + minsold + "分" + seconds + "秒");
 }
 show_date_time();
+$(document).keydown(function(event) {
+    if (event.ctrlKey && event.keyCode == 13) {
+        if (window.location.hash == "#!/cping") {
+            $("#jiao").click();
+            console.log("获取到按键事件");
+        }
+    }
+    return true;
+});
+$(document).keydown(function(event) {
+    if (window.location.hash != "#!/cping" && event.altKey && event.keyCode == 90) {
+        window.location.hash = "#!/cping";
+        $("#b1").click();
+        console.log("获取到按键事件");
+    }
+    return true;
+});

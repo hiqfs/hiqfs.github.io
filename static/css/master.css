@@ -25,7 +25,6 @@
 span,button#jiao,status,loadtime,div#musica{
     text-shadow: 1px 1px 3px #000;
 }
-
 #root a:hover {
     text-decoration: none;
 }
@@ -171,6 +170,11 @@ img {
 }
 
 #music div {
+    writing-mode: tb-rl;
+    letter-spacing: 5px;
+    line-height: 15px;
+    left: 280px;
+    cursor: pointer;
     position: fixed;
     top: 255px;
     left: 0px;
