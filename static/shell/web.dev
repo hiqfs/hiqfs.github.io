@@ -1,12 +1,12 @@
 #!/bin/sh
 curl \
-http://7u2f38.com5.z0.glb.clouddn.com/ajax/libs/jquery/3.0.0/jquery.min.js \
-http://7u2f38.com5.z0.glb.clouddn.com/ajax/libs/tether/1.3.2/js/tether.min.js \
-http://7u2f38.com5.z0.glb.clouddn.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js \
+http://7u2f38.com5.z0.glb.clouddn.com/ajax/libs/jquery/3.1.0/jquery.min.js \
+http://7u2f38.com5.z0.glb.clouddn.com/ajax/libs/tether/1.3.7/js/tether.min.js \
+http://7u2f38.com5.z0.glb.clouddn.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.4/js/bootstrap.min.js \
 http://7u2f38.com5.z0.glb.clouddn.com/ajax/libs/socket.io/1.4.8/socket.io.min.js > ../js/web.i.js
 curl \
 http://7u2f38.com5.z0.glb.clouddn.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css \
-http://7u2f38.com5.z0.glb.clouddn.com/ajax/libs/tether/1.3.2/css/tether.min.css \
+http://7u2f38.com5.z0.glb.clouddn.com/ajax/libs/tether/1.3.7/css/tether.min.css \
 http://7u2f38.com5.z0.glb.clouddn.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css \
  | sed  "s/..\/fonts\//http:\/\/7u2f38.com5.z0.glb.clouddn.com\/ajax\/libs\/font-awesome\/4.6.3\/fonts\//g" \
  > ../css/web.i.css

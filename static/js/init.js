@@ -17,6 +17,7 @@ $("document").ready(function() {
             $(this).animate({ left: '0px' });
         }
     });
+    $("xmd").show();
 });
 
 function mobile() {

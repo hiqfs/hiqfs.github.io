@@ -15,8 +15,8 @@ else
 fi
 echo "$time" > ./static/text/version.txt
 git pull
-git push github master
 git push origin master
+git push coding master
 git push gitlab master
 sed -i "s/http:\/\/7xsbbu.com1.z0.glb.clouddn.com\/static/\/static/g" ./*.html
 #自动部署代码
