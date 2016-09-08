@@ -30,7 +30,11 @@ function mobile() {
         return false;
     }
 }
+<<<<<<< HEAD
 mob = mobile();
+=======
+mob=mobile();
+>>>>>>> 127c6707d5b8ad7498f852aafca7704d3fbf57f5
 
 function hitokoto(hi) {
     $('#hitokoto').empty();
