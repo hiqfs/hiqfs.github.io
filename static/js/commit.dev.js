@@ -441,13 +441,13 @@ function os(e) {
     } else if (e.match(/linux/ig)) {
         os = '<span class="os_linux"><i class="fa fa-linux" aria-hidden="true"></i> Linux'
     } else if (e.match(/Mac OS X \d+(\_\d+)*/ig)) {
-        os = '<span class="os_mac"><i class="fa fa-apple" aria-hidden="true"></i> ' + s.replace(/_/g, ".");
+        os = '<span class="os_mac"><i class="fa fa-apple" aria-hidden="true"></i> ' + s[0].replace(/_/g, ".");
     } else if (e.match(/unix/ig)) {
         os = '<span class="os_unix">Unix'
     } else if (e.match(/symbian/ig)) {
         os = '<span class="os_nokia">Nokia SymbianOS'
     } else if (s = e.match(/iPhone OS \d+(\_\d+)*/ig)) {
-        os = '<span class="os_mac"><i class="fa fa-apple" aria-hidden="true"> ' + s.replace(/_/g, ".");
+        os = '<span class="os_mac"><i class="fa fa-apple" aria-hidden="true"></i> ' + s[0].replace(/_/g, ".");
     } else {
         os = '<span class="os_other">其它操作系统'
     }

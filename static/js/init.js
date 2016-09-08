@@ -29,7 +29,7 @@ $("document").ready(function() {
 
 function mobile() {
     if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
-        $("#musica").css("display", "none");
+        //$("#musica").css("display", "none");
         return true;
     } else {
         //$("#musica").css("display","none");
@@ -37,7 +37,7 @@ function mobile() {
         return false;
     }
 }
-mobile();
+mob=mobile();
 
 function hitokoto(hi) {
     $('#hitokoto').empty();
@@ -143,6 +143,7 @@ function chome() {
 function urlchenge() {
     hius();
     delete_us();
+    $("#commitload").hide();
     $("#hcond").show();
     if (window.location.hash == "#!/cping") {
         $('body,html').animate({ scrollTop:heighttmp }, 400);
