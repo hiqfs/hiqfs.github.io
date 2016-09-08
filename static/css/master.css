@@ -571,3 +571,10 @@ ua{
     -webkit-transform: scaleY(1.0);
   }
 }
+.cent{
+    margin-left: 40%
+    width:20%;
+    margin-bottom: 40%;
+    max-height: 20%
+    position:fixed;
+}
