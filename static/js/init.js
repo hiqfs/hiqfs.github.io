@@ -17,7 +17,6 @@ $("document").ready(function() {
             $(this).animate({ left: '0px' });
         }
     });
-    scrollTo(0, 0);
 });
 
 function mobile() {
@@ -30,11 +29,7 @@ function mobile() {
         return false;
     }
 }
-<<<<<<< HEAD
-mob = mobile();
-=======
-mob=mobile();
->>>>>>> 127c6707d5b8ad7498f852aafca7704d3fbf57f5
+//mob = mobile();
 
 function hitokoto(hi) {
     $('#hitokoto').empty();
