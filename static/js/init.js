@@ -1,6 +1,6 @@
 $("document").ready(function() {
     //$('#bar').load("/bar.html");
-    hius();
+    //hius();
     //mobile();
     ash();
     //var heighttmp;
@@ -32,7 +32,7 @@ function mobile() {
     }
 }
 //mob = mobile();
-
+/*
 function hitokoto(hi) {
     $('#hitokoto').empty();
     if (hi.source) {
@@ -56,7 +56,7 @@ function hius() {
     //hjs.setAttribute('async', 'async');
     hjs.setAttribute('src', 'http://api.hitokoto.us/rand?encode=jsc');
     document.body.appendChild(hjs);
-}
+}*/
 
 function baidufen(argument) { //百度分享
     window._bd_share_config = {
@@ -135,8 +135,10 @@ function chome() {
 }
 
 function urlchenge() {
+    /*
     hius();
     delete_us();
+    */
     $("#commitload").hide();
     $("#hcond").show();
     if (window.location.hash == "#!/cping") {

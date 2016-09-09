@@ -180,7 +180,7 @@ function json_comment(id) {
     $('#commit').html(Loading_xml(window.commentjson.responseJSON));
     htmlinit();
     //$('#commit').html(json_commentxml(commentjson.responseJSON,id));
-    console.log(window.id);
+    //console.log(window.id);
     //CommentNum(window.id);
 }
 

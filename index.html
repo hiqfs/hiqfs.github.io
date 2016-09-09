@@ -18,10 +18,10 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
     <title>喵窝首页∩ω∩</title>
     <link rel="shortcut icon" href="http://77flfx.com5.z0.glb.clouddn.com/favicon.ico" type="image/x-icon" />
-    <!--link rel="stylesheet" type="text/css" href="http://7xsbbu.com1.z0.glb.clouddn.com/static/css/web.css?t=1473423919">
-    <script src="http://7xsbbu.com1.z0.glb.clouddn.com/static/js/web.js?t=1473423919"></script-->
+    <!--link rel="stylesheet" type="text/css" href="http://7xsbbu.com1.z0.glb.clouddn.com/static/css/web.css?t=1473432269">
+    <script src="http://7xsbbu.com1.z0.glb.clouddn.com/static/js/web.js?t=1473432269"></script-->
     <script type="text/javascript">
-    date_time = "1473423919";
+    date_time = "1473432269";
     if (window.localStorage) {
         if (window.localStorage.Codetime == date_time) {
             eval(window.localStorage.js);
@@ -30,18 +30,18 @@
             scss.appendChild(lcss);
             document.head.appendChild(scss);
         } else {
-            addload("http://7xsbbu.com1.z0.glb.clouddn.com/static/js/web.js?t=1473423919", "js", true);
-            addload("http://7xsbbu.com1.z0.glb.clouddn.com/static/css/web.css?t=1473423919", "css", true);
+            addload("http://7xsbbu.com1.z0.glb.clouddn.com/static/js/web.js?t=1473432269", "js", true);
+            addload("http://7xsbbu.com1.z0.glb.clouddn.com/static/css/web.css?t=1473432269", "css", true);
             window.localStorage.Codetime = date_time;
         }
     } else {
-        addload("http://7xsbbu.com1.z0.glb.clouddn.com/static/js/web.js?t=1473423919", "js", false);
-        addload("http://7xsbbu.com1.z0.glb.clouddn.com/static/css/web.css?t=1473423919", "css", false);
+        addload("http://7xsbbu.com1.z0.glb.clouddn.com/static/js/web.js?t=1473432269", "js", false);
+        addload("http://7xsbbu.com1.z0.glb.clouddn.com/static/css/web.css?t=1473432269", "css", false);
     }
 
     function addload(url, name, stat) {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', url, false);
+        xhr.open('GET', url, true);
         //xhr.responseType = 'text';
         xhr.onload = function() {
             if (name == "js") {
@@ -52,7 +52,7 @@
                 if (stat) {
                     localStorage.setItem("js", xhr.response);
                 }
-                eval(xhr.response);
+                //eval(xhr.response);
             } else if (name == "css") {
                 var scss = document.createElement('style');
                 var lcss = document.createTextNode(xhr.response);
@@ -117,7 +117,7 @@
                 </div>
             </center>
         </about>
-        <a id="hitokoto" style="text-align: center;" onclick="hius();delete_us();"></a>
+        <!--a id="hitokoto" style="text-align: center;" onclick="hius();delete_us();"></a-->
         <div id="ping" style="display: none;">
             <div class="comment">
                 <div class="submit">
