@@ -270,6 +270,7 @@ function CommentNum(id) {
             $('#commit').append(Loading_xml(window.commentjson.responseJSON));
             htmlinit();
             window.id++;
+            $("#commitload").hide();
             //window.error = undefined;
             //CommentNum(window.id);
             console.timeEnd("执行时间");

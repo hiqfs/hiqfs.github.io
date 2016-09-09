@@ -18,6 +18,7 @@ $("document").ready(function() {
         }
     });
     $("xmd").show();
+    document.getElementById("banben").innerHTML = "Code最后更新时间<br>" + new Date(parseInt(date_time) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ');
 });
 
 function mobile() {
