@@ -14,7 +14,6 @@ function init_comment() {
         window.id = 0; //页数初始化为零
         commitNum = 0; //评论偏移数
         CommentNum(0); //评论初始化
-        json_comment(1);
         $("#jiao").bind("click", function() {
             $(this).attr("disabled", true);
             $(this).css("background-color", "#6F6F6F");
@@ -186,6 +185,8 @@ function json_comment(id) {
 
 function Loading_xml(argument) { //json生成评论返回dom
     if (argument) {
+        //if(cache[0]==argument[0]){return "";}
+        //cache=argument;
         commithaed = "<div class='comm' style=\"display:none;\"><div>";
         commitzhon = "</div><time>";
         commitfooter = "</div>";
@@ -260,9 +261,11 @@ function CommentNum(id) {
         dataType: "json",
         beforeSend: function() {
             $("#commitload").show();
+            stava=false;
         },
         timeout: 3000,
         completed: function() {
+            stava=true;
             $("#commitload").hide();
         },
         success: function(data, textStatus) {
@@ -273,6 +276,7 @@ function CommentNum(id) {
             $("#commitload").hide();
             //window.error = undefined;
             //CommentNum(window.id);
+            stava=true;
             console.timeEnd("执行时间");
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -281,6 +285,7 @@ function CommentNum(id) {
             if (window.id == "0") {
                 $("#comment_error").show();
             }
+            stava=true;
             //comment.error(); //迷之代码;
             //return false;
         }
@@ -294,6 +299,7 @@ function sjmo() {
     //蛋疼的封装了一堆函数
     // Jquery Code
     //开始处理点击事件
+    stava=true;
     $("status").click(function() {
         iosocket.connect();
     });
@@ -315,7 +321,9 @@ function sjmo() {
                 $('wbi').html("<span class=\"glyphicon glyphicon-exclamation-sign\" style=\"color: rgb(255, 140, 60);\">加载完毕</span>");
             } else {*/
             //$("#b3").fadeIn(500);
-            CommentNum(window.id);
+            if(stava){
+                CommentNum(window.id);
+            }
             //1}
         }
         if ($(document).scrollTop() > $(window).height()) {
