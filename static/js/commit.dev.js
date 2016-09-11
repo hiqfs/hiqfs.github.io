@@ -265,9 +265,9 @@ function CommentNum(id) {
         completed: function() {
             $("#commitload").hide();
         },
-        success: function() {
+        success: function(data, textStatus) {
             console.time("执行时间");
-            $('#commit').append(Loading_xml(window.commentjson.responseJSON));
+            $('#commit').append(Loading_xml(data));
             htmlinit();
             window.id++;
             $("#commitload").hide();
