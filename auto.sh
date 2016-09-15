@@ -2,10 +2,10 @@
 time=$(date)
 #开始处理代码
 sh web.sh
-sed -i "s/\/static/http:\/\/7xsbbu.com1.z0.glb.clouddn.com\/static/g" ./*.html #使用七牛cdn减速服务
+#sed -i "s/\/static/http:\/\/7xsbbu.com1.z0.glb.clouddn.com\/static/g" ./*.html #使用七牛cdn减速服务
 timestamp=$(date '+%s')
-sed -i "s/web.js?t=[0-9]*/web.js?t=$timestamp/g" ./*.html
-sed -i "s/web.css?t=[0-9]*/web.css?t=$timestamp/g" ./*.html
+#sed -i "s/web.js?t=[0-9]*/web.js?t=$timestamp/g" ./*.html
+#sed -i "s/web.css?t=[0-9]*/web.css?t=$timestamp/g" ./*.html
 sed -i "s/date_time = \"[0-9]*\"/date_time = \"$timestamp\"/g" ./index.html
 git add --all .
 if [ -n "$f1" ];then

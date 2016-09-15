@@ -69,25 +69,30 @@ function commit() {
 function tijiaopost() {
     if ($("#ti").html()) {
         tijiaopostand = $.ajax({
-            url: serverphp + "/write.php",
-            dataType: "json",
-            type: "post",
-            data: {
-                comment: function(argument) {
-                    tmpd = "";
-                    for (var i = 0; i < $("#ti").html().length; i++) {
-                        if ($("#ti").html().codePointAt(i) > 65535) {
-                            tmpd += "&#" + $("#ti").html().codePointAt(i) + ";";
-                            i++;
-                        } else {
-                            tmpd += String.fromCharCode($("#ti").html().codePointAt(i));
+                url: serverphp + "/write.php",
+                dataType: "json",
+                type: "post",
+                data: {
+                    comment: function(argument) {
+                        if ("test".codePointAt) {}
+                        tmpd = "";
+                        for (var i = 0; i < $("#ti").html().length; i++) {
+                            if ($("#ti").html().codePointAt(i) > 65535) {
+                                tmpd += "&#" + $("#ti").html().codePointAt(i) + ";";
+                                i++;
+                            } else {
+                                tmpd += String.fromCharCode($("#ti").html().codePointAt(i));
+                            }
+                        } //哈哈，可以支持emoji了😆
+                        if ((tmpd.substring(tmpd.length - 15, tmpd.length) == "<div><br></div>") == true) {
+                            tmpd = tmpd.substring(0, tmpd.length - 15);
                         }
-                    } //哈哈，可以支持emoji了😆
-                    if ((tmpd.substring(tmpd.length - 15, tmpd.length) == "<div><br></div>") == true) {
-                        tmpd = tmpd.substring(0, tmpd.length - 15);
+                        window.tmop = tmpd;
+                        return tmpd;
+                    } else {
+                        alert("提示:如果要支持emoji或特殊字符请使用支持ES6的浏览器再发");
+                        return $("#ti").html();
                     }
-                    window.tmop = tmpd;
-                    return tmpd;
                 }
             },
             success: function(data, textStatus, xhr) {
@@ -118,10 +123,10 @@ function tijiaopost() {
 
             cache: "false"
         });
-        return tijiaopostand;
-    } else {
-        alert("总得写些什么吧！");
-    }
+    return tijiaopostand;
+} else {
+    alert("总得写些什么吧！");
+}
 }
 
 function htmlinit() {
@@ -261,11 +266,11 @@ function CommentNum(id) {
         dataType: "json",
         beforeSend: function() {
             $("#commitload").show();
-            stava=false;
+            stava = false;
         },
         timeout: 3000,
         completed: function() {
-            stava=true;
+            stava = true;
             $("#commitload").hide();
         },
         success: function(data, textStatus) {
@@ -276,7 +281,7 @@ function CommentNum(id) {
             $("#commitload").hide();
             //window.error = undefined;
             //CommentNum(window.id);
-            stava=true;
+            stava = true;
             console.timeEnd("执行时间");
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -285,7 +290,7 @@ function CommentNum(id) {
             if (window.id == "0") {
                 $("#comment_error").show();
             }
-            stava=true;
+            stava = true;
             //comment.error(); //迷之代码;
             //return false;
         }
@@ -299,7 +304,7 @@ function sjmo() {
     //蛋疼的封装了一堆函数
     // Jquery Code
     //开始处理点击事件
-    stava=true;
+    stava = true;
     $("status").click(function() {
         iosocket.connect();
     });
@@ -321,7 +326,7 @@ function sjmo() {
                 $('wbi').html("<span class=\"glyphicon glyphicon-exclamation-sign\" style=\"color: rgb(255, 140, 60);\">加载完毕</span>");
             } else {*/
             //$("#b3").fadeIn(500);
-            if(stava){
+            if (stava) {
                 CommentNum(window.id);
             }
             //1}
