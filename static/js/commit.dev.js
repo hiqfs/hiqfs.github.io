@@ -69,12 +69,12 @@ function commit() {
 function tijiaopost() {
     if ($("#ti").html()) {
         tijiaopostand = $.ajax({
-                url: serverphp + "/write.php",
-                dataType: "json",
-                type: "post",
-                data: {
-                    comment: function(argument) {
-                        if ("test".codePointAt) {
+            url: serverphp + "/write.php",
+            dataType: "json",
+            type: "post",
+            data: {
+                comment: function(argument) {
+                    if ("test".codePointAt) {
                         tmpd = "";
                         for (var i = 0; i < $("#ti").html().length; i++) {
                             if ($("#ti").html().codePointAt(i) > 65535) {
@@ -91,6 +91,7 @@ function tijiaopost() {
                         return tmpd;
                     } else {
                         alert("提示:如果要支持emoji或特殊字符请使用支持ES6的浏览器再发");
+                        window.tmop = $("#ti").html();
                         return $("#ti").html();
                     }
                 }
@@ -123,10 +124,10 @@ function tijiaopost() {
 
             cache: "false"
         });
-    return tijiaopostand;
-} else {
-    alert("总得写些什么吧！");
-}
+        return tijiaopostand;
+    } else {
+        alert("总得写些什么吧！");
+    }
 }
 
 function htmlinit() {
