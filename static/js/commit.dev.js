@@ -74,7 +74,7 @@ function tijiaopost() {
                 type: "post",
                 data: {
                     comment: function(argument) {
-                        if ("test".codePointAt) {}
+                        if ("test".codePointAt) {
                         tmpd = "";
                         for (var i = 0; i < $("#ti").html().length; i++) {
                             if ($("#ti").html().codePointAt(i) > 65535) {
