@@ -170,9 +170,9 @@ img {
 }
 
 #music div {
-    writing-mode: tb-rl;
-    letter-spacing: 5px;
-    line-height: 15px;
+    //writing-mode: tb-rl;
+    //letter-spacing: 5px;
+    //line-height: 15px;
     left: 280px;
     cursor: pointer;
     position: fixed;

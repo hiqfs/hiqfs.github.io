@@ -296,6 +296,10 @@ function CommentNum(id) {
             //return false;
         }
     });
+    if (typeof(document.cookie) != undefined) {
+        document.cookie = "id=" + window.id;
+        document.cookie = "commitNum=" + commitNum;
+    }
 }
 timetmp = (new Date).getTime() + 3000;
 websocketio();
@@ -319,6 +323,9 @@ function sjmo() {
         //$(document).scrollLeft() 这是获取水平滚动条的距离
         if ($(document).scrollTop() != 0) {
             heighttmp = $(document).scrollTop();
+            if (typeof(document.cookie) != undefined) {
+                document.cookie = "top=" + heighttmp;
+            }
             //console.log(heighttmp);
         }
         if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
