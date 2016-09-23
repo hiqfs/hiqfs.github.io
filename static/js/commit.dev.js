@@ -333,7 +333,7 @@ function sjmo() {
                 $("loading").remove();
                 $('wbi').html("<span class=\"glyphicon glyphicon-exclamation-sign\" style=\"color: rgb(255, 140, 60);\">加载完毕</span>");
             } else {*/
-            //$("#b3").fadeIn(500);
+            $("#b3").fadeIn(500);
             if (stava) {
                 CommentNum(window.id);
             }
