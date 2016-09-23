@@ -98,7 +98,6 @@ function tijiaopost() {
             },
             success: function(data, textStatus, xhr) {
                 if (data.status == "OK") {
-                    alert("发送成功");
                     var text = [{
                         "comment": window.tmop,
                         "time": data.time,
@@ -109,6 +108,7 @@ function tijiaopost() {
                     $("#ti").empty();
                     ++commitNum;
                     htmlinit();
+                    alert("发送成功");
                 } else {
                     alert("额，发送失败   _(:qゝ∠)_  \n ", data);
                     console.log(data);

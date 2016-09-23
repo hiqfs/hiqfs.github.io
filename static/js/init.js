@@ -174,9 +174,8 @@ function ash() {
 
 function show_date_time() {
     window.setTimeout("show_date_time()", 1000);
-    BirthDay = new Date("6/15/2015 11:30:00"); //这个日期是可以修改的
     today = new Date();
-    timeold = (today.getTime() - BirthDay.getTime());
+    timeold = (today.getTime() - 1434339000000);
     sectimeold = timeold / 1000
     secondsold = Math.floor(sectimeold);
     msPerDay = 24 * 60 * 60 * 1000
