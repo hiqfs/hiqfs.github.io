@@ -18,11 +18,11 @@ function init_comment() {
             $(this).attr("disabled", true);
             $(this).css("background-color", "#6F6F6F");
             $(this).text("发送中...");
-            if (timetmp >= (new Date).getTime()) {
+            if (timetmp >= new Date().getTime()) {
                 alert("发太快了哦");
             } else {
                 tijiaopost();
-                timetmp = (new Date).getTime() + 3000;
+                timetmp = new Date().getTime() + 3000;
             }
             $(this).css("background-color", "#00a3cf");
             $(this).html("<i class=\"fa fa-paper-plane\" aria-hidden=\"true\"></i> 发送");
@@ -84,7 +84,7 @@ function tijiaopost() {
                                 tmpd += String.fromCharCode($("#ti").html().codePointAt(i));
                             }
                         } //哈哈，可以支持emoji了😆
-                        if ((tmpd.substring(tmpd.length - 15, tmpd.length) == "<div><br></div>") == true) {
+                        if ((tmpd.substring(tmpd.length - 15, tmpd.length) == "<div><br></div>") === true) {
                             tmpd = tmpd.substring(0, tmpd.length - 15);
                         }
                         window.tmop = tmpd;
@@ -291,17 +291,18 @@ function CommentNum(id) {
             if (window.id == "0") {
                 $("#comment_error").show();
             }
+            console.log(XMLHttpRequest, textStatus, errorThrown);
             stava = true;
             //comment.error(); //迷之代码;
             //return false;
         }
     });
-    if (typeof(document.cookie) != undefined) {
+    if (typeof(document.cookie) !== undefined) {
         document.cookie = "id=" + window.id;
         document.cookie = "commitNum=" + commitNum;
     }
 }
-timetmp = (new Date).getTime() + 3000;
+timetmp = new Date().getTime() + 3000;
 websocketio();
 var heighttmp;
 
@@ -315,15 +316,17 @@ function sjmo() {
     });
     $("#b3").click(function() {
         var speed = 200; //滑动的速度
-        $('body,html').animate({ scrollTop: 0 }, speed);
+        $('body,html').animate({
+            scrollTop: 0
+        }, speed);
         return false;
     });
     $(window).scroll(function(data) {
         //$(document).scrollTop() 获取垂直滚动的距离
         //$(document).scrollLeft() 这是获取水平滚动条的距离
-        if ($(document).scrollTop() != 0) {
+        if ($(document).scrollTop() !== 0) {
             heighttmp = $(document).scrollTop();
-            if (typeof(document.cookie) != undefined) {
+            if (typeof(document.cookie) !== undefined) {
                 document.cookie = "top=" + heighttmp;
             }
             //console.log(heighttmp);
@@ -375,59 +378,59 @@ $(function() {
 */
 //显UA开始
 function ua(e) {
-    var r = new Array;
+    var r = new Array([]);
     var outputer = '';
-    if (r = e.match(/MSIE\s([^\s|;]+)/gi)) {
-        outputer = '<span class="ua_ie"><i class="fa fa-internet-explorer" aria-hidden="true"></i> Internet Explorer' + ' ' + r[0].replace('MSIE', '').split('.')[0]
-    } else if (r = e.match(/FireFox\/([^\s]+)/ig)) {
+    if ((r = e.match(/MSIE\s([^\s|;]+)/gi))) {
+        outputer = '<span class="ua_ie"><i class="fa fa-internet-explorer" aria-hidden="true"></i> Internet Explorer' + ' ' + r[0].replace('MSIE', '').split('.')[0];
+    } else if ((r = e.match(/FireFox\/([^\s]+)/ig))) {
         var r1 = r[0].split("/");
-        outputer = '<span class="ua_firefox"><i class="fa fa-firefox" aria-hidden="true"></i> Mozilla FireFox' + ' ' + r1[1]
+        outputer = '<span class="ua_firefox"><i class="fa fa-firefox" aria-hidden="true"></i> Mozilla FireFox' + ' ' + r1[1];
     } else if (r = e.match(/Maxthon([\d]*)\/([^\s]+)/ig)) {
         var r1 = r[0].split("/");
         outputer = '<span class="ua_maxthon">Maxthon'
     } else if (r = e.match(/UBrowser([\d]*)\/([^\s]+)/ig)) {
         var r1 = r[0].split("/");
-        outputer = '<span class="ua_ucweb">UCBrowser' + ' ' + r1[1]
+        outputer = '<span class="ua_ucweb">UCBrowser' + ' ' + r1[1];
     } else if (r = e.match(/MetaSr/ig)) {
-        outputer = '<span class="ua_sogou">搜狗浏览器'
+        outputer = '<span class="ua_sogou">搜狗浏览器';
     } else if (r = e.match(/2345Explorer/ig)) {
-        outputer = '<span class="ua_2345explorer">2345王牌浏览器'
+        outputer = '<span class="ua_2345explorer">2345王牌浏览器';
     } else if (r = e.match(/2345chrome/ig)) {
-        outputer = '<span class="ua_2345chrome">2345加速浏览器'
+        outputer = '<span class="ua_2345chrome">2345加速浏览器';
     } else if (r = e.match(/LBBROWSER/ig)) {
-        outputer = '<span class="ua_lbbrowser">猎豹安全浏览器'
+        outputer = '<span class="ua_lbbrowser">猎豹安全浏览器';
     } else if (r = e.match(/MicroMessenger\/([^\s]+)/ig)) {
         var r1 = r[0].split("/");
-        outputer = '<span class="ua_qq"><i class="fa fa-weixin" aria-hidden="true"></i> 微信' + ' ' + r1[1].split('/')[0]
+        outputer = '<span class="ua_qq"><i class="fa fa-weixin" aria-hidden="true"></i> 微信' + ' ' + r1[1].split('/')[0];
     } else if (r = e.match(/QQBrowser\/([^\s]+)/ig)) {
         var r1 = r[0].split("/");
-        outputer = '<span class="ua_qq"><i class="fa fa-qq" aria-hidden="true"></i> QQ浏览器' + ' ' + r1[1].split('/')[0]
+        outputer = '<span class="ua_qq"><i class="fa fa-qq" aria-hidden="true"></i> QQ浏览器' + ' ' + r1[1].split('/')[0];
     } else if (r = e.match(/QQ\/([^\s]+)/ig)) {
         var r1 = r[0].split("/");
-        outputer = '<span class="ua_qq"><i class="fa fa-qq" aria-hidden="true"></i> QQ浏览器' + ' ' + r1[1].split('/')[0]
+        outputer = '<span class="ua_qq"><i class="fa fa-qq" aria-hidden="true"></i> QQ浏览器' + ' ' + r1[1].split('/')[0];
     } else if (r = e.match(/MiuiBrowser\/([^\s]+)/ig)) {
         var r1 = r[0].split("/");
-        outputer = '<span class="ua_mi">Miui浏览器' + ' ' + r1[1].split('/')[0]
+        outputer = '<span class="ua_mi">Miui浏览器' + ' ' + r1[1].split('/')[0];
     } else if (r = e.match(/Chrome([\d]*)\/([^\s]+)/ig)) {
         var r1 = r[0].split("/");
-        outputer = '<span class="ua_chrome"><i class="fa fa-chrome" ></i> Chrome' + ' ' + r1[1].split('.')[0]
+        outputer = '<span class="ua_chrome"><i class="fa fa-chrome" ></i> Chrome' + ' ' + r1[1].split('.')[0];
     } else if (r = e.match(/safari\/([^\s]+)/ig)) {
         var r1 = r[0].split("/");
-        outputer = '<span class="ua_apple"><i class="fa fa-safari" aria-hidden="true"></i> Apple Safari' + ' ' + r1[1]
+        outputer = '<span class="ua_apple"><i class="fa fa-safari" aria-hidden="true"></i> Apple Safari' + ' ' + r1[1];
     } else if (r = e.match(/Opera[\s|\/]([^\s]+)/ig)) {
         var r1 = r[0].split("/");
-        outputer = '<span class="ua_opera"><i class="fa fa-opera" aria-hidden="true"></i> Opera' + ' ' + r[1]
+        outputer = '<span class="ua_opera"><i class="fa fa-opera" aria-hidden="true"></i> Opera' + ' ' + r[1];
     } else if (r = e.match(/Trident\/7.0/gi)) {
-        outputer = '<span class="ua_ie"><i class="fa fa-internet-explorer" aria-hidden="true"></i> Internet Explorer 11'
+        outputer = '<span class="ua_ie"><i class="fa fa-internet-explorer" aria-hidden="true"></i> Internet Explorer 11';
     } else {
-        outputer = '<span class="ua_other">其它浏览器'
+        outputer = '<span class="ua_other">其它浏览器';
     }
     return outputer + "</span> ";
 }
 
 function os(e) {
     var os = '';
-    var s = new Array();
+    var s = new Array([]);
     if (e.match(/win/ig)) {
         if (e.match(/nt 5.1/ig)) {
             os = '<span class="os_xp"><i class="fa fa-windows" aria-hidden="true"></i> Windows XP';
@@ -449,22 +452,22 @@ function os(e) {
         if (e.match(/x[0-9][0-9]/)) {
             os += " " + e.match(/x[0-9][0-9]/)[0];
         }
-    } else if (s = e.match(/android \d+(\.\d+)*/ig)) {
+    } else if ((s = e.match(/android \d+(\.\d+)*/ig))) {
         os = '<span class="os_android"><i class="fa fa-android" aria-hidden="true"></i> ' + s;
     } else if (e.match(/ubuntu/ig)) {
-        os = '<span class="os_ubuntu"><i class="fa fa-linux" aria-hidden="true"></i> Ubuntu'
+        os = '<span class="os_ubuntu"><i class="fa fa-linux" aria-hidden="true"></i> Ubuntu';
     } else if (e.match(/linux/ig)) {
-        os = '<span class="os_linux"><i class="fa fa-linux" aria-hidden="true"></i> Linux'
+        os = '<span class="os_linux"><i class="fa fa-linux" aria-hidden="true"></i> Linux';
     } else if (e.match(/Mac OS X \d+(\_\d+)*/ig)) {
         os = '<span class="os_mac"><i class="fa fa-apple" aria-hidden="true"></i> ' + s[0].replace(/_/g, ".");
     } else if (e.match(/unix/ig)) {
-        os = '<span class="os_unix">Unix'
+        os = '<span class="os_unix">Unix';
     } else if (e.match(/symbian/ig)) {
-        os = '<span class="os_nokia">Nokia SymbianOS'
-    } else if (s = e.match(/iPhone OS \d+(\_\d+)*/ig)) {
+        os = '<span class="os_nokia">Nokia SymbianOS';
+    } else if ((s = e.match(/iPhone OS \d+(\_\d+)*/ig))) {
         os = '<span class="os_mac"><i class="fa fa-apple" aria-hidden="true"></i> ' + s[0].replace(/_/g, ".");
     } else {
-        os = '<span class="os_other">其它操作系统'
+        os = '<span class="os_other">其它操作系统';
     }
     return os + "</span>";
 } //显UA结束
@@ -490,8 +493,8 @@ function notifyMe(Messenger) {
                     heighttmp = 0;
                 }
             }
-            notification.close()
-        }
+            notification.close();
+        };
     } else if (Notification.permission !== 'denied') {
         Notification.requestPermission(function(permission) {
             if (permission === "granted") {
@@ -508,8 +511,8 @@ function notifyMe(Messenger) {
                             heighttmp = 0;
                         }
                     }
-                    notification.close()
-                }
+                    notification.close();
+                };
             }
         });
     }

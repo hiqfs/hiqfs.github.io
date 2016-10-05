@@ -18,67 +18,67 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
     <title>喵窝首页∩ω∩</title>
     <link rel="shortcut icon" href="http://77flfx.com5.z0.glb.clouddn.com/favicon.ico" type="image/x-icon" />
-    <!--link rel="stylesheet" type="text/css" href="http://7xsbbu.com1.z0.glb.clouddn.com/static/css/web.css?t=1474638226">
-    <script src="http://7xsbbu.com1.z0.glb.clouddn.com/static/js/web.js?t=1474638226"></script-->
+    <!--link rel="stylesheet" type="text/css" href="http://7xsbbu.com1.z0.glb.clouddn.com/static/css/web.css?t=1475650447">
+    <script src="http://7xsbbu.com1.z0.glb.clouddn.com/static/js/web.js?t=1475650447"></script-->
     <script type="text/javascript">
-    date_time = "1474638226";
-    if (window.localStorage) {
-        if (window.localStorage.Codetime == date_time) {
-            eval(window.localStorage.js);
-            var scss = document.createElement('style');
-            var lcss = document.createTextNode(window.localStorage.css);
-            scss.appendChild(lcss);
-            document.head.appendChild(scss);
-        } else {
-            addload("http://7xsbbu.com1.z0.glb.clouddn.com/static/js/web.js?t=1474638226", "js", true);
-            addload("http://7xsbbu.com1.z0.glb.clouddn.com/static/css/web.css?t=1474638226", "css", true);
-            window.localStorage.Codetime = date_time;
-
-        }
-    } else {
-        addload("http://7xsbbu.com1.z0.glb.clouddn.com/static/js/web.js?t=1474638226", "js", false);
-        addload("http://7xsbbu.com1.z0.glb.clouddn.com/static/css/web.css?t=1474638226", "css", false);
-    }
-
-    function addload(url, name, stat) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', url, true);
-        //xhr.responseType = 'text';
-        xhr.onload = function() {
-            if (name == "js") {
-                var sjs = document.createElement('script');
-                var ljs = document.createTextNode(xhr.response);
-                sjs.appendChild(ljs);
-                document.head.appendChild(sjs);
-                if (stat) {
-                    localStorage.setItem("js", xhr.response);
-                }
-                //eval(xhr.response);
-            } else if (name == "css") {
+        date_time = "1475650447";
+        if (window.localStorage) {
+            if (window.localStorage.Codetime == date_time) {
+                eval(window.localStorage.js);
                 var scss = document.createElement('style');
-                var lcss = document.createTextNode(xhr.response);
+                var lcss = document.createTextNode(window.localStorage.css);
                 scss.appendChild(lcss);
                 document.head.appendChild(scss);
-                if (stat) {
-                    localStorage.setItem("css", xhr.response);
-                }
             } else {
-                console.log("error");
+                addload("http://7xsbbu.com1.z0.glb.clouddn.com/static/js/web.js?t=1475650447", "js", true);
+                addload("http://7xsbbu.com1.z0.glb.clouddn.com/static/css/web.css?t=1475650447", "css", true);
+                window.localStorage.Codetime = date_time;
+
             }
-        };
-        xhr.onerror = function() {
-            console.log("Oops, error");
-        };
-        xhr.send();
-    }
+        } else {
+            addload("http://7xsbbu.com1.z0.glb.clouddn.com/static/js/web.js?t=1475650447", "js", false);
+            addload("http://7xsbbu.com1.z0.glb.clouddn.com/static/css/web.css?t=1475650447", "css", false);
+        }
+
+        function addload(url, name, stat) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url, true);
+            //xhr.responseType = 'text';
+            xhr.onload = function() {
+                if (name == "js") {
+                    var sjs = document.createElement('script');
+                    var ljs = document.createTextNode(xhr.response);
+                    sjs.appendChild(ljs);
+                    document.head.appendChild(sjs);
+                    if (stat) {
+                        localStorage.setItem("js", xhr.response);
+                    }
+                    //eval(xhr.response);
+                } else if (name == "css") {
+                    var scss = document.createElement('style');
+                    var lcss = document.createTextNode(xhr.response);
+                    scss.appendChild(lcss);
+                    document.head.appendChild(scss);
+                    if (stat) {
+                        localStorage.setItem("css", xhr.response);
+                    }
+                } else {
+                    console.log("error");
+                }
+            };
+            xhr.onerror = function() {
+                console.log("Oops, error");
+            };
+            xhr.send();
+        }
     </script>
     <meta content="Hifs,喵窝∩ω∩,hifs" name="Keywords">
     <meta name="description" content="欢迎来到喵窝∩ω∩.花开花落,物是人非.这里是一个匿名分享琐事的小网站.">
 </head>
 
-<body id="root" onhashchange="urlchenge();" >
+<body id="root" onhashchange="urlchenge();">
     <div id="music">
-        <iframe id="musicd" frameborder="no" name="music" border="0" marginwidth="0" marginheight="0" width=280 height=487 src="http://music.163.com/outchain/player?type=0&id=92384486&auto=0&height=430">
+        <iframe id="musicd" frameborder="no" name="music" border="0" marginwidth="0" marginheight="0" width="280" height="487" src="http://music.163.com/outchain/player?type=0&id=92384486&auto=0&height=430">
         </iframe>
         <div id="musica"><i class="fa fa-music" aria-hidden="true"></i><br>音<br>乐</div>
     </div>
@@ -87,11 +87,11 @@
         <div>
             <ul class="nav navbar-nav">
                 <li class="nav-item"><a id="home" class="nav-link" href="#"><i class="fa fa-home" aria-hidden="true"></i> 喵窝</a></li>
-                <li class="nav-item"><a id='b1' class="nav-link" href="#!/cping"><i class="fa fa-commenting" aria-hidden="true"></i> 留言板</a></li>
-                <li class="nav-item"><a id='b2' class="nav-link" href="#!/cabout"><i class="fa fa-user" aria-hidden="true"></i> 关于我</a></li>
+                <li class="nav-item"><a id="b1" class="nav-link" href="#!/cping"><i class="fa fa-commenting" aria-hidden="true"></i> 留言板</a></li>
+                <li class="nav-item"><a id="b2" class="nav-link" href="#!/cabout"><i class="fa fa-user" aria-hidden="true"></i> 关于我</a></li>
             </ul>
         </div>
-        <a id='b3' class="navbar-brand" style="display: none; font-size: 1rem;line-height: 1.5;padding-top: .425rem;padding-bottom: .425rem;" href="javascript:void(0)"><i class="fa fa-arrow-up" aria-hidden="true"></i> 回顶部<num style="display: none;">0</num></a>
+        <a id="b3" class="navbar-brand" style="display: none; font-size: 1rem;line-height: 1.5;padding-top: .425rem;padding-bottom: .425rem;" href="javascript:void(0)"><i class="fa fa-arrow-up" aria-hidden="true"></i> 回顶部<num style="display: none;">0</num></a>
     </nav>
     <xmd style="display: none;">
         <div id="hcond" style="margin-top:100px;">
@@ -103,7 +103,7 @@
         </div>
         <about style="display: none">
             <center>
-                <div class="About" id="hcond" style="margin-top:100px;min-width:95%;margin-left:0;">
+                <div class="About" style="margin-top:100px;min-width:95%;margin-left:0;">
                     <p>
                         <p>一个默默无闻的小屁孩</p>
                         <!--img id="toux" style="max-width:99%;" src="http://ww2.sinaimg.cn/large/0060lm7Tgw1f55fj7owmuj30fk0fk0td.jpg"-->
@@ -115,6 +115,7 @@
                         <span class="label label-primary"><a href="http://github.com/hiqfs"><i class="fa fa-github" aria-hidden="true"></i> github</a></span>
                         <span class="label label-danger"><a href="http://weibo.com/hiqf?is_all=1"><i class="fa fa-weibo" aria-hidden="true"></i> 微博</a></span>
                         <div id="banben"></div>
+                    </p>
                 </div>
             </center>
         </about>

@@ -10,11 +10,19 @@ $("document").ready(function() {
         }*/
     $("#musica").click(function() {
         if ($(this).css("left") == "0px") {
-            $(this).animate({ left: '280px' });
-            $("#musicd").animate({ left: "0px" });
+            $(this).animate({
+                left: '280px'
+            });
+            $("#musicd").animate({
+                left: "0px"
+            });
         } else {
-            $("#musicd").animate({ left: "-280px" });
-            $(this).animate({ left: '0px' });
+            $("#musicd").animate({
+                left: "-280px"
+            });
+            $(this).animate({
+                left: '0px'
+            });
         }
     });
     $("xmd").show();
@@ -84,7 +92,9 @@ var heighttmp
 function cping() {
     $("#commitload").show();
     $("#ping").show();
-    $("#hcond").animate({ marginTop: '100px' });
+    $("#hcond").animate({
+        marginTop: '100px'
+    });
     $("#b1").addClass(function() {
         $("li a").removeClass("active");
         return "active";
@@ -97,12 +107,14 @@ function cping() {
     $("#commitload").hide();
     sjmo();
     //$('body,html').animate({ scrollTop:heighttmp }, 400);
-    //$("#jiao").focus(); 
-    if (heighttmp) {
+    //$("#jiao").focus();
+    /*if (heighttmp) {
         if ($(window).height() > heighttmp) {
-            $('body,html').animate({ scrollTop: heighttmp }, 400);
+            $('body,html').animate({
+                scrollTop: heighttmp
+            }, 400);
         }
-    }
+    }*/
 }
 
 function cabout() {
@@ -123,7 +135,9 @@ function cabout() {
 }
 
 function chome() {
-    $("#hcond").animate({ marginTop: '150px' });
+    $("#hcond").animate({
+        marginTop: '150px'
+    });
     $("#home").addClass(function() {
         $("li a").removeClass("active");
         return "active";
@@ -142,7 +156,9 @@ function urlchenge() {
     $("#commitload").hide();
     $("#hcond").show();
     if (window.location.hash == "#!/cping") {
-        $('body,html').animate({ scrollTop: heighttmp }, 400);
+        $('body,html').animate({
+            scrollTop: heighttmp
+        }, 400);
         if ($(document).scrollTop() > $(window).height()) {
             $('#b3').show("100");
         }
@@ -201,7 +217,8 @@ $(document).keydown(function(event) {
 $(document).keydown(function(event) {
     if (window.location.hash != "#!/cping" && event.altKey && event.keyCode == 90) {
         window.location.hash = "#!/cping";
-        $("#b1").click();
+        $(".nav-link, #b1").click();
+        $("#ti").focus();
         console.log("获取到按键事件");
     }
     return true;
