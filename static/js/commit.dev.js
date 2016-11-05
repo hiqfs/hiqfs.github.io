@@ -1,8 +1,8 @@
 //代码重构
 serverjs = "https://jaber-nodejs.daoapp.io/";
-serverphp = "https://jaber.daoapp.io";
+//serverphp = "https://jaber.daoapp.io";
 //serverphp = "http://server-php.coding.io";
-//serverphp = "https://php-qqfs.rhcloud.com/";
+serverphp = "https://php-qqfs.rhcloud.com/";
 servercdn = [ //cdn服务器列表
     "http://7xljsf.com1.z0.glb.clouddn.com/",
     "http://7xr863.dl1.z0.glb.clouddn.com/",
@@ -69,7 +69,7 @@ function commit() {
 function tijiaopost() {
     if ($("#ti").html()) {
         tijiaopostand = $.ajax({
-            url: serverphp + "/write.php",
+            url: serverphp + "/w.php",
             dataType: "json",
             type: "post",
             data: {
@@ -261,7 +261,7 @@ function CommentNum(id) {
     start = id * Num;
     start = start + commitNum;
     window.commentjson = $.ajax({
-        url: serverphp + "/jsonread.php?start=" + start + "\&num=" + Num,
+        url: serverphp + "/json.php?start=" + start + "\&num=" + Num,
         cache: false,
         async: true,
         dataType: "json",
