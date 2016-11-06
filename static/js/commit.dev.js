@@ -1,5 +1,5 @@
 //代码重构
-serverjs = "https://jaber-nodejs.daoapp.io/";
+serverjs = "https://nodejs-qqfs.rhcloud.com/";
 //serverphp = "https://jaber.daoapp.io";
 //serverphp = "http://server-php.coding.io";
 serverphp = "https://php-qqfs.rhcloud.com/";
