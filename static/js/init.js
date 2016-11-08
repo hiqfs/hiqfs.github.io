@@ -2,8 +2,16 @@ $("document").ready(function() {
     //$('#bar').load("/bar.html");
     //hius();
     //mobile();
-    ash();
     //var heighttmp;
+    if (window.location.hash == "") {
+        chome();
+    }
+    if (window.location.hash == "#!/cping") {
+        cping();
+    }
+    if (window.location.hash == "#!/cabout") {
+        cabout();
+    }
     /*
         if (ashstatus) {
             heighttmp = 0;
@@ -26,6 +34,7 @@ $("document").ready(function() {
         }
     });
     $("xmd").show();
+    init_comment();
     document.getElementById("banben").innerHTML = "Code最后更新时间<br>" + new Date(parseInt(date_time) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ');
 });
 
@@ -90,7 +99,7 @@ function baidufen(argument) { //百度分享
 var heighttmp
     //baidufen();
 function cping() {
-    $("#commitload").show();
+    //$("#commitload").show();
     $("#ping").show();
     $("#hcond").animate({
         marginTop: '100px'
@@ -102,9 +111,9 @@ function cping() {
     $("title").html("喵窝留言板⊙ω⊙");
     $("#title").html("喵窝留言板⊙ω⊙");
     $("#ping").show();
-    init_comment();
+    //init_comment();
     init();
-    $("#commitload").hide();
+    //$("#commitload").hide();
     sjmo();
     //$('body,html').animate({ scrollTop:heighttmp }, 400);
     //$("#jiao").focus();
@@ -153,7 +162,7 @@ function urlchenge() {
     hius();
     delete_us();
     */
-    $("#commitload").hide();
+    //$("#commitload").hide();
     $("#hcond").show();
     if (window.location.hash == "#!/cping") {
         $('body,html').animate({
@@ -170,24 +179,20 @@ function urlchenge() {
     $("#b3").unbind();
     $("about").hide();
     $(window).unbind();
-    ash();
-}
-
-function ash() {
     if (window.location.hash == "") {
         chome();
     }
     if (window.location.hash == "#!/cping") {
+        if (window.id == "0") {
+          $("#comment_error").hide();
+          CommentNum(window.id);
+        }
         cping();
     }
     if (window.location.hash == "#!/cabout") {
         cabout();
     }
-    ashstatus = true;
-    //$youziku.load("#hcond h1", "6a165ede1020463ba4351d8e1771839f", "DroidSans");
-    //$youziku.draw();
 }
-
 function show_date_time() {
     window.setTimeout("show_date_time()", 1000);
     today = new Date();

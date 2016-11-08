@@ -1,5 +1,5 @@
 //代码重构
-serverjs = "https://nodejs-qqfs.rhcloud.com/";
+serverjs = "http://nodejs-qqfs.rhcloud.com/";
 //serverphp = "https://jaber.daoapp.io";
 //serverphp = "http://server-php.coding.io";
 serverphp = "https://php-qqfs.rhcloud.com/";
@@ -287,7 +287,9 @@ function CommentNum(id) {
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             $("#commitload").hide();
-            alert("加载失败.");
+            if (window.location.hash == "#!/cping"){
+                alert("评论加载失败");
+            }
             if (window.id == "0") {
                 $("#comment_error").show();
             }
