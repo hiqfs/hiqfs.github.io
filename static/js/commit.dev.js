@@ -90,7 +90,6 @@ function tijiaopost() {
                         window.tmop = tmpd;
                         return tmpd;
                     } else {
-                        alert("提示:如果要支持emoji或特殊字符请使用支持ES6的浏览器再发");
                         window.tmop = $("#ti").html();
                         return $("#ti").html();
                     }
@@ -269,7 +268,7 @@ function CommentNum(id) {
             $("#commitload").show();
             stava = false;
         },
-        timeout: 3000,
+        timeout: 5000,
         completed: function() {
             stava = true;
             $("#commitload").hide();
