@@ -192,7 +192,9 @@ img {
     margin-right: auto;
     max-width: 95%;
 }
-
+.comment br{
+  display:none;
+}
 comment code {
     display: inline-block;
 }
