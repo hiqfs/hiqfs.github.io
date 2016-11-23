@@ -72,6 +72,8 @@ function tijiaopost() {
             url: serverphp + "/w.php",
             dataType: "json",
             type: "post",
+            async:"false",
+            timeout: 5000,
             data: {
                 comment: function(argument) {
                     if ("test".codePointAt) {
