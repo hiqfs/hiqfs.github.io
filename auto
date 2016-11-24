@@ -1,7 +1,7 @@
 #!/bin/sh
 time=$(date)
 #开始处理代码
-sh web.sh
+sh web
 sed -i "s/\/static/http:\/\/7xsbbu.com1.z0.glb.clouddn.com\/static/g" ./*.html #使用七牛cdn减速服务
 timestamp=$(date '+%s')
 sed -i "s/web.js?t=[0-9]*/web.js?t=$timestamp/g" ./*.html
@@ -19,4 +19,6 @@ git push origin master
 git push coding master
 git push gitlab master
 sed -i "s/http:\/\/7xsbbu.com1.z0.glb.clouddn.com\/static/\/static/g" ./*.html
+qshell prefetch hifs-cdn static/js/web.js
+qshell prefetch hifs-cdn static/css/web.css
 #自动部署代码
