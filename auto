@@ -19,6 +19,9 @@ git push origin master
 git push coding master
 git push gitlab master
 sed -i "s/http:\/\/7xsbbu.com1.z0.glb.clouddn.com\/static/\/static/g" ./*.html
+Cur_Dir=$(pwd)
+echo $Cur_Dir
 qshell prefetch hifs-cdn static/js/web.js
 qshell prefetch hifs-cdn static/css/web.css
+cd $Cur_Dir
 #自动部署代码
