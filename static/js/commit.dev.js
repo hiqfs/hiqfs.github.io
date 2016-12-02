@@ -2,7 +2,7 @@
 serverjs = "https://nodejs-qqfs.rhcloud.com/";
 //serverphp = "https://jaber.daoapp.io";
 //serverphp = "http://server-php.coding.io";
-serverphp = "https://php-servers.hifs.tk";
+serverphp = "https://php-qqfs.rhcloud.com";
 servercdn = [ //cdn服务器列表
     "http://7xljsf.com1.z0.glb.clouddn.com/",
     "http://7xr863.dl1.z0.glb.clouddn.com/",
