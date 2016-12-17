@@ -1,0 +1,36 @@
+@charset "UTF-8";
+.error {
+    background-image: none;
+    position: absolute;
+    margin: -250px 0 0 -250px;
+    top: 40%;
+    left: 50%;
+    color: rgba(13, 76, 107, 1);
+    font-family: Source Han Sans CN, 微软雅黑, Helvetica, STHeiti, Droid Sans Fallback;
+}
+
+.error h1 {
+    margin-bottom: 0px;
+}
+
+.error a {
+    text-decoration: none;
+    color: rgba(13, 76, 107, 1);
+    transition: color 1s;
+}
+
+.error a:hover {
+    color: blue;
+}
+
+.error p {
+    font-weight: bold;
+    color: darkslategray;
+    font-family: clicker script, segoe script, Comic Sans MS;
+    font-size: 28px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-shadow: none;
+    text-align: center;
+    display: block;
+}

@@ -1,4 +1,4 @@
-! function() {
+function canvas() {
 	//封装方法，压缩之后减少文件大小
 	function get_attribute(node, attr, default_value) {
 		return node.getAttribute(attr) || default_value;
@@ -15,9 +15,9 @@
 		return {
 			l: script_len, //长度，用于生成id用
 			z: get_attribute(script, "zIndex", -1), //z-index
-			o: get_attribute(script, "opacity", 10), //opacity
+			o: get_attribute(script, "opacity", 20), //opacity
 			c: get_attribute(script, "color", "0,0,0"), //color
-			n: get_attribute(script, "count", 100) //count
+			n: get_attribute(script, "count", 50) //count
 		};
 	}
 	//设置canvas的高宽
@@ -103,4 +103,4 @@
 	setTimeout(function() {
 		draw_canvas();
 	}, 100);
-}();
+}
