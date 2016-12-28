@@ -38,7 +38,6 @@ $("document").ready(function() {
     init_comment();
     document.getElementById("banben").innerHTML = "Code最后更新时间<br>" + new Date(parseInt(date_time) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ');
 });
-
 function mobile() {
     if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
         //$("#musica").css("display", "none");
@@ -191,7 +190,11 @@ function urlchenge() {
     if (window.location.hash == "#!/cping") {
         if (window.id == "0") {
           $("#comment_error").hide();
-          CommentNum(window.id);
+          if(stava){
+            CommentNum(window.id);
+          }else{
+              console.log("加载中。。。。");
+          }
         }
         cping();
     }

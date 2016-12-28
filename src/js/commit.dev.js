@@ -30,7 +30,7 @@ function init_comment() {
         });
     }
 }
-servercdnn = servercdn[Math.floor(Math.random() * servercdn.length)];
+servercdnn = servercdn[Math.floor(Math.random() * servercdn.length)];//随机使用cdn服务器
 
 function init(argument) { //脚本初始化函数
     //评论加载
