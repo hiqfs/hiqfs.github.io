@@ -47,6 +47,7 @@ function mobile() {
     } else {
         //$("#musica").css("display","none");
         $("#root").css("background-image", "url(http:\/\/qqfs.qiniudn.com/bg.png)");
+        $("#root").css("background-attachment", "fixed");
         return false;
     }
 }
@@ -128,7 +129,7 @@ function cping() {
 }
 
 function cabout() {
-    $("#hcond").show();
+   // $("#hcond").show();
     $('#b3').hide("100");
     //$("#ping").empty();
     $(window).unbind();
@@ -139,8 +140,12 @@ function cabout() {
         $("li a").removeClass("active");
         return "active";
     });
-    $("title").html("关于喵窝");
-    $("about").show();
+    //$("#hcond").fadeOut(500);
+        setTimeout( function(){
+            $("title").html("关于喵窝");
+    },500);
+    $("about").fadeIn("5000");
+    //$("about").show();
 
 }
 

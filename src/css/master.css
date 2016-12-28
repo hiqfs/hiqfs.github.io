@@ -584,3 +584,8 @@ ua{
     max-height: 20%;
     position:fixed;
 }
+.comment_error{
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+}

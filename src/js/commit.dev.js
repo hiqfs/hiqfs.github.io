@@ -1,5 +1,5 @@
 //代码重构
-serverjs = "https://nodejs-qqfs.rhcloud.com/";
+serverjs = "http://node.hifs.tk";
 //serverphp = "https://jaber.daoapp.io";
 //serverphp = "http://server-php.coding.io";
 serverphp = "http://php-servers.hifs.tk/";
@@ -334,7 +334,7 @@ function sjmo() {
             }
             //console.log(heighttmp);
         }
-        if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
+        if (window.id!="0"&&$(document).scrollTop() >= $(document).height() - $(window).height()) {
             /*if (Loading_xml(window.commentjson.responseJSON) == "<wbi></wbi>") {
                 $("loading").remove();
                 $('wbi').html("<span class=\"glyphicon glyphicon-exclamation-sign\" style=\"color: rgb(255, 140, 60);\">加载完毕</span>");
