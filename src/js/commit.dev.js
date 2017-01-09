@@ -243,6 +243,7 @@ function websocketio() {
         $('#commit').prepend(Loading_xml(text));
         window.msnum = window.msnum + 1;
         console.log("收到消息");
+        commitNum++;
         notifyMe(text);
         $("num").text(msnum);
         if ($(document).scrollTop() > $(window).height()) {

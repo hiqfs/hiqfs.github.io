@@ -16,7 +16,7 @@ function UpladFile() {
         alert("上传完成!");
         console.log(xhr.responseText);
         var tmp=eval("(" + xhr.responseText + ")");
-        $("update").append("服务器资源地址:http://7xljsf.com1.z0.glb.clouddn.com/"+tmp.hash+"<br>");
+        //$("update").append("服务器资源地址:http://7xljsf.com1.z0.glb.clouddn.com/"+tmp.hash+"<br>");
     };
     xhr.send(form);
 }
