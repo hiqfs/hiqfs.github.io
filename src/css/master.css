@@ -22,7 +22,7 @@
     margin-left: 3%;
     /*此时宽和高都要固定*/
 }
-span,button#jiao,status,loadtime,div#musica{
+span,button#jiao,status,loadtime,div#musica,button#imgfile{
     text-shadow: 1px 1px 3px #000;
 }
 #root a:hover {
@@ -83,7 +83,7 @@ p a {
     text-decoration: none;
 }
 
-time {
+time,timep {
     font-size: 70%;
     color: #A9A9A9;
     text-shadow: none;
@@ -117,7 +117,7 @@ text {
     background-size: auto 70%;
 }
 
-#jiao {
+#jiao,#imgfile {
     float: right;
     font-weight: normal;
     text-shadow: none;
@@ -126,7 +126,9 @@ text {
     color: #fff;
     text-align: center;
 }
-
+#imgfile{
+    background: #00a3cf;
+}
 a {
     text-decoration: none;
 }
@@ -233,7 +235,7 @@ a:focus {
     border: 0;
     background: #55AA00;
     color: #fff;
-    display: none;
+    /*display: none;*/
 }
 
 #fileupload {
@@ -249,13 +251,8 @@ a:focus {
     top: -26px;
 }
 
-input {
-    opacity: 0;
-    filter: alpha(opacity=0);
-    top: 0;
-    left: 0;
-    z-index: 9;
-    height: 26px;
+#qifile {
+    display: none;
 }
 
 .upda {
@@ -331,7 +328,7 @@ video {
 .footer {
     text-align: center;
 }
-#toux {
+#toux,.upimgicon {
     border-radius: 400px;
     /*设置图像圆角效果,在这里我直接设置了超过width/2的像素，即为圆形了*/
     //-webkit-border-radius: 27px;/*圆角效果：兼容webkit浏览器*/
@@ -345,7 +342,7 @@ video {
     /*变化时间设置为0.4秒(变化动作即为下面的图像旋转360读）*/
     -moz-transition: -moz-transform 0.4s ease-out;
 }
-#toux:hover {
+#toux:hover{
     /*设置鼠标悬浮在头像时的CSS样式*/
     box-shadow: 0 0 10px #fff;
     rgba(255, 255, 255, .6),
@@ -358,7 +355,16 @@ video {
     -webkit-transform: rotateZ(360deg);
     -moz-transform: rotateZ(360deg);
 }
-
+.upimgicon:hover{
+    rgba(255, 255, 255, .6),
+    inset 0 0 20px rgba(255, 255, 255, 1);
+    rgba(255, 255, 255, .6),
+    inset 0 0 20px rgba(255, 255, 255, 1);
+    transform: rotateZ(360deg);
+    /*图像旋转360度*/
+    -webkit-transform: rotateZ(360deg);
+    -moz-transform: rotateZ(360deg);
+}
 
 /*多说UA开始*/
 

@@ -37,6 +37,13 @@ $("document").ready(function() {
     $("xmd").show();
     init_comment();
     document.getElementById("banben").innerHTML = "Code最后更新时间<br>" + new Date(parseInt(date_time) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ');
+    $.ajax({
+        url:"http://php-servers.hifs.tk/token.php",
+        async:true,
+        success: function(data, textStatus) {
+            token=data;
+        }
+    });
 });
 function mobile() {
     if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
@@ -216,7 +223,7 @@ function show_date_time() {
     e_minsold = (e_hrsold - hrsold) * 60;
     minsold = Math.floor((e_hrsold - hrsold) * 60);
     seconds = Math.floor((e_minsold - minsold) * 60);
-    $("#span_dt_dt").text("瞄窝已经运行" + daysold + "天" + hrsold + "小时" + minsold + "分" + seconds + "秒");
+    $("#span_dt_dt").text(daysold + "天" + hrsold + "小时" + minsold + "分" + seconds + "秒");
 }
 show_date_time();
 $(document).keydown(function(event) {
@@ -237,3 +244,32 @@ $(document).keydown(function(event) {
     }
     return true;
 });
+function UpladFile() {
+    var obj = document.getElementById('qifile');
+    var fileObj = document.getElementById("qifile").files[0]; // 获取文件对象
+    var FileController = "http://upload.qiniu.com/";                    // 接收上传文件的后台地址
+    var form = new FormData();
+    //form.append("kay","key()");
+    form.append("token", window.token);                        // 可以增加表单数据
+    form.append("file", fileObj);                           // 文件对象
+    var xhr = new XMLHttpRequest();
+    xhr.upload.onprogress=function(evt){
+        console.log("触发");
+        console.log(evt);
+    };
+    xhr.open("post", FileController,true);
+    xhr.onload = function () {
+        alert("上传完成!");
+        console.log(xhr.responseText);
+        var tmp=eval("(" + xhr.responseText + ")");
+        $("#ti").append("<img src=\"http://7xljsf.com1.z0.glb.clouddn.com/"+tmp.hash+"\"><br>");
+    };
+    if(fileObj==undefined){
+        console.log("没有图片");
+    }else if(token==undefined){
+        alert("服务器未响应");
+    }else{
+        obj.outerHTML=obj.outerHTML; 
+        xhr.send(form);
+    }
+}
