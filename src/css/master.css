@@ -155,6 +155,7 @@ img {
 .img,
 #ti img {
     width: 200px;
+    vertical-align: baseline;
 }
 
 .emojisize {

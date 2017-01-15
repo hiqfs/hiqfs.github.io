@@ -253,13 +253,14 @@ function UpladFile() {
     form.append("token", window.token);                        // 可以增加表单数据
     form.append("file", fileObj);                           // 文件对象
     var xhr = new XMLHttpRequest();
-    xhr.upload.onprogress=function(evt){
-        console.log("触发");
-        console.log(evt);
-    };
     xhr.open("post", FileController,true);
+        xhr.upload.onprogress=function(evt){
+        console.log("触发");
+        $("i.upimgicon").toggleClass("fa-plus").toggleClass("fa-circle-o-notch").toggleClass("fa-spin");
+    };
     xhr.onload = function () {
         alert("上传完成!");
+        $("i.upimgicon").toggleClass("fa-plus").toggleClass("fa-circle-o-notch").toggleClass("fa-spin");
         console.log(xhr.responseText);
         var tmp=eval("(" + xhr.responseText + ")");
         $("#ti").append("<img src=\"http://7xljsf.com1.z0.glb.clouddn.com/"+tmp.hash+"\"><br>");
