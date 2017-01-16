@@ -196,7 +196,7 @@ img {
     max-width: 95%;
 }
 .comment br{
-  display:none;
+  //display:none;
 }
 comment code {
     display: inline-block;
