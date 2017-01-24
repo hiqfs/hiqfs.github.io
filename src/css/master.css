@@ -74,9 +74,9 @@ span,button#jiao,status,loadtime,div#musica,button#imgfile{
 
 #commit div {
     word-break: break-all;
-    font-size: 100%;
-    text-shadow: 1px 1px 3px #000;
+    //font-size: 100%;
     margin-bottom: 0px;
+    //font-size: smaller;
 }
 
 p a {
@@ -108,13 +108,14 @@ text {
 }
 
 #ti {
-    text-shadow: 1px 1px 5px #000;
+    text-shadow: 1px 1px 3px #000;
     //resize: none;
     overflow-y: auto;
     overflow-x: no;
     height: 100px;
     background: rgba(254, 254, 254, 1) no-repeat right bottom;
     background-size: auto 70%;
+    
 }
 
 #jiao,#imgfile {
@@ -194,6 +195,8 @@ img {
     margin-left: auto;
     margin-right: auto;
     max-width: 95%;
+    font-size: 14px;
+    text-shadow: 1px 1px 3px #000;
 }
 .comment br{
   //display:none;

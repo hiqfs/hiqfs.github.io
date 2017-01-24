@@ -3,6 +3,22 @@ $("document").ready(function() {
     //hius();
     //mobile();
     //var heighttmp;
+    // box为被拖放的区域
+    var box = document.getElementById("ti");//输入框
+    box.addEventListener('dragover', function (e) {
+        //e.preventDefault(); // 必须阻止默认事件
+    });
+    box.addEventListener('drop', function (e) {
+        var file=e.dataTransfer.files;
+        //e.preventDefault(); // 阻止默认事件
+        for (var i = 0 ; i < file.length; i++) {
+            if (file[i].type.indexOf("image") == 0) {
+                UpladFile(file[i]); //获取文件对象			
+            } else {
+                console.log("不是图片");
+            }
+    }
+    });
     mob = mobile();
     if (window.location.hash == "") {
         chome();
@@ -38,10 +54,17 @@ $("document").ready(function() {
     init_comment();
     document.getElementById("banben").innerHTML = "Code最后更新时间<br>" + new Date(parseInt(date_time) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ');
     $.ajax({
-        url:"http://php-servers.hifs.tk/token.php",
+        url: serverphp+"token.php",
         async:true,
         success: function(data, textStatus) {
             token=data;
+        }
+    });
+    $.ajax({
+        url: serverphp+"num.php",
+        async:true,
+        success: function(data, textStatus) {
+            comment_num = data;
         }
     });
 });
@@ -244,9 +267,13 @@ $(document).keydown(function(event) {
     }
     return true;
 });
-function UpladFile() {
+function UpladFile(file) {
     var obj = document.getElementById('qifile');
-    var fileObj = document.getElementById("qifile").files[0]; // 获取文件对象
+    if(file){
+        var fileObj = file;
+    }else{
+        var fileObj = document.getElementById("qifile").files[0];
+    } // 获取文件对象
     var FileController = "http://upload.qiniu.com/";                    // 接收上传文件的后台地址
     var form = new FormData();
     //form.append("kay","key()");

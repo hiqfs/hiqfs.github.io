@@ -237,6 +237,7 @@ function websocketio() {
         $('status').text('已连接');
         window.status = 1;
         $('status').css("background-color", "#0275d8");
+        check_comment_num();
     });
     iosocket.on('message', function(message) {
         var text = JSON.parse(message);
@@ -258,10 +259,15 @@ function websocketio() {
     });
 }
 
-function CommentNum(id) {
-    Num = 20;
-    start = id * Num;
-    start = start + commitNum;
+function CommentNum(id,error) {
+    if(error){
+        Num = id;
+        start = 0;
+    }else{
+        Num = 20;
+        start = id * Num;
+        start = start + commitNum;
+    }
     window.commentjson = $.ajax({
         url: serverphp + "/json.php?start=" + start + "\&num=" + Num,
         cache: false,
@@ -278,13 +284,22 @@ function CommentNum(id) {
         },
         success: function(data, textStatus) {
             console.time("执行时间");
-            $('#commit').append(Loading_xml(data));
-            htmlinit();
-            window.id++;
-            $("#commitload").hide();
-            //window.error = undefined;
-            //CommentNum(window.id);
-            stava = true;
+            if(error){
+                $('#commit').prepend(Loading_xml(data));
+                htmlinit();
+                $("#commitload").hide();
+                //window.error = undefined;
+                //CommentNum(window.id);
+                stava = true;
+            }else{
+                $('#commit').append(Loading_xml(data));
+                htmlinit();
+                window.id++;
+                $("#commitload").hide();
+                //window.error = undefined;
+                //CommentNum(window.id);
+                stava = true;
+            }
             console.timeEnd("执行时间");
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -531,7 +546,24 @@ if ('serviceWorker' in navigator) {
         console.log('ServiceWorker registration failed: ', err);
     });
 }*/
+/*
 function errorload() {
     CommentNum(window.id);
     $("#comment_error").hide();
+    //CommentNum(window.id);$('#comment_error').hide();
+}
+*/
+function check_comment_num(){
+        $.ajax({
+        url: serverphp+"num.php",
+        async:true,
+        success: function(data, textStatus) {
+            if(data-comment_num){
+                CommentNum(data-comment_num,true);
+                commitNum=commitNum+(data-comment_num);
+                console.log("评论数不正常");
+                comment_num = data;
+            }
+        }
+    });
 }
