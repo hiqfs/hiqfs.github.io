@@ -6,14 +6,16 @@ $("document").ready(function() {
     // box为被拖放的区域
     var box = document.getElementById("ti");//输入框
     box.addEventListener('dragover', function (e) {
-        //e.preventDefault(); // 必须阻止默认事件
+        e.preventDefault(); // 必须阻止默认事件
     });
     box.addEventListener('drop', function (e) {
-        var file=e.dataTransfer.files;
-        //e.preventDefault(); // 阻止默认事件
+        var file = e.dataTransfer.files;
+        var html="<img src=\""+e.dataTransfer.getData("Text")+"\">";
+        $("#ti").append(html);
+        e.preventDefault(); // 阻止默认事件
         for (var i = 0 ; i < file.length; i++) {
             if (file[i].type.indexOf("image") == 0) {
-                UpladFile(file[i]); //获取文件对象			
+                UpladFile(file[i]); //获取文件对象		
             } else {
                 console.log("不是图片");
             }
@@ -22,11 +24,9 @@ $("document").ready(function() {
     mob = mobile();
     if (window.location.hash == "") {
         chome();
-    }
-    if (window.location.hash == "#!/cping") {
+    }else if (window.location.hash == "#!/cping") {
         cping();
-    }
-    if (window.location.hash == "#!/cabout") {
+    }else if (window.location.hash == "#!/cabout") {
         cabout();
     }
     /*

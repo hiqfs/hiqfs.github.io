@@ -11,9 +11,9 @@ servercdn = [ //cdn服务器列表
 ]; //随机数分流
 function init_comment() {
     if (!window.id) {
-        window.id = 0; //页数初始化为零
-        commitNum = 0; //评论偏移数
-        CommentNum(0); //评论初始化
+            window.id = 0; //页数初始化为零
+            commitNum = 0; //评论偏移数
+            CommentNum(0); //评论初始化
         $("#jiao").bind("click", function() {
             $(this).attr("disabled", true);
             $(this).css("background-color", "#6F6F6F");
@@ -558,11 +558,14 @@ function check_comment_num(){
         url: serverphp+"num.php",
         async:true,
         success: function(data, textStatus) {
-            if(data-comment_num){
-                CommentNum(data-comment_num,true);
-                commitNum=commitNum+(data-comment_num);
+            var error_commmit = data-(comment_num+commitNum);
+            if(error_commmit){
+                CommentNum(error_commmit,true);
+                commitNum=commitNum+error_commmit;
                 console.log("评论数不正常");
                 comment_num = data;
+            }else{
+                console.log("评论数正常");
             }
         }
     });
