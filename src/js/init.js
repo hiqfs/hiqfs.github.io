@@ -10,8 +10,10 @@ $("document").ready(function() {
     });
     box.addEventListener('drop', function (e) {
         var file = e.dataTransfer.files;
-        var html="<img src=\""+e.dataTransfer.getData("Text")+"\">";
-        $("#ti").append(html);
+        if(e.dataTransfer.getData("Text")){
+            var html="<img src=\""+e.dataTransfer.getData("Text")+"\">";
+            $("#ti").append(html);
+        }
         e.preventDefault(); // 阻止默认事件
         for (var i = 0 ; i < file.length; i++) {
             if (file[i].type.indexOf("image") == 0) {
@@ -290,7 +292,7 @@ function UpladFile(file) {
         $("i.upimgicon").toggleClass("fa-plus").toggleClass("fa-circle-o-notch").toggleClass("fa-spin");
         console.log(xhr.responseText);
         var tmp=eval("(" + xhr.responseText + ")");
-        $("#ti").append("<img src=\"http://7xljsf.com1.z0.glb.clouddn.com/"+tmp.hash+"\"><br>");
+        $("#ti").append("<img src=\"http://7xljsf.com1.z0.glb.clouddn.com/"+tmp.hash+"\">");
     };
     if(fileObj==undefined){
         console.log("没有图片");
