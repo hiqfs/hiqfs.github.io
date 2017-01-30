@@ -283,7 +283,7 @@ function UpladFile(file) {
     form.append("file", fileObj);                           // 文件对象
     var xhr = new XMLHttpRequest();
     xhr.open("post", FileController,true);
-        xhr.upload.onprogress=function(evt){
+    xhr.onloadstart = function(evt){
         console.log("触发");
         $("i.upimgicon").toggleClass("fa-plus").toggleClass("fa-circle-o-notch").toggleClass("fa-spin");
     };
