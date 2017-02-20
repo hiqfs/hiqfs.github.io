@@ -350,7 +350,7 @@ function sjmo() {
             }
             //console.log(heighttmp);
         }
-        if (window.id!="0"&&$(document).scrollTop() >= $(document).height() - $(window).height()) {
+        if (window.id!="0"&&$(document).scrollTop() + 80>= $(document).height() - $(window).height()) {
             /*if (Loading_xml(window.commentjson.responseJSON) == "<wbi></wbi>") {
                 $("loading").remove();
                 $('wbi').html("<span class=\"glyphicon glyphicon-exclamation-sign\" style=\"color: rgb(255, 140, 60);\">加载完毕</span>");

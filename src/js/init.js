@@ -34,11 +34,12 @@ $("document").ready(function() {
     /*
         if (ashstatus) {
             heighttmp = 0;
-        }*/
-    $("#musica").click(function() {
-        if($("#musicd").attr("src")==undefined){
-            $("#musicd").attr("src","http://music.163.com/outchain/player?type=0&id=92384486&auto=0&height=430");
         }
+    */
+    $("#musica").click(function() {
+        /*if($("#musicd").attr("src")==undefined){
+            $("#musicd").attr("src","http://music.163.com/outchain/player?type=0&id=92384486&auto=0&height=430");
+        }*/
         if ($(this).css("left") == "0px") {
             $(this).animate({
                 left: '280px'
@@ -74,10 +75,10 @@ $("document").ready(function() {
     });
 });
 function mobile() {
-    $("#root").css("background-image", "url(http:\/\/qqfs.qiniudn.com/bg.png)");
+    $("#root").css("background-image", "url(http://7u2f38.com5.z0.glb.clouddn.com/DwAKdwvY68a7fQAAAABJRU5ErkJggg==.png)");
     $("#root").css("background-attachment", "fixed");
     if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
-        //$("#musica").css("display", "none");
+        $("#musica").css("display", "none");
         // canvas();
         return true;
     } else {

@@ -5,7 +5,7 @@
     background-image: url(http://qqfs.qiniudn.com/bg.png);
     background-image: url(http://johnzhang.cn/bing.php);*/
     //background: url(http://ww3.sinaimg.cn/mw690/005xR7qygw1f58p2vc7ohj308c08cgln.jpg);
-    //background: url(http://7u2f38.com5.z0.glb.clouddn.com/bg.png) fixed ;
+    //background: url(http://7u2f38.com5.z0.glb.clouddn.com/DwAKdwvY68a7fQAAAABJRU5ErkJggg==.png) fixed ;
     /*background-attachment: fixed; */
     /*background-color: rgba(249, 249, 249, 1);*/
     /*华康娃娃体W5,*/
@@ -14,6 +14,7 @@
     bottom: 0;
     /*background-image: url(http://qqfs.qiniudn.com/background.png);*/
     //background-size: 100% auto;
+    cursor: url(http://7xsbbu.com1.z0.glb.clouddn.com/XSSB-1.cur), auto;
 }
 
 #hcond {
@@ -132,6 +133,7 @@ text {
 }
 a {
     text-decoration: none;
+    cursor: url(http://7xsbbu.com1.z0.glb.clouddn.com/XSSB-2.cur), auto;
 }
 
 ys {
