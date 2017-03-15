@@ -153,7 +153,7 @@ function cping() {
     //$("#commitload").hide();
     sjmo();
     //$('body,html').animate({ scrollTop:heighttmp }, 400);
-    $("#ti").focus();
+    //$("#ti").focus();
     /*if (heighttmp) {
         if ($(window).height() > heighttmp) {
             $('body,html').animate({
@@ -206,14 +206,16 @@ function urlchenge() {
     //$("#commitload").hide();
     $("#hcond").show();
     if (window.location.hash == "#!/cping") {
+        scrollTo(0,heighttmp - 400);
         $('body,html').animate({
-            scrollTop: heighttmp
-        }, 400);
+            scrollTop: heighttmp - 400
+        }, 400);/*
         if ($(document).scrollTop() > $(window).height()) {
             $('#b3').show("100");
-        }
+        }*/
     } else {
-        $('#b3').hide("100");
+        //$('#b3').hide("100");
+        console.log("Hello");
     }
     $("#ping").hide();
     $("body,html").unbind();
