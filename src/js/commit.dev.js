@@ -14,6 +14,7 @@ function init_comment() {
             window.id = 0; //页数初始化为零
             commitNum = 0; //评论偏移数
             CommentNum(0); //评论初始化
+            stava = true;
         $("#jiao").bind("click", function() {
             $(this).attr("disabled", true);
             $(this).css("background-color", "#6F6F6F");
@@ -335,7 +336,6 @@ function sjmo() {
     //蛋疼的封装了一堆函数
     // Jquery Code
     //开始处理点击事件
-    stava = true;
     $("status").click(function() {
         iosocket.connect();
     });
