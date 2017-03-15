@@ -153,7 +153,7 @@ function cping() {
     //$("#commitload").hide();
     sjmo();
     //$('body,html').animate({ scrollTop:heighttmp }, 400);
-    //$("#jiao").focus();
+    $("#ti").focus();
     /*if (heighttmp) {
         if ($(window).height() > heighttmp) {
             $('body,html').animate({

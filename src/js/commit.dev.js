@@ -291,6 +291,12 @@ function CommentNum(id,error) {
                 //window.error = undefined;
                 //CommentNum(window.id);
                 stava = true;
+            }else if(data.length<=1){
+                stava=false;
+                console.log("加载完毕");
+                $("#commitload").hide();
+                $('#comment_error').remove();
+                $('.comment_error').append("<powered>加载完毕</powered>");
             }else{
                 $('#commit').append(Loading_xml(data));
                 htmlinit();
