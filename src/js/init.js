@@ -311,7 +311,7 @@ function UpladFile(file) {
         xhr.send(form);
     }
 }
-
+/*
 if (navigator.serviceWorker) {
     navigator.serviceWorker.register('/src/js/sw.js').then(function(registration) {
         console.log('service worker 注册成功');
@@ -322,3 +322,4 @@ if (navigator.serviceWorker) {
 }else{
     console.log("浏览器不支持");
 }
+*/
