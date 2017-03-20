@@ -1,3 +1,4 @@
+stava=false;
 $("document").ready(function() {
     //$('#bar').load("/bar.html");
     hius();
@@ -213,10 +214,10 @@ function urlchenge() {
         if ($(document).scrollTop() > $(window).height()) {
             $('#b3').show("100");
         }*/
-    } else {
+    }/* else {
         //$('#b3').hide("100");
         console.log("Hello");
-    }
+    }*/
     $("#ping").hide();
     $("body,html").unbind();
     $("#b3").unbind();
@@ -226,14 +227,15 @@ function urlchenge() {
         chome();
     }
     if (window.location.hash == "#!/cping") {
+        /*
         if (window.id == "0") {
           $("#comment_error").hide();
           if(stava){
-            CommentNum(window.id);
+               //CommentNum(window.id);
           }else{
               console.log("加载中。。。。");
           }
-        }
+        }*/
         cping();
     }
     if (window.location.hash == "#!/cabout") {
@@ -308,4 +310,15 @@ function UpladFile(file) {
         obj.outerHTML=obj.outerHTML; 
         xhr.send(form);
     }
+}
+
+if (navigator.serviceWorker) {
+    navigator.serviceWorker.register('/src/js/sw.js').then(function(registration) {
+        console.log('service worker 注册成功');
+    }).catch(function (err) {
+        console.log('servcie worker 注册失败');
+        console.log(err);
+    });
+}else{
+    console.log("浏览器不支持");
 }

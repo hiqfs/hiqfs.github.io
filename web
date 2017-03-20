@@ -1,4 +1,5 @@
 #!/bin/sh
+export LANG=zh_CN.UTF-8
 uglifyjs --no-copyright ./src/lib/js/canvas-nest.js > ./static/js/canvas-nest.min.js 
 cleancss ./static/css/web.i.css ./src/css/master.css   --s0 > ./static/css/web.css
 uglifyjs --no-copyright ./static/js/web.i.js ./src/js/commit.dev.js ./static/js/canvas-nest.min.js ./src/js/init.js > ./static/js/web.js
@@ -8,4 +9,5 @@ sed -i "s/web.js?t=[0-9]*/web.js?t=$timestamp/g" ./*.html
 sed -i "s/web.css?t=[0-9]*/web.css?t=$timestamp/g" ./*.html
 #cd ..
 #taesync -local C:\Users\hiqfs\git\tat.conf.properties
-echo ok
+echo 执行完毕
+echo "代码生成时间: "$(date -d @$timestamp)

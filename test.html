@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <script>
+            if (navigator.serviceWorker) {
+                navigator.serviceWorker.register('/src/js/sw.js').then(function(registration) {
+                    console.log('service worker 注册成功');
+                }).catch(function (err) {
+                    console.log('servcie worker 注册失败');
+                    console.log(err);
+                });
+            }else{
+                console.log("浏览器不支持");
+            }
+        </script>
+    </head>
+    <body>
+        <img src="http://77flfx.com5.z0.glb.clouddn.com/0060lm7Tgw1f55fj7owmuj30fk0fk0td.jpg" alt="">
+    </body>
+</html>
