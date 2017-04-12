@@ -263,17 +263,14 @@ $(document).keydown(function(event) {
     if (event.ctrlKey && event.keyCode == 13) {
         if (window.location.hash == "#!/cping") {
             $("#jiao").click();
-            console.log("获取到按键事件");
         }
     }
-    return true;
-});
-$(document).keydown(function(event) {
     if (window.location.hash != "#!/cping" && event.altKey && event.keyCode == 90) {
         window.location.hash = "#!/cping";
         $(".nav-link, #b1").click();
-        $("#ti").focus();
-        console.log("获取到按键事件");
+    }
+    if (window.location.hash == "#!/cping" && event.altKey && event.keyCode == 80) {
+        $('#ti').focus();
     }
     return true;
 });

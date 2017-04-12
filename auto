@@ -1,5 +1,5 @@
 #!/bin/sh
-time=$(date)
+export LANG=zh_CN.UTF-8
 #开始处理代码
 sh web
 sed -i "s/\/static/http:\/\/7xsbbu.com1.z0.glb.clouddn.com\/static/g" ./*.html #使用七牛cdn减速服务
@@ -11,9 +11,9 @@ git add --all .
 if [ -n "$f1" ];then
 	git commit -m "$1"
 else
-	git commit -m "$time"
+	git commit -m "$(date -d @$timestamp)"
 fi
-echo "$time" > ./static/text/version.txt
+echo $(date -d @$timestamp) > ./static/text/version.txt
 git pull
 git push origin master
 git push coding master

@@ -1,0 +1,29 @@
+{
+  "name": "hifs.tk",
+  "version": "1.0.0",
+  "description": "一个匿名留言网站。",
+  "main": "index.js",
+  "scripts": {
+    "test": "http-server -a 0.0.0.0 -p 80",
+    "start": "http-server -a 0.0.0.0 -p 80",
+    "compressed":"sh web"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hiqfs/hiqfs.github.io.git"
+  },
+  "keywords": [
+    "留言板"
+  ],
+  "author": "赵佳冰",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/hiqfs/hiqfs.github.io/issues"
+  },
+  "homepage": "https://github.com/hiqfs/hiqfs.github.io#readme",
+  "dependencies": {
+    "clean-css":">=3.4.20",
+    "uglify-js":">=2.7.3",
+    "http-server":">=0.9.0"
+  }
+}

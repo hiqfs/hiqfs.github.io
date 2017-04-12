@@ -373,7 +373,6 @@ video {
     -moz-transform: rotateZ(360deg);
 }
 
-/*多说UA开始*/
 
 ua{
     font-size: 70%;
@@ -539,7 +538,6 @@ ua{
     border-radius: 4px;
     padding: 0 5px!important;
 }
-/*多说UA结束*/
 .spinner {
   height: 60px;
   text-align: center;
