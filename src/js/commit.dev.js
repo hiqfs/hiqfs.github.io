@@ -11,11 +11,11 @@ servercdn = [ //cdn服务器列表
 ]; //随机数分流
 function init_comment() {
     if (!window.id) {
-            window.id = 0; //页数初始化为零
-            commitNum = 0; //评论偏移数
-            CommentNum(0); //评论初始化
-            stava = true;
-        $("#jiao").bind("click", function() {
+        window.id = 0; //页数初始化为零
+        commitNum = 0; //评论偏移数
+        CommentNum(0); //评论初始化
+        stava = true;
+        $("#jiao").bind("click", function () {
             $(this).attr("disabled", true);
             $(this).css("background-color", "#6F6F6F");
             $(this).text("发送中...");
@@ -51,12 +51,12 @@ function init(argument) { //脚本初始化函数
 //init(); //脚本初始化
 
 function commit() {
-    $(document).ready(function() {
+    $(document).ready(function () {
         comment = $.ajax({
             url: serverphp + "/read.php?line=1",
             cache: false,
             async: false,
-            error: function(XMLHttpRequest, textStatus, errorThrown) {
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
                 document.getElementById("commit").innerHTML = "<div class='comment' ><p> _(:qゝ∠)_  错误：加载超时，刷新看看....</p></div>";
             },
         });
@@ -69,36 +69,35 @@ function commit() {
 
 function tijiaopost() {
     if ($("#ti").html()) {
+        if ("test".codePointAt) {
+            tmpd = "";
+            for (var i = 0; i < $("#ti").html().length; i++) {
+                if ($("#ti").html().codePointAt(i) > 65535) {
+                    tmpd += "&#" + $("#ti").html().codePointAt(i) + ";";
+                    i++;
+                } else {
+                    tmpd += String.fromCharCode($("#ti").html().codePointAt(i));
+                }
+            } //哈哈，可以支持emoji了😆
+            if ((tmpd.substring(tmpd.length - 15, tmpd.length) == "<div><br></div>") === true) {
+                tmpd = tmpd.substring(0, tmpd.length - 15);
+            }
+            window.tmop = tmpd;
+            ping = tmpd;
+        } else {
+            window.tmop = $("#ti").html();
+            ping = $("#ti").html();
+        }
         tijiaopostand = $.ajax({
             url: serverphp + "/w.php",
             dataType: "json",
             type: "post",
-            async:"true",
+            async: "true",
             //timeout: 5000,
             data: {
-                comment: function(argument) {
-                    if ("test".codePointAt) {
-                        tmpd = "";
-                        for (var i = 0; i < $("#ti").html().length; i++) {
-                            if ($("#ti").html().codePointAt(i) > 65535) {
-                                tmpd += "&#" + $("#ti").html().codePointAt(i) + ";";
-                                i++;
-                            } else {
-                                tmpd += String.fromCharCode($("#ti").html().codePointAt(i));
-                            }
-                        } //哈哈，可以支持emoji了😆
-                        if ((tmpd.substring(tmpd.length - 15, tmpd.length) == "<div><br></div>") === true) {
-                            tmpd = tmpd.substring(0, tmpd.length - 15);
-                        }
-                        window.tmop = tmpd;
-                        return tmpd;
-                    } else {
-                        window.tmop = $("#ti").html();
-                        return $("#ti").html();
-                    }
-                }
+                comment:ping
             },
-            success: function(data, textStatus, xhr) {
+            success: function (data, textStatus, xhr) {
                 if (data.status == "OK") {
                     var text = [{
                         "comment": window.tmop,
@@ -117,7 +116,7 @@ function tijiaopost() {
                 }
                 htmlinit();
             },
-            error: function(XMLHttpRequest, textStatus, errorThrown) {
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log(XMLHttpRequest);
                 console.log(textStatus);
                 console.log(errorThrown);
@@ -136,7 +135,7 @@ function htmlinit() {
     $(".comm").fadeIn(1500);
     $("audio,video").attr("preload", "none");
     $("video").attr("poster", servercdnn + "FogWvOr4txwJPq5fNaIQUdh5oQ7E");
-    $("[hash]").attr("src", function() {
+    $("[hash]").attr("src", function () {
         $("img[hash]").addClass("img");
         //return "http://hiqfs.file.alimmdn.com" + $(this).attr("hash");
         return servercdnn + $(this).attr("hash");
@@ -147,13 +146,13 @@ function htmlinit() {
     });*/
     $("[hash]").removeAttr("hash");
     $('img').unbind("click"); //移除事件重新创建
-    $(".comment img[class!='emojisize']").click(function() {
+    $(".comment img[class!='emojisize']").click(function () {
         if ($(this).css("width") <= "200px") {
             $(this).css("width", "100%");
         } else {
             $(this).css("width", "200px");
         }
-        $('.qqkj').height(function(index, oldheight) {
+        $('.qqkj').height(function (index, oldheight) {
             if (oldheight - $(this).width > 100) {
                 $(this).width("100%");
                 $(this).removeClass("qqkj");
@@ -161,7 +160,7 @@ function htmlinit() {
         });
     });
     $('img').unbind("error");
-    $("img").bind("error", function() {
+    $("img").bind("error", function () {
         if (!this.status) {
             error = this.src;
             error = error.replace(/[a-zA-z]+:\/\/[^\s]*myqq\//, "AA2F");
@@ -206,12 +205,12 @@ function Loading_xml(argument) { //json生成评论返回dom
                 commenttmp += commithaed + argument[i].comment + commitzhon + argument[i].time + " </time>" + commitfooter;
             }
         }
-        xml = commenttmp.replace(/\[em\]e[0-9]+\[\/em\]/g, function(em) {
+        xml = commenttmp.replace(/\[em\]e[0-9]+\[\/em\]/g, function (em) {
             emid = em.substring(4, em.length - 5);
             return "<img class=\"emojisize\" src=\"http://hiqfs.image.alimmdn.com/qq%E8%A1%A8%E6%83%85/" + emid + ".gif\">";
         });
         xml = emoji(xml);
-        if (argument[argument.length - 1] == "duang") {} else {
+        if (argument[argument.length - 1] == "duang") { } else {
             $('loadtime').text(argument[argument.length - 1] + "s");
         } //这里要duang一下
         return xml;
@@ -221,7 +220,7 @@ function Loading_xml(argument) { //json生成评论返回dom
 }
 
 function emoji(argument) { //处理emoji表情
-    var text = argument.replace(/\&#[1-9]*;/g, function(emojicode) {
+    var text = argument.replace(/\&#[1-9]*;/g, function (emojicode) {
         var num = parseInt(emojicode.substring(2, emojicode.length - 1)).toString(16);
         if (num > "20e3" && num < "1f6c5") {
             return argument;
@@ -234,13 +233,13 @@ function emoji(argument) { //处理emoji表情
 
 function websocketio() {
     iosocket = io.connect(serverjs);
-    iosocket.on('connect', function() {
+    iosocket.on('connect', function () {
         $('status').text('已连接');
         window.status = 1;
         $('status').css("background-color", "#0275d8");
         check_comment_num();
     });
-    iosocket.on('message', function(message) {
+    iosocket.on('message', function (message) {
         var text = JSON.parse(message);
         $('#commit').prepend(Loading_xml(text));
         window.msnum = window.msnum + 1;
@@ -250,21 +249,21 @@ function websocketio() {
         $("num").text(msnum);
         if ($(document).scrollTop() > $(window).height()) {
             $('num').show();
-        } else {}
+        } else { }
         htmlinit();
     });
-    iosocket.on('disconnect', function() {
+    iosocket.on('disconnect', function () {
         $('status').text('已断开');
         $('status').css("background-color", "#d9534f");
         window.status = 0;
     });
 }
 
-function CommentNum(id,error) {
-    if(error){
+function CommentNum(id, error) {
+    if (error) {
         Num = id;
         start = 0;
-    }else{
+    } else {
         Num = 20;
         start = id * Num;
         start = start + commitNum;
@@ -274,31 +273,31 @@ function CommentNum(id,error) {
         cache: false,
         async: true,
         dataType: "json",
-        beforeSend: function() {
+        beforeSend: function () {
             $("#commitload").show();
             stava = false;
         },
         timeout: 5000,
-        completed: function() {
+        completed: function () {
             stava = true;
             $("#commitload").hide();
         },
-        success: function(data, textStatus) {
+        success: function (data, textStatus) {
             console.time("执行时间");
-            if(error){
+            if (error) {
                 $('#commit').prepend(Loading_xml(data));
                 htmlinit();
                 $("#commitload").hide();
                 //window.error = undefined;
                 //CommentNum(window.id);
                 stava = true;
-            }else if(data.length<=1){
-                stava=false;
+            } else if (data.length <= 1) {
+                stava = false;
                 console.log("加载完毕");
                 $("#commitload").hide();
                 $('#comment_error').remove();
                 $('.comment_error').append("<powered>加载完毕</powered>");
-            }else{
+            } else {
                 $('#commit').append(Loading_xml(data));
                 htmlinit();
                 window.id++;
@@ -309,9 +308,9 @@ function CommentNum(id,error) {
             }
             console.timeEnd("执行时间");
         },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
             $("#commitload").hide();
-            if (window.location.hash == "#!/cping"){
+            if (window.location.hash == "#!/cping") {
                 alert("评论加载失败");
             }
             if (window.id == "0") {
@@ -323,7 +322,7 @@ function CommentNum(id,error) {
             //return false;
         }
     });
-    if (typeof(document.cookie) !== undefined) {
+    if (typeof (document.cookie) !== undefined) {
         document.cookie = "id=" + window.id;
         document.cookie = "commitNum=" + commitNum;
     }
@@ -336,27 +335,27 @@ function sjmo() {
     //蛋疼的封装了一堆函数
     // Jquery Code
     //开始处理点击事件
-    $("status").click(function() {
+    $("status").click(function () {
         iosocket.connect();
     });
-    $("#b3").click(function() {
+    $("#b3").click(function () {
         var speed = 200; //滑动的速度
         $('body,html').animate({
             scrollTop: 0
         }, speed);
         return false;
     });
-    $(window).scroll(function(data) {
+    $(window).scroll(function (data) {
         //$(document).scrollTop() 获取垂直滚动的距离
         //$(document).scrollLeft() 这是获取水平滚动条的距离
         if ($(document).scrollTop() !== 0) {
             heighttmp = $(document).scrollTop();
-            if (typeof(document.cookie) !== undefined) {
+            if (typeof (document.cookie) !== undefined) {
                 document.cookie = "top=" + heighttmp;
             }
             //console.log(heighttmp);
         }
-        if (window.id!="0"&&$(document).scrollTop() + 80>= $(document).height() - $(window).height()) {
+        if (window.id != "0" && $(document).scrollTop() + 80 >= $(document).height() - $(window).height()) {
             /*if (Loading_xml(window.commentjson.responseJSON) == "<wbi></wbi>") {
                 $("loading").remove();
                 $('wbi').html("<span class=\"glyphicon glyphicon-exclamation-sign\" style=\"color: rgb(255, 140, 60);\">加载完毕</span>");
@@ -506,7 +505,7 @@ function notifyMe(Messenger) {
         console.log("呃.你的浏览器不支持Web Notification 提醒");
     } else if (Notification.permission === "granted") {
         var notification = new Notification(Messenger[0].comment, Notification_options);
-        notification.onclick = function(event) {
+        notification.onclick = function (event) {
             if (document.hidden) {
                 //event.preventDefault(); // prevent the browser from focusing the Notification's tab
                 //window.open('http://www.hifs.tk/#!/cping', '_blank');
@@ -521,10 +520,10 @@ function notifyMe(Messenger) {
             notification.close();
         };
     } else if (Notification.permission !== 'denied') {
-        Notification.requestPermission(function(permission) {
+        Notification.requestPermission(function (permission) {
             if (permission === "granted") {
                 var notification = new Notification(Messenger[0].comment, Notification_options);
-                notification.onclick = function(event) {
+                notification.onclick = function (event) {
                     if (document.hidden) {
                         event.preventDefault(); // prevent the browser from focusing the Notification's tab
                         window.open('http://www.hifs.tk/#!/cping', '_blank');
@@ -559,18 +558,18 @@ function errorload() {
     //CommentNum(window.id);$('#comment_error').hide();
 }
 */
-function check_comment_num(){
-        $.ajax({
-        url: serverphp+"num.php",
-        async:true,
-        success: function(data, textStatus) {
-            var error_commmit = data-(comment_num+commitNum);
-            if(error_commmit){
-                CommentNum(error_commmit,true);
-                commitNum=commitNum+error_commmit;
+function check_comment_num() {
+    $.ajax({
+        url: serverphp + "num.php",
+        async: true,
+        success: function (data, textStatus) {
+            var error_commmit = data - (comment_num + commitNum);
+            if (error_commmit) {
+                CommentNum(error_commmit, true);
+                commitNum = commitNum + error_commmit;
                 console.log("评论数不正常");
                 comment_num = data;
-            }else{
+            } else {
                 console.log("评论数正常");
             }
         }

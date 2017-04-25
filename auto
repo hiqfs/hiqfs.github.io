@@ -1,29 +1,49 @@
 #!/bin/sh
+#设置语言
 export LANG=zh_CN.UTF-8
-#开始处理代码
+#开始处理压缩代码
 sh web
-sed -i "s/\/static/http:\/\/7xsbbu.com1.z0.glb.clouddn.com\/static/g" ./*.html #使用七牛cdn减速服务
+#使用七牛cdn减速服务
+sed -i "s/\/static/http:\/\/7xsbbu.com1.z0.glb.clouddn.com\/static/g" ./*.html 
+#获取时间戳
 timestamp=$(date '+%s')
+#自动替换时间戳
 sed -i "s/web.js?t=[0-9]*/web.js?t=$timestamp/g" ./*.html
 sed -i "s/web.css?t=[0-9]*/web.css?t=$timestamp/g" ./*.html
 sed -i "s/date_time = \"[0-9]*\"/date_time = \"$timestamp\"/g" ./index.html
 git add --all .
+#判断是否写commit
 if [ -n "$f1" ];then
 	git commit -m "$1"
 else
 	git commit -m "$(date -d @$timestamp)"
 fi
+#生成时间戳保存到version.txt
 echo $(date -d @$timestamp) > ./static/text/version.txt
+#检擦远程代码是否有更新
 git pull
+#推送到git服务器
 git push origin master
 git push coding master
 git push gitlab master
+#同步到路由器
+#同步的文件
+file_array=(
+	./index.html 
+	./static/js/web.js 
+	./static/css/web.css 
+	./static/text/version.txt
+)
+scp  -i ../../.ssh/router -r ${file_array[@]} root@192.168.0.1:/web/
 sed -i "s/http:\/\/7xsbbu.com1.z0.glb.clouddn.com\/static/\/static/g" ./*.html
+#获取目录
 Cur_Dir=$(pwd)
 echo $Cur_Dir
 cd ..
 #qshell prefetch hifs-cdn static/js/web.js
 #qshell prefetch hifs-cdn static/css/web.css
-start cdn.bat
+#同步七牛
+./cdn.bat
+#回到项目目录
 cd $Cur_Dir
 #自动部署代码
