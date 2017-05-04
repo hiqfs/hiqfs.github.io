@@ -93,7 +93,7 @@ function tijiaopost() {
             dataType: "json",
             type: "post",
             async: "true",
-            //timeout: 5000,
+            timeout: 5000,
             data: {
                 comment:ping
             },

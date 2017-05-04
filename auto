@@ -14,9 +14,9 @@ sed -i "s/date_time = \"[0-9]*\"/date_time = \"$timestamp\"/g" ./index.html
 git add --all .
 #判断是否写commit
 if [ -n "$f1" ];then
-	git commit -m "$1"
+	git commit -S -m "$1"
 else
-	git commit -m "$(date -d @$timestamp)"
+	git commit -S -m "$(date -d @$timestamp)"
 fi
 #生成时间戳保存到version.txt
 echo $(date -d @$timestamp) > ./static/text/version.txt

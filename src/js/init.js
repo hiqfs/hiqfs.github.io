@@ -59,7 +59,15 @@ $("document").ready(function() {
     });
     $("xmd").show();
     init_comment();
-    document.getElementById("banben").innerHTML = "Code最后更新时间<br>" + new Date(parseInt(date_time) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ');
+    date_time=new Date(parseInt(date_time) * 1000);
+    document.getElementById("banben").innerHTML = 
+        "Code最后更新时间<br>" 
+        + date_time.getFullYear() + "年" 
+        + (date_time.getMonth()+1) + "月"
+        + date_time.getDate() + "天 "
+        + date_time.getHours() + "时"
+        + date_time.getMinutes() + "分"
+        + date_time.getSeconds() +"秒";
     $.ajax({
         url: serverphp+"token.php",
         async:true,
