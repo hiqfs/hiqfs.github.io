@@ -30,11 +30,9 @@ git push gitlab master
 #同步的文件
 file_array=(
 	./index.html 
-	./static/js/web.js 
-	./static/css/web.css 
-	./static/text/version.txt
-)
-scp  -i ../../.ssh/router -r ${file_array[@]} root@192.168.0.1:/web/
+	./static/
+	)
+scp  -i ~/router -r ${file_array[@]} root@router:/web/
 sed -i "s/http:\/\/7xsbbu.com1.z0.glb.clouddn.com\/static/\/static/g" ./*.html
 #获取目录
 Cur_Dir=$(pwd)
