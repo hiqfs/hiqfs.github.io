@@ -64,7 +64,7 @@ $("document").ready(function() {
         "Code最后更新时间<br>" 
         + date_time.getFullYear() + "年" 
         + (date_time.getMonth()+1) + "月"
-        + date_time.getDate() + "天 "
+        + date_time.getDate() + "日" + " "
         + date_time.getHours() + "时"
         + date_time.getMinutes() + "分"
         + date_time.getSeconds() +"秒";
