@@ -79,14 +79,12 @@ function tijiaopost() {
                     tmpd += String.fromCharCode($("#ti").html().codePointAt(i));
                 }
             } //哈哈，可以支持emoji了😆
-            if ((tmpd.substring(tmpd.length - 15, tmpd.length) == "<div><br></div>") === true) {
-                tmpd = tmpd.substring(0, tmpd.length - 15);
-            }
-            window.tmop = tmpd;
+            tmpd = tmpd.replace(/<div><br><\/div>/g,"");
+            //window.tmop = tmpd;
             ping = tmpd;
         } else {
-            window.tmop = $("#ti").html();
-            ping = $("#ti").html();
+            //window.tmop = $("#ti").html();
+            ping = $("#ti").html().replace(/<div><br><\/div>/g,"");
         }
         tijiaopostand = $.ajax({
             url: serverphp + "/w.php",
@@ -100,7 +98,7 @@ function tijiaopost() {
             success: function (data, textStatus, xhr) {
                 if (data.status == "OK") {
                     var text = [{
-                        "comment": window.tmop,
+                        "comment": ping,
                         "time": data.time,
                         "ua": navigator.userAgent
                     }, "duang"];

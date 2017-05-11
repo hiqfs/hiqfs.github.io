@@ -16,7 +16,7 @@ echo $(date -d @$timestamp) > ./static/text/version.txt
 git add --all .
 #判断是否写commit
 if [ -n "$f1" ];then
-	git commit -S -m "$1"
+	git commit -S -m "$(date -d @$timestamp) $1"
 else
 	git commit -S -m "$(date -d @$timestamp)"
 fi
