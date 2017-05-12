@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--
+ ______________
+< hifs.tk >
+ --------------
+        \   ^__^
+         \  (**)\__$__$__
+            (__)\       )\/\
+             U  ||------|
+                ||     ||
+                Welcome to the Hifs site
+                by 阳光下的微笑;
+-->
+<html>
+
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta http-equiv="Accept-Encoding" content="deflate, sdch, br">
+    <link rel="dns-prefetch" href="//php-server.hifs.tk">
+    <link rel="dns-prefetch" href="//node.hifs.tk">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <title>喵窝首页∩ω∩</title>
+    <link rel="shortcut icon" href="http://77flfx.com5.z0.glb.clouddn.com/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="/static/css/web.css?t=1494486428">
+    <!--link rel="stylesheet" type="text/css" href="/static/css/OwO.min.css?t=1479533359"-->
+    <script src="/static/js/web.js?t=1494486428"></script>
+    <script type="text/javascript">date_time = "1494486428";</script>
+    <meta content="Hifs,喵窝∩ω∩,hifs" name="Keywords">
+    <meta name="description" content="欢迎来到喵窝∩ω∩.花开花落,物是人非.这里是一个匿名分享琐事的小网站.">
+</head>
+
+<body id="root" onhashchange="urlchenge();"  onbeforeunload="javascript:scroll(0,0);">
+    <div id="music">
+        <iframe id="musicd" frameborder="no" name="music" border="0" marginwidth="0" marginheight="0" width="280" height="487" src="http://music.163.com/outchain/player?type=0&id=92384486&auto=0&height=430" >
+        </iframe>
+        <div id="musica"><i class="fa fa-music" aria-hidden="true"></i><br>音<br>乐</div>
+    </div>
+    <nav class="navbar navbar-fixed-top navbar-light bg-faded" role="navigation" style="box-shadow: 0px 1px 10px #000;background-color: #FFF;">
+        <!--a id="home" class="navbar-brand" href="javascript:bar('home')">喵窝</a-->
+        <div>
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a id="home" class="nav-link" href="#"><i class="fa fa-home" aria-hidden="true"></i> 喵窝</a></li>
+                <li class="nav-item"><a id="b1" class="nav-link" href="#!/cping"><i class="fa fa-commenting" aria-hidden="true"></i> 留言板</a></li>
+                <li class="nav-item"><a id="b2" class="nav-link" href="#!/cabout"><i class="fa fa-user" aria-hidden="true"></i> 关于我</a></li>
+            </ul>
+        </div>
+        <a id="b3" class="navbar-brand" style="display: none; font-size: 1rem;line-height: 1.5;padding-top: .425rem;" href="javascript:void(0)"><i class="fa fa-arrow-up" aria-hidden="true"></i> 回顶部<num style="display: none;">0</num></a>
+    </nav>
+    <xmd style="display: none;">
+        <div id="hcond" style="margin-top:100px;">
+            <h1 id="title">欢迎来到喵窝∩ω∩<br></h1> 花开花落 物是人非
+            <br> 一个分享琐事的小网站
+            <br> Blog:
+            <a href="http://hiqfs.lofter.com/">化作孤岛的鲸</a>
+            <br>
+        </div>
+        <about style="display: none">
+            <center>
+                <div class="About" style="margin-top:100px;min-width:95%;margin-left:0;">
+                    <p>
+                        <p>一个默默无闻的小屁孩</p>
+                        <!--img id="toux" style="max-width:99%;" src="http://ww2.sinaimg.cn/large/0060lm7Tgw1f55fj7owmuj30fk0fk0td.jpg"-->
+                        <img id="toux" style="max-width:99%;" src="http://77flfx.com5.z0.glb.clouddn.com/0060lm7Tgw1f55fj7owmuj30fk0fk0td.jpg">
+                        <br>
+                        <span class="label label-info">
+                <a href="mailto:i@hifs.tk"><i class="fa fa-envelope" aria-hidden="true"></i> i@hifs.tk</a></span>
+                        <br>
+                        <span class="label label-primary"><a href="http://github.com/hiqfs"><i class="fa fa-github" aria-hidden="true"></i> github</a></span>
+                        <span class="label label-danger"><a href="http://weibo.com/hiqf?is_all=1"><i class="fa fa-weibo" aria-hidden="true"></i> 微博</a></span>
+                        <div id="banben"></div>
+                    </p>
+                </div>
+            </center>
+        </about>
+        <a id="hitokoto" style="text-align: center;" onclick="hius();delete_us();"></a>
+        <div id="ping" style="display: none;">
+            <div class="comment">
+                <div class="submit">
+                    <div contenteditable="true" contextmenu="supermenu" id="ti" class="form-control" rows="5" name="comment" form="comment" wrap="logical"></div>
+                    <button id="jiao"><i class="fa fa-paper-plane" aria-hidden="true"></i> 发送</button>
+                    <button id="imgfile" onclick="$('#qifile').click()"><i class="fa fa-plus upimgicon" aria-hidden="true"></i> 上传</button>
+                    <input name="file" type="file"  accept="image/*" id="qifile" onchange="UpladFile()"/>
+                    <div class=".status">
+                        状态:
+                        <status class="label label-info">未知</status>
+                        <!--div style="display:inline-block">
+                            处理时间:
+                            <loadtime class="label label-info">未知</loadtime>
+                        </div-->
+                        <div class="OwO"></div>
+                    </div>
+                </div>
+                <div id="commit"></div>
+                <div class="comment_error">
+                    <button id="comment_error" class="btn btn-primary btn-sm" style="display: none;text-align: center;" onclick="CommentNum(window.id);$('#comment_error').hide();"><i class=" fa fa-refresh"></i>点击加载</button>
+                </div>
+            </div>
+            <div style="display: none;" id="commitload" class="spinner">
+              <div class="rect1"></div>	&#160;
+              <div class="rect2"></div>	&#160;
+              <div class="rect3"></div>	&#160;
+              <div class="rect4"></div>	&#160;
+              <div class="rect5"></div>	&#160;
+            </div>
+        </div>
+        <div class="footer">
+            <timep>喵窝已经运行</timep><time id="span_dt_dt"></time>
+            <powered>
+                <i class="fa fa-rocket" aria-hidden="true"></i>本网站CDN由七牛,CloudFlare驱动。处理时间:<loadtime>未知</loadtime>
+                <br>Powered by 阳光下的微笑<br>
+                Made in China
+                <br>
+            </powered>
+            <p>life,love,linux</p>
+        </div>
+        <!--script src="/static/js/OwO.js?t=1479533359">字太长了就不写了。Page由Coding存储，后台计算由Openshift支持。感谢以上公司提供的免费服务。</script-->
+    </xmd>
+</body>
+
+</html>

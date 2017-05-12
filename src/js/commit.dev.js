@@ -1,5 +1,5 @@
 //代码重构
-serverjs = "http://node.hifs.tk";
+serverjs = "https://hiqfs.herokuapp.com/";
 //serverphp = "https://jaber.daoapp.io";
 //serverphp = "http://server-php.coding.io";
 serverphp = "http://php-servers.hifs.tk/";

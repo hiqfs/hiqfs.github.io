@@ -1,7 +1,7 @@
 stava=false;
 $("document").ready(function() {
     //$('#bar').load("/bar.html");
-    hius();
+    //hius();
     //mobile();
     //var heighttmp;
     // box为被拖放的区域
