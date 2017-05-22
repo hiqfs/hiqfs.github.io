@@ -305,7 +305,7 @@ function UpladFile(file) {
         $("i.upimgicon").toggleClass("fa-plus").toggleClass("fa-circle-o-notch").toggleClass("fa-spin");
         console.log(xhr.responseText);
         var tmp=eval("(" + xhr.responseText + ")");
-        $("#ti").append("<img src=\"http://7xljsf.com1.z0.glb.clouddn.com/"+tmp.hash+"\">");
+        $("#ti").append("<img src=\""+servercdnn+tmp.hash+"\" hash=\""+tmp.hash+"\">");
     };
     if(fileObj==undefined){
         console.log("没有图片");
@@ -318,7 +318,7 @@ function UpladFile(file) {
 }
 /*
 if (navigator.serviceWorker) {
-    navigator.serviceWorker.register('/src/js/sw.js').then(function(registration) {
+    navigator.serviceWorker.register('/static/js/sw.js').then(function(registration) {
         console.log('service worker 注册成功');
     }).catch(function (err) {
         console.log('servcie worker 注册失败');

@@ -69,6 +69,7 @@ function commit() {
 
 function tijiaopost() {
     if ($("#ti").html()) {
+        $("img[hash]").removeAttr("src");
         if ("test".codePointAt) {
             tmpd = "";
             for (var i = 0; i < $("#ti").html().length; i++) {
@@ -79,12 +80,12 @@ function tijiaopost() {
                     tmpd += String.fromCharCode($("#ti").html().codePointAt(i));
                 }
             } //哈哈，可以支持emoji了😆
-            tmpd = tmpd.replace(/<div><br><\/div>/g,"");
+            tmpd = tmpd.replace(/<div><br><\/div>/g, "");
             //window.tmop = tmpd;
             ping = tmpd;
         } else {
             //window.tmop = $("#ti").html();
-            ping = $("#ti").html().replace(/<div><br><\/div>/g,"");
+            ping = $("#ti").html().replace(/<div><br><\/div>/g, "");
         }
         tijiaopostand = $.ajax({
             url: serverphp + "/w.php",
@@ -93,7 +94,7 @@ function tijiaopost() {
             async: "true",
             timeout: 5000,
             data: {
-                comment:ping
+                comment: ping
             },
             success: function (data, textStatus, xhr) {
                 if (data.status == "OK") {
@@ -146,9 +147,15 @@ function htmlinit() {
     $('img').unbind("click"); //移除事件重新创建
     $(".comment img[class!='emojisize']").click(function () {
         if ($(this).css("width") <= "200px") {
-            $(this).css("width", "100%");
+            //$(this).css("width", "100%");
+            $(this).animate({
+                "width": '100%'
+            });
         } else {
-            $(this).css("width", "200px");
+            //$(this).css("width", "200px");
+            $(this).animate({
+                "width": '200px'
+            });
         }
         $('.qqkj').height(function (index, oldheight) {
             if (oldheight - $(this).width > 100) {

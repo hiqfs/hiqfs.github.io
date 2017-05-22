@@ -1,10 +1,6 @@
 @charset "UTF-8";
 .error {
     background-image: none;
-    position: absolute;
-    margin: -250px 0 0 -250px;
-    top: 40%;
-    left: 50%;
     color: rgba(13, 76, 107, 1);
     font-family: Source Han Sans CN, 微软雅黑, Helvetica, STHeiti, Droid Sans Fallback;
 }
