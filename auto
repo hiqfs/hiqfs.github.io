@@ -2,17 +2,9 @@
 #设置语言
 export LANG=zh_CN.UTF-8
 #开始处理压缩代码
-sh web
+source ./web
 #使用七牛cdn减速服务
 sed -i "s/\/static/http:\/\/7xsbbu.com1.z0.glb.clouddn.com\/static/g" ./*.html 
-#获取时间戳
-timestamp=$(date '+%s')
-#自动替换时间戳
-sed -i "s/web.js?t=[0-9]*/web.js?t=$timestamp/g" ./*.html
-sed -i "s/web.css?t=[0-9]*/web.css?t=$timestamp/g" ./*.html
-sed -i "s/date_time = \"[0-9]*\"/date_time = \"$timestamp\"/g" ./index.html
-#生成时间戳保存到version.txt
-echo $(date -d @$timestamp) > ./static/text/version.txt
 git add --all .
 #判断是否写commit
 if [ -n "$f1" ];then
@@ -33,6 +25,7 @@ file_array=(
 	./static/
 	)
 scp  -i ~/router -r ${file_array[@]} root@router:/web/
+#scp -i ~/router -r ./index.html  ./static/ root@router:/web/
 sed -i "s/http:\/\/7xsbbu.com1.z0.glb.clouddn.com\/static/\/static/g" ./*.html
 #获取目录
 Cur_Dir=$(pwd)

@@ -131,6 +131,8 @@ function tijiaopost() {
 }
 
 function htmlinit() {
+    $("ua span").addClass("label");
+    //$(".comm").show();
     $(".comm").fadeIn(1500);
     $("audio,video").attr("preload", "none");
     $("video").attr("poster", servercdnn + "FogWvOr4txwJPq5fNaIQUdh5oQ7E");
@@ -180,7 +182,11 @@ function htmlinit() {
         }
     });
     $(".comm img.qqkj:first-child").before("<br>");
-
+    /*
+    $("img").onload(function () {
+        $(this).prepend("<div class=imgload><div>");
+    });
+    */
 }
 
 function json_comment(id) {
@@ -502,6 +508,17 @@ function os(e) {
 } //显UA结束
 function notifyMe(Messenger) {
     //构建web Notificatio对象
+    if (!window.Notification || !Notification.requestPermission)
+        return;
+    if (Notification.permission == 'granted')
+        //throw new Error("消息提醒错误");
+        return;
+    try {
+        new Notification('');
+    } catch (e) {
+        if (e.name == 'TypeError')
+            return;
+    }
     Notification_options = {
         icon: "http://77flfx.com5.z0.glb.clouddn.com/favicon.ico",
         body: Messenger[0].time.substring(11, 20),
@@ -580,3 +597,11 @@ function check_comment_num() {
         }
     });
 }
+/*
+if (typeof (Worker) !== "undefined") {
+    var htmlWorker = new Worker('/src/js/Worker.js');
+}
+else {
+    console.log("不支持Worker");
+}
+*/
