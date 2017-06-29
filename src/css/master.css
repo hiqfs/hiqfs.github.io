@@ -619,3 +619,45 @@ nav{
     border-bottom: 1px solid rgba(30,35,42,.06);
 	box-shadow: 0 1px 3px 0 rgba(0,34,77,.05);
 }
+.form-contro {
+  display: block;
+  width: 100%;
+  padding: .375rem .75rem;
+  //font-size: 1rem;
+  line-height: 1.5;
+  color: #55595c;
+  background-color: #fff;
+  background-image: none;
+  border: .0625rem solid #ccc;
+  border-radius: .25rem;
+}
+
+.form-contro::-ms-expand {
+  background-color: transparent;
+  border: 0;
+}
+
+.form-contro:focus {
+  border-color: #66afe9;
+  outline: none;
+}
+
+.form-contro::-webkit-input-placeholder {
+  color: #999;
+  opacity: 1;
+}
+
+.form-contro::-moz-placeholder {
+  color: #999;
+  opacity: 1;
+}
+
+.form-contro:-ms-input-placeholder {
+  color: #999;
+  opacity: 1;
+}
+
+.form-contro::placeholder {
+  color: #999;
+  opacity: 1;
+}

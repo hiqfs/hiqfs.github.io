@@ -118,6 +118,9 @@ function tijiaopost() {
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log(XMLHttpRequest);
                 console.log(textStatus);
+                if (textStatus == "timeout") {
+                    check_comment_num(textStatus);
+                }
                 console.log(errorThrown);
                 alert("error");
             },
@@ -318,6 +321,10 @@ function CommentNum(id, error) {
                 stava = true;
             }
             console.timeEnd("执行时间");
+            if(error=="timeout"){
+                data[data.length-1]="duang";
+                iosocket.send(JSON.stringify(data));
+            }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             $("#commitload").hide();
@@ -333,10 +340,12 @@ function CommentNum(id, error) {
             //return false;
         }
     });
+    /*
     if (typeof (document.cookie) !== undefined) {
         document.cookie = "id=" + window.id;
         document.cookie = "commitNum=" + commitNum;
     }
+    */
 }
 timetmp = new Date().getTime() + 3000;
 websocketio();
@@ -580,14 +589,18 @@ function errorload() {
     //CommentNum(window.id);$('#comment_error').hide();
 }
 */
-function check_comment_num() {
+function check_comment_num(timeout) {
     $.ajax({
         url: serverphp + "num.php",
         async: true,
         success: function (data, textStatus) {
             var error_commmit = data - (comment_num + commitNum);
             if (error_commmit) {
-                CommentNum(error_commmit, true);
+                if(timeout=="timeout"){
+                    CommentNum(error_commmit, "timeout");
+                }else{
+                    CommentNum(error_commmit, true);
+                }
                 commitNum = commitNum + error_commmit;
                 console.log("评论数不正常");
                 comment_num = data;
