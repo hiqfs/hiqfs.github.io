@@ -136,7 +136,7 @@ function tijiaopost() {
 function htmlinit() {
     $("ua span").addClass("label");
     //$(".comm").show();
-    $(".comm").fadeIn(1500);
+    //$(".comm").fadeIn(1500);
     $("audio,video").attr("preload", "none");
     $("video").attr("poster", servercdnn + "FogWvOr4txwJPq5fNaIQUdh5oQ7E");
     $("[hash]").attr("src", function () {
@@ -208,7 +208,7 @@ function Loading_xml(argument) { //json生成评论返回dom
     if (argument) {
         //if(cache[0]==argument[0]){return "";}
         //cache=argument;
-        commithaed = "<div class='comm' style=\"display:none;\"><div>";
+        commithaed = "<div class='comm'><div>";
         commitzhon = "</div><time>";
         commitfooter = "</div>";
         var commenttmp = "";
@@ -598,6 +598,7 @@ function check_comment_num(timeout) {
             if (error_commmit) {
                 if(timeout=="timeout"){
                     CommentNum(error_commmit, "timeout");
+                    $("#ti").empty();
                 }else{
                     CommentNum(error_commmit, true);
                 }
