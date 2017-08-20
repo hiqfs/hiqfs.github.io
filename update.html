@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>显示远程图片</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <script>
+            function show(){
+                url=document.getElementById("url").value;
+                copy=document.getElementById("copy");
+                console.log(url);
+                copy.insertAdjacentHTML("beforeend","<img src=\""+url+"\">"+"&nbsp;");
+                copy.focus();
+                document.execCommand("Copy");
+            }
+        </script>
+    </head>
+    <body>
+        <div contenteditable="true" id="copy" >
+        </div>
+        <input type="text" id="url">
+        <button onclick="show()">显示</button>
+    </body>
+</html>

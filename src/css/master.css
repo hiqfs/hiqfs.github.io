@@ -667,7 +667,7 @@ nav{
   color: #999;
   opacity: 1;
 }
-@-webkit-keyframes fadeIn {
+@keyframes fadeIn {
 0% {
 opacity: 0; /*初始状态 透明度为0*/
 }
@@ -676,4 +676,21 @@ opacity: 0.5; /*中间状态 透明度为0*/
 }
 100% {
 opacity: 1; /*结尾状态 透明度为1*/
+}
+}
+@keyframes enlarge{
+    0%{
+        width: 200px;
+    }
+    100%{
+        width: 100%;
+    }
+}
+@keyframes narrow{
+    0%{
+        width: 100%;
+    }
+    100%{
+        width: 200px;
+    }
 }
