@@ -238,10 +238,10 @@ a:focus {
     overflow: auto;
 }
 .comm{
-    -webkit-animation-name: fadeIn; /*动画名称*/
-    -webkit-animation-duration: 1.5s; /*动画持续时间*/
-    -webkit-animation-iteration-count: 1; /*动画次数*/
-    -webkit-animation-delay: 0s; /*延迟时间*/
+    animation-name: fadeIn; /*动画名称*/
+    animation-duration: 1.5s; /*动画持续时间*/
+    animation-iteration-count: 1; /*动画次数*/
+    animation-delay: 0s; /*延迟时间*/
 }
 
 .update {
@@ -678,6 +678,47 @@ opacity: 0.5; /*中间状态 透明度为0*/
 opacity: 1; /*结尾状态 透明度为1*/
 }
 }
+@-moz-keyframes fadeIn /* Firefox */
+{
+    0% {
+    opacity: 0; /*初始状态 透明度为0*/
+    }
+    50% {
+    opacity: 0.5; /*中间状态 透明度为0*/
+    }
+    100% {
+    opacity: 1; /*结尾状态 透明度为1*/
+    }
+
+}
+
+@-webkit-keyframes fadeIn /* Safari and Chrome */
+{
+    0% {
+    opacity: 0; /*初始状态 透明度为0*/
+    }
+    50% {
+    opacity: 0.5; /*中间状态 透明度为0*/
+    }
+    100% {
+    opacity: 1; /*结尾状态 透明度为1*/
+    }
+
+}
+
+@-o-keyframes fadeIn /* Opera */
+{
+    0% {
+    opacity: 0; /*初始状态 透明度为0*/
+    }
+    50% {
+    opacity: 0.5; /*中间状态 透明度为0*/
+    }
+    100% {
+    opacity: 1; /*结尾状态 透明度为1*/
+    }
+}
+   
 @keyframes enlarge{
     0%{
         width: 200px;

@@ -6,6 +6,12 @@
     <title>找不到网页啦</title>
     <link rel="stylesheet" href="http://7xsbbu.com1.z0.glb.clouddn.com/static/css/error.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" type="text/css" href="/src/css/font.css">
+    <script>
+        //404 路由
+        if(!/^.*\.html/.test(window.location.href)){
+            window.location.href=window.location.href+".html" 
+        }
+    </script>
 </head>
 <body class="error">
     <center>

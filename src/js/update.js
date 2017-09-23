@@ -12,6 +12,7 @@ function UpladFile() {
         console.log(xhr.responseText);
         var tmp=eval("(" + xhr.responseText + ")");
         $("#ti").append("<img src=\"http://7xljsf.com1.z0.glb.clouddn.com/"+tmp.hash+"\"><br>");
+        $("update").append("<p>http://7xljsf.com1.z0.glb.clouddn.com/"+tmp.hash+"</p>");
     };
     xhr.send(form);
 }
@@ -21,4 +22,4 @@ function key(argument) {
   var my=filename[filename.length-1];//这就是要取得的图片名称
   return my;
 }
-//http://7xljsf.com1.z0.glb.clouddn.com/FtXUzQdhalQokbfsLQJXs6JLaYVu}
+//http://7xljsf.com1.z0.glb.clouddn.com/FtXUzQdhalQokbfsLQJXs6JLaYVu
