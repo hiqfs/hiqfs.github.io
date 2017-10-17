@@ -68,20 +68,22 @@ $("document").ready(function() {
         + date_time.getHours() + "时"
         + date_time.getMinutes() + "分"
         + date_time.getSeconds() +"秒";
-    $.ajax({
-        url: serverphp+"token.php",
+    
+        $.ajax({
+        url: serverphp + php_api.token,
         async:true,
         success: function(data, textStatus) {
             token=data;
         }
     });
     $.ajax({
-        url: serverphp+"num.php",
+        url: serverphp+php_api.num,
         async:true,
         success: function(data, textStatus) {
             comment_num = data;
         }
     });
+    websocketio();  
 });
 function mobile() {
     $("#root").css("background-attachment", "fixed");

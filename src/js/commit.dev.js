@@ -1,9 +1,18 @@
 //代码重构
 serverjs = "https://hiqfs.herokuapp.com/";
-//serverphp = "https://jaber.daoapp.io";
-//serverphp = "http://server-php.coding.io";
-//serverphp = "http://php-qqfs.rhcloud.com/";
-serverphp = "http://php-servers.hifs.tk/";
+//serverphp = "https://jaber.daoapp.io";废弃
+//serverphp = "http://server-php.coding.io";废弃
+//serverphp = "http://php-qqfs.rhcloud.com/";废弃
+//serverphp = "http://php-servers.hifs.tk/";
+serverphp = "http://192.168.0.237:8080/";
+//serverphp = "http://qqfs.shantianyun.cc/";
+//接口地址
+php_api={
+    "read":"jsonread.php",
+    "num":"jsonnum.php",
+    "wirte":"wirte.php",
+    "token":"token.php"
+};
 servercdn = [ //cdn服务器列表
     "http://7xljsf.com1.z0.glb.clouddn.com/",
     "http://7xr863.dl1.z0.glb.clouddn.com/",
@@ -89,7 +98,7 @@ function tijiaopost() {
             ping = $("#ti").html().replace(/<div><br><\/div>/g, "");
         }
         tijiaopostand = $.ajax({
-            url: serverphp + "/w.php",
+            url: serverphp + php_api.wirte,
             dataType: "json",
             type: "post",
             async: "true",
@@ -154,14 +163,12 @@ function htmlinit() {
     $(".comment img[class!='emojisize']").click(function () {
         if ($(this).css("width") <= "200px") {
             //$(this).css("width", "100%");
-            $(this).animate({
-                "width": '100%'
-            });
+            $(this).removeClass("min");
+            $(this).toggleClass('max');
         } else {
             //$(this).css("width", "200px");
-            $(this).animate({
-                "width": '200px'
-            });
+            $(this).removeClass("max");
+            $(this).toggleClass('min');
         }
         $('.qqkj').height(function (index, oldheight) {
             if (oldheight - $(this).width > 100) {
@@ -284,7 +291,7 @@ function CommentNum(id, error) {
         start = start + commitNum;
     }
     window.commentjson = $.ajax({
-        url: serverphp + "/json.php?start=" + start + "\&num=" + Num,
+        url: serverphp + php_api.read + "?start=" + start + "\&num=" + Num,
         cache: false,
         async: true,
         dataType: "json",
@@ -349,7 +356,6 @@ function CommentNum(id, error) {
     */
 }
 timetmp = new Date().getTime() + 3000;
-websocketio();
 var heighttmp;
 
 function sjmo() {
@@ -592,7 +598,7 @@ function errorload() {
 */
 function check_comment_num(timeout) {
     $.ajax({
-        url: serverphp + "num.php",
+        url: serverphp + php_api.num,
         async: true,
         success: function (data, textStatus) {
             var error_commmit = data - (comment_num + commitNum);
@@ -612,6 +618,7 @@ function check_comment_num(timeout) {
         }
     });
 }
+//多线程处理
 /*
 if (typeof (Worker) !== "undefined") {
     var htmlWorker = new Worker('/src/js/Worker.js');

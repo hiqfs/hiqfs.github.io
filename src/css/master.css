@@ -735,3 +735,19 @@ opacity: 1; /*结尾状态 透明度为1*/
         width: 200px;
     }
 }
+.max{
+    animation-name: enlarge; /*动画名称*/
+    animation-duration: 0.5s; /*动画持续时间*/
+    animation-iteration-count: 1; /*动画次数*/
+    animation-delay: 0s; /*延迟时间*/
+    height:auto;
+    width: 100%;
+}
+.min{
+    animation-name: narrow; /*动画名称*/
+    animation-duration: 0.5s; /*动画持续时间*/
+    animation-iteration-count: 1; /*动画次数*/
+    animation-delay: 0s; /*延迟时间*/
+    width: 200px;
+    height:auto;
+}
