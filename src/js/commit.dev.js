@@ -3,14 +3,14 @@ serverjs = "https://hiqfs.herokuapp.com/";
 //serverphp = "https://jaber.daoapp.io";废弃
 //serverphp = "http://server-php.coding.io";废弃
 //serverphp = "http://php-qqfs.rhcloud.com/";废弃
-//serverphp = "http://php-servers.hifs.tk/";
-serverphp = "http://192.168.0.237:8080/";
+serverphp = "http://php-servers.hifs.tk/";
+//serverphp = "http://192.168.0.237:8080/";
 //serverphp = "http://qqfs.shantianyun.cc/";
 //接口地址
 php_api={
     "read":"jsonread.php",
     "num":"jsonnum.php",
-    "wirte":"wirte.php",
+    "write":"write.php",
     "token":"token.php"
 };
 servercdn = [ //cdn服务器列表
@@ -98,7 +98,7 @@ function tijiaopost() {
             ping = $("#ti").html().replace(/<div><br><\/div>/g, "");
         }
         tijiaopostand = $.ajax({
-            url: serverphp + php_api.wirte,
+            url: serverphp + php_api.write,
             dataType: "json",
             type: "post",
             async: "true",

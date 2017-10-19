@@ -4,7 +4,7 @@
     "php_api":{
         "read":"jsonread.php",
         "num":"jsonnum.php",
-        "wirte":"w.php",
+        "write":"write.php",
         "token":"token.php"
     },
     "servercdn":[

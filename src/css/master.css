@@ -34,7 +34,7 @@ span,button#jiao,status,/*loadtime,*/div#musica,button#imgfile{
     float: right;
 }
 
-.footer p {
+.footer sign{
     color: darkslategray;
     font-family: clicker script, segoe script, Comic Sans MS;
     font-size: 28px;
