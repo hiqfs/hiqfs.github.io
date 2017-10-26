@@ -116,7 +116,7 @@ function tijiaopost() {
                     $('#commit').prepend(Loading_xml(text));
                     iosocket.send(JSON.stringify(text));
                     $("#ti").empty();
-                    ++commitNum;
+                    commitNum++;
                     htmlinit();
                     alert("发送成功");
                 } else {
@@ -144,7 +144,7 @@ function tijiaopost() {
 }
 
 function htmlinit() {
-    $("ua span").addClass("label");
+    $("ua span").addClass("badge");
     //$(".comm").show();
     //$(".comm").fadeIn(1500);
     $("audio,video").attr("preload", "none");

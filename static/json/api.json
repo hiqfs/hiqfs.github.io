@@ -1,6 +1,6 @@
 {
     "serverjs":"https://hiqfs.herokuapp.com/",
-    "serverphp":"http://192.168.0.237:8080/",
+    "serverphp":"http://php-servers.hifs.tk",
     "php_api":{
         "read":"jsonread.php",
         "num":"jsonnum.php",

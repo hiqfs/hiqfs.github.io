@@ -1,11 +1,11 @@
 #!/bin/sh
 curl \
-http://7u2f38.com5.z0.glb.clouddn.com/ajax/libs/jquery/3.1.1/jquery.min.js \
+http://7u2f38.com5.z0.glb.clouddn.com/ajax/libs/jquery/3.2.1/jquery.min.js \
 http://7u2f38.com5.z0.glb.clouddn.com/ajax/libs/socket.io/1.7.2/socket.io.min.js > ../../static/js/web.i.js
 curl \
 http://7u2f38.com5.z0.glb.clouddn.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css \
-http://7u2f38.com5.z0.glb.clouddn.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css \
  | sed  "s/..\/fonts\//http:\/\/7u2f38.com5.z0.glb.clouddn.com\/ajax\/libs\/font-awesome\/4.7.0\/fonts\//g" \
  > ../../static/css/web.i.css
+ cat ../css//boot.css >> ../../static/css/web.i.css
  cat ../css/font.css >> ../../static/css/web.i.css
  echo "ok"

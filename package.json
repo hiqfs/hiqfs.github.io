@@ -25,6 +25,8 @@
     "clean-css":">=3.4.20",
     "uglify-js":">=2.7.3",
     "http-server":">=0.9.0",
-    "html-minifier":">=3.4.4"
+    "html-minifier":">=3.4.4",
+    "bootstrap":">=3.3.7",
+    "less":">=2.7.2"
   }
 }
