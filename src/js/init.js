@@ -92,7 +92,7 @@ function mobile() {
         return true;
     } else {
         $("#root").css("background-image", "url(http://7u2f38.com5.z0.glb.clouddn.com/DwAKdwvY68a7fQAAAABJRU5ErkJggg==.png)");
-        //$("#musica").css("display","inline");
+        $("#musica").css("display","block");
         return false;
     }
 }
