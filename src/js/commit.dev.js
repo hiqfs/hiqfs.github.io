@@ -3,9 +3,10 @@ serverjs = "https://hiqfs.herokuapp.com/";
 //serverphp = "https://jaber.daoapp.io";废弃
 //serverphp = "http://server-php.coding.io";废弃
 //serverphp = "http://php-qqfs.rhcloud.com/";废弃
-serverphp = "http://php-servers.hifs.tk/";
+//serverphp = "http://192.168.1.128/";
 //serverphp = "http://192.168.0.237:8080/";
-//serverphp = "http://qqfs.shantianyun.cc/";
+serverphp = "http://php-servers.hifs.tk/"
+//serverphp = "http://qqfs.shantianyun.cc/";废弃
 //接口地址
 php_api={
     "read":"jsonread.php",
@@ -13,6 +14,15 @@ php_api={
     "write":"write.php",
     "token":"token.php"
 };
+/*
+//php mysql 旧版api
+php_api={
+    "read":"json.php",
+    "num":"num.php",
+    "write":"w.php",
+    "token":"token.php"
+};
+*/
 servercdn = [ //cdn服务器列表
     "http://7xljsf.com1.z0.glb.clouddn.com/",
     "http://7xr863.dl1.z0.glb.clouddn.com/",
@@ -25,24 +35,33 @@ function init_comment() {
         commitNum = 0; //评论偏移数
         CommentNum(0); //评论初始化
         stava = true;
-        $("#jiao").bind("click", function () {
+        document.getElementById("jiao").addEventListener("click",function(e){
+            /*
             $(this).attr("disabled", true);
             $(this).css("background-color", "#6F6F6F");
             $(this).text("发送中...");
+            */
+            //原生实现
             if (timetmp >= new Date().getTime()) {
                 alert("发太快了哦");
             } else {
+                e.target.disabled=true;
+                e.target.style.backgroundColor="#6F6F6F";
+                e.target.innerHTML="发送中...";
                 tijiaopost();
                 timetmp = new Date().getTime() + 3000;
+                e.target.style.backgroundColor="#00a3cf";
+                e.target.innerHTML="<i class=\"fa fa-paper-plane\" aria-hidden=\"true\"></i> 发送";
+                e.target.disabled=false;
             }
+            /*
             $(this).css("background-color", "#00a3cf");
             $(this).html("<i class=\"fa fa-paper-plane\" aria-hidden=\"true\"></i> 发送");
-            $(this).attr("disabled", false);
+            $(this).attr("disabled", false);*/
         });
     }
 }
 servercdnn = servercdn[Math.floor(Math.random() * servercdn.length)];//随机使用cdn服务器
-
 function init(argument) { //脚本初始化函数
     //评论加载
     htmlinit(); //处理图片和哈希资源
@@ -101,7 +120,7 @@ function tijiaopost() {
             url: serverphp + php_api.write,
             dataType: "json",
             type: "post",
-            async: "true",
+            async: false,
             timeout: 5000,
             data: {
                 comment: ping
@@ -193,6 +212,10 @@ function htmlinit() {
         }
     });
     $(".comm img.qqkj:first-child").before("<br>");
+    $(".comm img[class!='emojisize']").one("load",function(){
+        $(this).show().addClass("min");
+    });
+    //$(".comm img[class!='emojisize']").addClass("min");
     /*
     $("img").onload(function () {
         $(this).prepend("<div class=imgload><div>");
@@ -216,15 +239,15 @@ function Loading_xml(argument) { //json生成评论返回dom
     if (argument) {
         //if(cache[0]==argument[0]){return "";}
         //cache=argument;
-        commithaed = "<div class='comm'><div>";
+        commithaed = "<div>";//<div class='comm'>
         commitzhon = "</div><time>";
-        commitfooter = "</div>";
+        //commitfooter = "</div>";
         var commenttmp = "";
         for (i = 0; i < argument.length - 1; i++) {
             if (argument[i].ua) {
-                commenttmp += commithaed + argument[i].comment + commitzhon + argument[i].time + " </time><ua>" + ua(argument[i].ua) + os(argument[i].ua) + "</ua>" + commitfooter;
+                commenttmp += commithaed + argument[i].comment + commitzhon + argument[i].time + " </time><ua>" + ua(argument[i].ua) + os(argument[i].ua) + "</ua>";
             } else {
-                commenttmp += commithaed + argument[i].comment + commitzhon + argument[i].time + " </time>" + commitfooter;
+                commenttmp += commithaed + argument[i].comment + commitzhon + argument[i].time + " </time>";
             }
         }
         xml = commenttmp.replace(/\[em\]e[0-9]+\[\/em\]/g, function (em) {
@@ -235,7 +258,7 @@ function Loading_xml(argument) { //json生成评论返回dom
         if (argument[argument.length - 1] == "duang") { } else {
             $('loadtime').text(argument[argument.length - 1] + "s");
         } //这里要duang一下
-        return xml;
+        return "<div class='comm'>"+xml+"</div>";
     } else {
         return "<wbi></wbi>";
     }
@@ -255,11 +278,14 @@ function emoji(argument) { //处理emoji表情
 
 function websocketio() {
     iosocket = io.connect(serverjs);
+    var statusio = document.getElementsByTagName("status")[0];
     iosocket.on('connect', function () {
-        $('status').text('已连接');
-        window.status = 1;
-        $('status').css("background-color", "#0275d8");
-        check_comment_num();
+        //$('status').text('已连接');
+        //window.status = 1;
+        //$('status').css("background-color", "#0275d8");
+        statusio.innerHTML="已连接";
+        statusio.style.backgroundColor="#0275d8";
+        check_comment_num();//检查评论数
     });
     iosocket.on('message', function (message) {
         var text = JSON.parse(message);
@@ -268,16 +294,19 @@ function websocketio() {
         console.log("收到消息");
         commitNum++;
         notifyMe(text);
-        $("num").text(msnum);
+        //$("num").text(msnum);
+        document.getElementsByTagName("num")[0].innerHTML=msnum;
         if ($(document).scrollTop() > $(window).height()) {
             $('num').show();
-        } else { }
+        }
         htmlinit();
     });
     iosocket.on('disconnect', function () {
-        $('status').text('已断开');
-        $('status').css("background-color", "#d9534f");
-        window.status = 0;
+        //$('status')[0].text('已断开');
+        //$('status').css("background-color", "#d9534f");
+        //window.status = 0;
+        statusio.innerHTML="以断开";
+        statusio.style.backgroundColor="#d9534f";
     });
 }
 
@@ -355,7 +384,7 @@ function CommentNum(id, error) {
     }
     */
 }
-timetmp = new Date().getTime() + 3000;
+timetmp = new Date().getTime() + 5000;
 var heighttmp;
 
 function sjmo() {
@@ -366,6 +395,7 @@ function sjmo() {
         iosocket.connect();
     });
     $("#b3").click(function () {
+        scroll(0,900);
         var speed = 200; //滑动的速度
         $('body,html').animate({
             scrollTop: 0

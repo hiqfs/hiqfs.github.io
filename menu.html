@@ -1,15 +1,41 @@
-<script>
-    window.onload=function(){ 
-        var qr = document.getElementById("qr");
-        qr.setAttribute("src", "http://qr.liantu.com/api.php?m=5&text="+window.location.href);
-    }
-</script>
-<style>*{font-size: 1.2em;}</style>
-<h1>Menu</h1>
-<ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/static/html/submit.html">Upload file</a></li>
-    <li><a href="/static/html/Myworld.html">Photo</a></li>
-    <li><a href="/static/html/update.html">Show remote pictures</a></li>
-</ul>
-<img id="qr">
+<html>
+<head>
+    <title>Menu</title>
+    <script>
+        window.onload = function () {
+            var qr = document.getElementById("qr");
+            qr.setAttribute("src", "http://qr.liantu.com/api.php?m=5&text=" + window.location.href);
+        }
+    </script>
+</head>
+
+<body>
+    <style>
+        * {
+            font-size: 1.2em;
+        }
+    </style>
+    <h1>Menu</h1>
+    <ul>
+        <li>
+            <a href="/">Home</a>
+        </li>
+        <li>
+            <a href="/static/html/submit.html">Upload file</a>
+        </li>
+        <li>
+            <a href="/static/html/Myworld.html">Photo</a>
+        </li>
+        <li>
+            <a href="/static/html/update.html">Show remote pictures</a>
+        </li>
+        <li>
+            <a href="/static/html/Launcher.html">Launcher</a>
+        </li>
+        <li>
+            <a href="/static/html/status.html">Status</a>
+        </li>
+    </ul>
+    <img id="qr">
+</body>
+</html>

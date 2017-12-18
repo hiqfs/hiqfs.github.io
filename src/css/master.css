@@ -228,12 +228,12 @@ a:focus {
     font-size: 50%;
 }
 
-.comm code {
+#commit code {
     display: inline-block;
     word-break: break-all;
 }
 
-.comm div {
+#commit div {
     max-width: 100%;
     overflow: auto;
 }
@@ -297,7 +297,9 @@ a:focus {
    -ms-perspective: 1000;
    perspective: 1000;
 }
-
+.comm img:not(.emojisize){
+    display: none;
+}
 num {
     position: absolute;
     top: 0;

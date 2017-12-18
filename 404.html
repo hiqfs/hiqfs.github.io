@@ -8,11 +8,41 @@
     <link rel="stylesheet" type="text/css" href="/src/css/font.css">
     <script>
         //404 路由
-        if(!/^.*\.html/.test(window.location.href)){
-            window.location.href=window.location.href+".html" 
+        /*
+        var pathname = window.location.pathname.split("/");
+        var filename = pathname.pop();
+        pathname.shift();
+        var filedir = "/" + pathname.join("/") + "/";
+        if (/A-Za-z]/.test(filename[0])) {
+            if (/a-z]/.test(filename[0])) {
+                if (!/^.*\.html/.test(window.location.href)) {
+
+                } else {
+
+                }
+            } else {
+                if (!/^.*\.html/.test(window.location.href)) {
+                    window.location.pathname = window.location.pathname + ".html";
+                }
+            }
+        } else {
+            if (!/^.*\.html/.test(window.location.href)) {
+                window.location.pathname = window.location.pathname + ".html";
+            }
+        }*/
+
+        //噗 这段代码写得太蠢 我怎么有这么蠢的想法
+        //重构用正则匹配
+        var newurl=window.location.pathname.replace(/[^\/]+$/,function(e){
+            e=e[0].toLocaleUpperCase()+e.substring(1);
+            if (!/..html$/.test(e)) {return  e + ".html";}else{return e;}
+        });
+        if(!(window.location.pathname===newurl)){
+            window.location.href=newurl;
         }
     </script>
 </head>
+
 <body class="error">
     <center>
         <img src="http://77flfx.com1.z0.glb.clouddn.com/404.jpg">

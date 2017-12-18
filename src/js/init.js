@@ -1,5 +1,5 @@
-stava=false;
-$("document").ready(function() {
+stava=false;//评论是否加载失败;
+window.onload=function() {
     //$('#bar').load("/bar.html");
     //hius();
     //mobile();
@@ -24,8 +24,8 @@ $("document").ready(function() {
             }
     }
     });
-    mob = mobile();
-    if (window.location.hash == "") {
+    mob = mobile(); //判断是否为移动端
+    if (window.location.hash == "") {//判断地址
         chome();
     }else if (window.location.hash == "#!/cping") {
         cping();
@@ -37,7 +37,7 @@ $("document").ready(function() {
             heighttmp = 0;
         }
     */
-    $("#musica").click(function() {
+    $("#musica").click(function() {//音乐栏点击事件
         /*if($("#musicd").attr("src")==undefined){
             $("#musicd").attr("src","http://music.163.com/outchain/player?type=0&id=92384486&auto=0&height=430");
         }*/
@@ -57,9 +57,10 @@ $("document").ready(function() {
             });
         }
     });
-    $("xmd").show();
-    init_comment();
-    date_time=new Date(parseInt(date_time) * 1000);
+    document.getElementsByTagName("xmd")[0].style.display="";//显示页面主体
+    //$("xmd").show();
+    init_comment();//评论初始化
+    date_time=new Date(parseInt(date_time) * 1000);//获取代码更新时间
     document.getElementById("banben").innerHTML = 
         "Code最后更新时间<br>" 
         + date_time.getFullYear() + "年" 
@@ -68,8 +69,8 @@ $("document").ready(function() {
         + date_time.getHours() + "时"
         + date_time.getMinutes() + "分"
         + date_time.getSeconds() +"秒";
-    
-        $.ajax({
+    //获取服务器token和评论数
+    $.ajax({
         url: serverphp + php_api.token,
         async:true,
         success: function(data, textStatus) {
@@ -83,8 +84,35 @@ $("document").ready(function() {
             comment_num = data;
         }
     });
-    websocketio();  
-});
+    $(document).keydown(function(event) {
+        if (event.ctrlKey && event.keyCode == 13) {
+            if (window.location.hash == "#!/cping") {
+                $("#jiao").click();
+            }
+        }
+        if (window.location.hash != "#!/cping" && event.altKey && event.keyCode == 90) {
+            window.location.hash = "#!/cping";
+            $(".nav-link, #b1").click();
+        }
+        if (window.location.hash == "#!/cping" && event.altKey && event.keyCode == 80) {
+            $('#ti').focus();
+        }
+        return true;
+    });
+    websocketio();//连接socketio
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '(つェ⊂)我藏好了哦~ ' + OriginTitile;
+            clearTimeout(titleTime);
+        }
+        else {
+            document.title = '(*´∇｀*) 被你发现啦~ ' + OriginTitile;
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            }, 2000);
+        }
+    });
+};
 function mobile() {
     $("#root").css("background-attachment", "fixed");
     if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
@@ -155,7 +183,7 @@ function cping() {
         $("li a").removeClass("active");
         return "active";
     });
-    $("title").html("喵窝留言板⊙ω⊙");
+    OriginTitile=document.title="喵窝留言板⊙ω⊙";
     $("#title").html("喵窝留言板⊙ω⊙");
     $("#ping").show();
     //init_comment();
@@ -186,9 +214,7 @@ function cabout() {
         return "active";
     });
     //$("#hcond").fadeOut(500);
-        setTimeout( function(){
-            $("title").html("关于喵窝");
-    },500);
+    OriginTitile=document.title="关于喵窝";
     $("about").fadeIn("5000");
     //$("about").show();
 
@@ -202,7 +228,7 @@ function chome() {
         $("li a").removeClass("active");
         return "active";
     });
-    $("title").html("喵窝首页∩ω∩");
+    OriginTitile=document.title="喵窝首页∩ω∩";
     $("#title").html("欢迎来到喵窝∩ω∩");
     window.location.hash = "";
     $(window).unbind("scroll");
@@ -234,6 +260,7 @@ function urlchenge() {
     $(window).unbind();
     if (window.location.hash == "") {
         chome();
+        $("#b3").hide();    
     }
     if (window.location.hash == "#!/cping") {
         /*
@@ -265,24 +292,10 @@ function show_date_time() {
     e_minsold = (e_hrsold - hrsold) * 60;
     minsold = Math.floor((e_hrsold - hrsold) * 60);
     seconds = Math.floor((e_minsold - minsold) * 60);
-    $("#span_dt_dt").text(daysold + "天" + hrsold + "小时" + minsold + "分" + seconds + "秒");
+    //$("#span_dt_dt").text(daysold + "天" + hrsold + "小时" + minsold + "分" + seconds + "秒");
+    document.getElementById("span_dt_dt").innerHTML=daysold + "天" + hrsold + "小时" + minsold + "分" + seconds + "秒";
 }
 show_date_time();
-$(document).keydown(function(event) {
-    if (event.ctrlKey && event.keyCode == 13) {
-        if (window.location.hash == "#!/cping") {
-            $("#jiao").click();
-        }
-    }
-    if (window.location.hash != "#!/cping" && event.altKey && event.keyCode == 90) {
-        window.location.hash = "#!/cping";
-        $(".nav-link, #b1").click();
-    }
-    if (window.location.hash == "#!/cping" && event.altKey && event.keyCode == 80) {
-        $('#ti').focus();
-    }
-    return true;
-});
 function UpladFile(file) {
     var obj = document.getElementById('qifile');
     if(file){
@@ -316,6 +329,17 @@ function UpladFile(file) {
         obj.outerHTML=obj.outerHTML; 
         xhr.send(form);
     }
+}
+function debug(){
+    //上帝模式（开发者模式）
+    if(true){
+        console.log("开发者模式启动");
+        return true;
+    }else{
+    }
+}
+function battery(){
+    //手机电量
 }
 /*
 if (navigator.serviceWorker) {
