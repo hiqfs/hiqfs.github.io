@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>显示远程图片</title>
+        <style>*{font-size: 1em;}</style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+        <script src="http://7u2f38.com5.z0.glb.clouddn.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+        <script src="/src/js/base.js"></script>
+        <script>
+            function show(){
+                url=document.getElementById("url").value;
+                copy=document.getElementById("copy");
+                console.log(url);
+                copy.insertAdjacentHTML("beforeend","<img src=\""+url+"\">");
+                copy.focus();
+                document.execCommand("Copy");
+                text=document.getElementById("copy").innerHTML;
+                $("img").attr('src',function(index,oldvalue){return oldvalue.replace(/mw1024/, "large");});                 
+            }
+        </script>
+    </head>
+    <body>
+        <div contenteditable="true" class="text" id="copy" >
+        </div>
+        <input type="text" id="url">
+        <button onclick="show()">显示</button><br>
+        <button onclick="emit()">发送到喵窝</button><br>
+        <status>未知</status>
+        <br>
+        <img id="qr"><br>
+    </body>
+</html>

@@ -1,0 +1,40 @@
+#!/bin/sh
+#设置语言
+export LANG=zh_CN.UTF-8
+#开始处理压缩代码
+source ./web
+#使用七牛cdn减速服务
+sed -i "s/\/static/http:\/\/jaber.77kp.cn\/static/g" ./index.html ./404.html 
+git add --all .
+#判断是否写commit
+if [ -n "$f1" ];then
+	git commit -S -m "$(date -d @$timestamp) $1"
+else
+	git commit -S -m "$(date -d @$timestamp)"
+fi
+#检擦远程代码是否有更新
+git pull
+#推送到git服务器
+git push origin master
+git push coding master
+git push gitlab master
+#同步到路由器
+#同步的文件
+file_array=(
+	./index.html 
+	./static/
+	)
+scp  -i ~/router -r ${file_array[@]} root@router:/web/
+#scp -i ~/router -r ./index.html  ./static/ root@router:/web/
+sed -i "s/http:\/\/jaber.77kp.cn\/static/\/static/g" ./index.html ./404.html 
+#获取目录
+Cur_Dir=$(pwd)
+echo $Cur_Dir
+cd ..
+#qshell prefetch hifs-cdn static/js/web.js
+#qshell prefetch hifs-cdn static/css/web.css
+#同步七牛
+./cdn.bat
+#回到项目目录
+cd hiqfs.github.io
+#自动部署代码

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>发射器</title>
+    <style>
+        * {
+            font-size: 1em;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        window.onload = function () {
+            var qr = document.getElementById("qr");
+            qr.setAttribute("src", "http://qr.liantu.com/api.php?m=5&text=" + window.location.href);
+        }
+    </script>
+    <script src="http://7u2f38.com5.z0.glb.clouddn.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script src="/src/js/base.js"></script>
+</head>
+
+<body>
+    </div>
+    <input type="text" class="text" id="text"></input><br>
+    <button onclick="emit()">发射电磁波到喵窝</button><br>
+    <status>未知</status>
+    <br>
+    <img id="qr">
+</body>
+
+</html>
