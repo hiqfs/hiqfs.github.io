@@ -50,9 +50,6 @@ function init_comment() {
                 e.target.innerHTML="发送中...";
                 tijiaopost();
                 timetmp = new Date().getTime() + 3000;
-                e.target.style.backgroundColor="#00a3cf";
-                e.target.innerHTML="<i class=\"fa fa-paper-plane\" aria-hidden=\"true\"></i> 发送";
-                e.target.disabled=false;
             }
             /*
             $(this).css("background-color", "#00a3cf");
@@ -120,7 +117,7 @@ function tijiaopost() {
             url: serverphp + php_api.write,
             dataType: "json",
             type: "post",
-            async: false,
+            async: true,
             timeout: 5000,
             data: {
                 comment: ping
@@ -143,6 +140,9 @@ function tijiaopost() {
                     console.log(data);
                 }
                 htmlinit();
+                document.getElementById("jiao").style.backgroundColor="#00a3cf";
+                document.getElementById("jiao").innerHTML="<i class=\"fa fa-paper-plane\" aria-hidden=\"true\"></i> 发送";
+                document.getElementById("jiao").disabled=false;
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log(XMLHttpRequest);
@@ -152,6 +152,9 @@ function tijiaopost() {
                 }
                 console.log(errorThrown);
                 alert("error");
+                document.getElementById("jiao").style.backgroundColor="#00a3cf";
+                document.getElementById("jiao").innerHTML="<i class=\"fa fa-paper-plane\" aria-hidden=\"true\"></i> 发送";
+                document.getElementById("jiao").disabled=false;
             },
 
             cache: "false"
