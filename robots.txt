@@ -1,5 +1,4 @@
 User-agent: *
 Disallow:
-Disallow: /css/
-Disallow: /js/
+Disallow: /static/
 Disallow: 404.html
