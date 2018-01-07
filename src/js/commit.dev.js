@@ -1,22 +1,22 @@
 //代码重构
-serverjs = "https://hiqfs.herokuapp.com/";
-//serverphp = "https://jaber.daoapp.io";废弃
-//serverphp = "http://server-php.coding.io";废弃
-//serverphp = "http://php-qqfs.rhcloud.com/";废弃
-//serverphp = "http://192.168.1.128/";
-//serverphp = "http://192.168.0.237:8080/";
-serverphp = "http://php-servers.hifs.tk/"
-//serverphp = "http://qqfs.shantianyun.cc/";废弃
+/*
+api.serverjs = "https://hiqfs.herokuapp.com/";
+//api.serverphp = "https://jaber.daoapp.io";废弃
+//api.serverphp = "http://server-php.coding.io";废弃
+//api.serverphp = "http://php-qqfs.rhcloud.com/";废弃
+//api.serverphp = "http://192.168.1.128/";
+//api.serverphp = "http://192.168.0.237:8080/";
+api.serverphp = "http://php-servers.hifs.tk/"
+//api.serverphp = "http://qqfs.shantianyun.cc/";废弃
 //接口地址
-php_api={
+api.php_api={
     "read":"jsonread.php",
     "num":"jsonnum.php",
     "write":"write.php",
     "token":"token.php"
 };
-/*
 //php mysql 旧版api
-php_api={
+api.php_api={
     "read":"json.php",
     "num":"num.php",
     "write":"w.php",
@@ -29,6 +29,7 @@ servercdn = [ //cdn服务器列表
     "http://7xr867.com1.z0.glb.clouddn.com/",
     "http://7xr9yh.com1.z0.glb.clouddn.com/"
 ]; //随机数分流
+servercdnn = servercdn[Math.floor(Math.random() * servercdn.length)];//随机使用cdn服务器
 function init_comment() {
     if (!window.id) {
         window.id = 0; //页数初始化为零
@@ -58,7 +59,6 @@ function init_comment() {
         });
     }
 }
-servercdnn = servercdn[Math.floor(Math.random() * servercdn.length)];//随机使用cdn服务器
 function init(argument) { //脚本初始化函数
     //评论加载
     htmlinit(); //处理图片和哈希资源
@@ -79,7 +79,7 @@ function init(argument) { //脚本初始化函数
 function commit() {
     $(document).ready(function () {
         comment = $.ajax({
-            url: serverphp + "/read.php?line=1",
+            url: api.serverphp + "/read.php?line=1",
             cache: false,
             async: false,
             error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -114,7 +114,7 @@ function tijiaopost() {
             ping = $("#ti").html().replace(/<div><br><\/div>/g, "");
         }
         tijiaopostand = $.ajax({
-            url: serverphp + php_api.write,
+            url: api.serverphp + api.php_api.write,
             dataType: "json",
             type: "post",
             async: true,
@@ -215,9 +215,17 @@ function htmlinit() {
         }
     });
     $(".comm img.qqkj:first-child").before("<br>");
-    $(".comm img[class!='emojisize']").one("load",function(){
-        $(this).show().addClass("min");
-    });
+    /*
+    if(mob){
+        $(".comm img[class!='emojisize']").one("load",function(){
+            $(this).show();
+        });
+    }else{
+    */
+        $(".comm img[class!='emojisize']").one("load",function(){
+            $(this).show().addClass("min");
+        });
+    //}
     //$(".comm img[class!='emojisize']").addClass("min");
     /*
     $("img").onload(function () {
@@ -280,7 +288,7 @@ function emoji(argument) { //处理emoji表情
 }
 
 function websocketio() {
-    iosocket = io.connect(serverjs);
+    iosocket = io.connect(api.serverjs);
     var statusio = document.getElementsByTagName("status")[0];
     iosocket.on('connect', function () {
         //$('status').text('已连接');
@@ -323,7 +331,7 @@ function CommentNum(id, error) {
         start = start + commitNum;
     }
     window.commentjson = $.ajax({
-        url: serverphp + php_api.read + "?start=" + start + "\&num=" + Num,
+        url: api.serverphp + api.php_api.read + "?start=" + start + "\&num=" + Num,
         cache: false,
         async: true,
         dataType: "json",
@@ -337,7 +345,7 @@ function CommentNum(id, error) {
             $("#commitload").hide();
         },
         success: function (data, textStatus) {
-            console.time("执行时间");
+            //console.time("LoadCommentTime");
             if (error) {
                 $('#commit').prepend(Loading_xml(data));
                 htmlinit();
@@ -360,7 +368,7 @@ function CommentNum(id, error) {
                 //CommentNum(window.id);
                 stava = true;
             }
-            console.timeEnd("执行时间");
+            //console.timeEnd("LoadCommentTime");
             if(error=="timeout"){
                 data[data.length-1]="duang";
                 iosocket.send(JSON.stringify(data));
@@ -388,8 +396,6 @@ function CommentNum(id, error) {
     */
 }
 timetmp = new Date().getTime() + 5000;
-var heighttmp;
-
 function sjmo() {
     //蛋疼的封装了一堆函数
     // Jquery Code
@@ -410,9 +416,6 @@ function sjmo() {
         //$(document).scrollLeft() 这是获取水平滚动条的距离
         if ($(document).scrollTop() !== 0) {
             heighttmp = $(document).scrollTop();
-            if (typeof (document.cookie) !== undefined) {
-                document.cookie = "top=" + heighttmp;
-            }
             //console.log(heighttmp);
         }
         if (window.id != "0" && $(document).scrollTop() + 80 >= $(document).height() - $(window).height()) {
@@ -631,7 +634,7 @@ function errorload() {
 */
 function check_comment_num(timeout) {
     $.ajax({
-        url: serverphp + php_api.num,
+        url: api.serverphp + api.php_api.num,
         async: true,
         success: function (data, textStatus) {
             var error_commmit = data - (comment_num + commitNum);

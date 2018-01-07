@@ -37,7 +37,7 @@
             e=e[0].toLocaleUpperCase()+e.substring(1);
             if (!/..html$/.test(e)) {return  e + ".html";}else{return e;}
         });
-        if(!(window.location.pathname===newurl)){
+        if(!(window.location.pathname===newurl))//判断一波
             window.location.href=newurl;
         }
     </script>

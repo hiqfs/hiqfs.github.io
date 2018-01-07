@@ -17,11 +17,12 @@ function canvas() {
 			z: get_attribute(script, "zIndex", -1), //z-index
 			o: get_attribute(script, "opacity", 20), //opacity
 			c: get_attribute(script, "color", "0,0,0"), //color
-			n: get_attribute(script, "count", 50) //count
+			n: get_attribute(script, "count", 100) //count
 		};
 	}
 	//设置canvas的高宽
 	function set_canvas_size() {
+		window.onresize=arguments.callee;
 		canvas_width = the_canvas.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
 		canvas_height = the_canvas.height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 	}

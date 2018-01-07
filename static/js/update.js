@@ -3,7 +3,7 @@ function UpladFile() {
     var FileController = "http://upload.qiniu.com/";                    // 接收上传文件的后台地址
     var form = new FormData();
     //form.append("kay","key()");
-    form.append("token", token=$.ajax({url:"http://192.168.0.237:8080/token.php",async:false}).responseText);                        // 可以增加表单数据
+    form.append("token", token=$.ajax({url:api.serverphp+api.php_api.token,async:false}).responseText);                        // 可以增加表单数据
     form.append("file", fileObj);                           // 文件对象
     var xhr = new XMLHttpRequest();
     xhr.open("post", FileController, true);

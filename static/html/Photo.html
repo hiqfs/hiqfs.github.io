@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Photo</title>
+    <link rel="import" href="hua.html" id="page">
+    <script>
+        var filename = "hua.html";
+        var url = window.location.pathname.replace(/[^\/]+$/, filename);
+        /*
+        ~async function () {
+            //以前是使用html写的
+            try {
+                let response = await fetch(url);
+                let data = response.text();
+                let html = data.then(html => {
+                    document.getElementById("photo").innerHTML = html;
+                })
+            } catch (e) {
+                console.log("Oops, error", e);
+            }
+        }();
+        */
+        window.onload = function () {
+            document.getElementById("qr").setAttribute("src", "http://qr.liantu.com/api.php?m=5&text=" + window.location.href);
+            var box=document.getElementById("box");
+            var image=document.getElementById("image");
+            var photo=document.getElementById("photo");
+            photo.innerHTML=page.import.body.innerHTML;
+            photo.addEventListener("click", e => {
+                box.style.display="none";
+                image.style.display="block";
+                image.innerHTML="<img src='"+e.target.src+"'>";
+            });
+            image.addEventListener("click", e => {
+                box.style.display="block";
+                image.style.display="none";
+            });
+            //特效不写了
+        }
+    </script>
+    <style>
+        #photo img {
+            width: 90px;
+            height: 90px;
+            overflow:hidden;
+        }
+        #photo {
+            width: 1080px;
+            margin: auto;
+            max-width: 100%
+        }
+
+        #box {
+            text-align: center;
+        }
+
+        body {
+        }
+
+        @keyframes enlarge {
+            0% {
+                width: 90px;
+                height: 90px;
+            }
+            100% {
+                width:100%;
+                height: 100%;
+            }
+        }
+
+        @keyframes narrow {
+            0% {
+                width: 100%;
+                height: 100%;
+            }
+            100% {
+                width: 90px;
+                height: 90px;
+
+            }
+        }
+
+        .max {
+            animation-name: enlarge;
+            /*动画名称*/
+            animation-duration: 0.5s;
+            /*动画持续时间*/
+            animation-iteration-count: 1;
+            /*动画次数*/
+            animation-delay: 0s;
+            /*延迟时间*/
+            height: auto;
+            width: 100%;
+        }
+
+        .min {
+            animation-name: narrow;
+            /*动画名称*/
+            animation-duration: 0.5s;
+            /*动画持续时间*/
+            animation-iteration-count: 1;
+            /*动画次数*/
+            animation-delay: 0s;
+            /*延迟时间*/
+            width: 90px;
+            height: 90px;
+        }
+        #image{
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            background-color: #999;
+            z-index: 90;
+            text-align: center;
+            display: none;
+        }
+        #image img{
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            max-height: 100%;
+            max-width: 100%;
+            animation: backin 0.3s none;
+        }
+        body{
+            margin: 0px;
+        }
+        #qr{
+            width: 90px;
+            height: 90px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div id="photo"></div>
+        <img id="qr">
+    </div>
+<div id="image">
+</div>
+</body>
+
+</html>

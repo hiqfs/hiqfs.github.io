@@ -1,6 +1,6 @@
-{
+api={
     "serverjs":"https://hiqfs.herokuapp.com/",
-    "serverphp":"http://php-servers.hifs.tk",
+    "serverphp":"http://php-servers.hifs.tk/",
     "php_api":{
         "read":"jsonread.php",
         "num":"jsonnum.php",
@@ -13,4 +13,4 @@
         "http://7xr867.com1.z0.glb.clouddn.com/",
         "http://7xr9yh.com1.z0.glb.clouddn.com/"
     ]
-}
+};

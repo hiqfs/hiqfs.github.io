@@ -22,11 +22,11 @@
   },
   "homepage": "https://github.com/hiqfs/hiqfs.github.io#readme",
   "dependencies": {
-    "clean-css":">=3.4.20",
-    "uglify-js":">=2.7.3",
-    "http-server":">=0.9.0",
-    "html-minifier":">=3.4.4",
-    "bootstrap":">=3.3.7",
-    "less":">=2.7.2"
+    "bootstrap": "^4.0.0-beta.3",
+    "clean-css": ">=3.4.20",
+    "html-minifier": "^3.5.8",
+    "http-server": ">=0.9.0",
+    "less": ">=2.7.2",
+    "uglify-js": "^3.3.4"
   }
 }
