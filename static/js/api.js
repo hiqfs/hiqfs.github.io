@@ -1,16 +1,19 @@
 api={
     "serverjs":"https://hiqfs.herokuapp.com/",
-    "serverphp":"http://php-servers.hifs.tk/",
+    "serverphp":"http://phpservers.uactv.cn/",
     "php_api":{
         "read":"jsonread.php",
         "num":"jsonnum.php",
         "write":"write.php",
-        "token":"token.php"
+        "token":"token.php",
+        "jsoninfo":"info.php"
     },
     "servercdn":[
         "http://7xljsf.com1.z0.glb.clouddn.com/",
         "http://7xr863.dl1.z0.glb.clouddn.com/",
         "http://7xr867.com1.z0.glb.clouddn.com/",
-        "http://7xr9yh.com1.z0.glb.clouddn.com/"
+        "http://7xr9yh.com1.z0.glb.clouddn.com/",
+        "http://jaber-1251630625.file.myqcloud.com/",
+        "http://jaber-cdn.file.alimmdn.com/"
     ]
 };

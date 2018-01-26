@@ -1,3 +1,6 @@
+function x() {
+    console.log("flag");
+}
 //代码重构
 /*
 api.serverjs = "https://hiqfs.herokuapp.com/";
@@ -23,35 +26,39 @@ api.php_api={
     "token":"token.php"
 };
 */
+/*
 servercdn = [ //cdn服务器列表
     "http://7xljsf.com1.z0.glb.clouddn.com/",
     "http://7xr863.dl1.z0.glb.clouddn.com/",
     "http://7xr867.com1.z0.glb.clouddn.com/",
     "http://7xr9yh.com1.z0.glb.clouddn.com/"
 ]; //随机数分流
-servercdnn = servercdn[Math.floor(Math.random() * servercdn.length)];//随机使用cdn服务器
+*/
+servercdnn = api.servercdn[Math.floor(Math.random() * api.servercdn.length)];//随机使用cdn服务器
 function init_comment() {
     if (!window.id) {
         window.id = 0; //页数初始化为零
         commitNum = 0; //评论偏移数
         CommentNum(0); //评论初始化
         stava = true;
-        document.getElementById("jiao").addEventListener("click",function(e){
+        document.getElementById("jiao").addEventListener("click", function (e) {
             /*
             $(this).attr("disabled", true);
             $(this).css("background-color", "#6F6F6F");
             $(this).text("发送中...");
             */
             //原生实现
+            /*
             if (timetmp >= new Date().getTime()) {
                 alert("发太快了哦");
             } else {
-                e.target.disabled=true;
-                e.target.style.backgroundColor="#6F6F6F";
-                e.target.innerHTML="发送中...";
-                tijiaopost();
-                timetmp = new Date().getTime() + 3000;
-            }
+                */
+            e.target.disabled = true;
+            e.target.style.backgroundColor = "#6F6F6F";
+            e.target.innerHTML = "发送中...";
+            tijiaopost();
+            //timetmp = new Date().getTime() + 3000;
+            //}
             /*
             $(this).css("background-color", "#00a3cf");
             $(this).html("<i class=\"fa fa-paper-plane\" aria-hidden=\"true\"></i> 发送");
@@ -140,9 +147,9 @@ function tijiaopost() {
                     console.log(data);
                 }
                 htmlinit();
-                document.getElementById("jiao").style.backgroundColor="#00a3cf";
-                document.getElementById("jiao").innerHTML="<i class=\"fa fa-paper-plane\" aria-hidden=\"true\"></i> 发送";
-                document.getElementById("jiao").disabled=false;
+                document.getElementById("jiao").style.backgroundColor = "#00a3cf";
+                document.getElementById("jiao").innerHTML = "<i class=\"fa fa-paper-plane\" aria-hidden=\"true\"></i> 发送";
+                document.getElementById("jiao").disabled = false;
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log(XMLHttpRequest);
@@ -152,9 +159,9 @@ function tijiaopost() {
                 }
                 console.log(errorThrown);
                 alert("error");
-                document.getElementById("jiao").style.backgroundColor="#00a3cf";
-                document.getElementById("jiao").innerHTML="<i class=\"fa fa-paper-plane\" aria-hidden=\"true\"></i> 发送";
-                document.getElementById("jiao").disabled=false;
+                document.getElementById("jiao").style.backgroundColor = "#00a3cf";
+                document.getElementById("jiao").innerHTML = "<i class=\"fa fa-paper-plane\" aria-hidden=\"true\"></i> 发送";
+                document.getElementById("jiao").disabled = false;
             },
 
             cache: "false"
@@ -162,19 +169,27 @@ function tijiaopost() {
         return tijiaopostand;
     } else {
         alert("总得写些什么吧！");
+        document.getElementById("jiao").style.backgroundColor = "#00a3cf";
+        document.getElementById("jiao").innerHTML = "<i class=\"fa fa-paper-plane\" aria-hidden=\"true\"></i> 发送";
+        document.getElementById("jiao").disabled = false;
     }
 }
 
 function htmlinit() {
+    $(".comm img[class!='emojisize']").one("load", function () {
+        $(this).show().addClass("min");
+    });
     $("ua span").addClass("badge");
     //$(".comm").show();
     //$(".comm").fadeIn(1500);
     $("audio,video").attr("preload", "none");
     $("video").attr("poster", servercdnn + "FogWvOr4txwJPq5fNaIQUdh5oQ7E");
+    //心累
     $("[hash]").attr("src", function () {
         $("img[hash]").addClass("img");
         //return "http://hiqfs.file.alimmdn.com" + $(this).attr("hash");
         return servercdnn + $(this).attr("hash");
+        //cache(servercdn[0] + $(this).attr("hash"),$(this));
     });
     /*
     $(".img[hash]").attr("src", function() {//分流备用
@@ -183,14 +198,17 @@ function htmlinit() {
     $("[hash]").removeAttr("hash");
     $('img').unbind("click"); //移除事件重新创建
     $(".comment img[class!='emojisize']").click(function () {
-        if ($(this).css("width") <= "200px") {
+        if ($(this).hasClass("min")) {
             //$(this).css("width", "100%");
             $(this).removeClass("min");
-            $(this).toggleClass('max');
+            $(this).addClass('max');
+            //$(this).toggleClass('max');
         } else {
             //$(this).css("width", "200px");
             $(this).removeClass("max");
-            $(this).toggleClass('min');
+            $(this).addClass("min");
+            //$(this).toggleClass('min');
+            //$(this).addClass("min");
         }
         $('.qqkj').height(function (index, oldheight) {
             if (oldheight - $(this).width > 100) {
@@ -222,9 +240,6 @@ function htmlinit() {
         });
     }else{
     */
-        $(".comm img[class!='emojisize']").one("load",function(){
-            $(this).show().addClass("min");
-        });
     //}
     //$(".comm img[class!='emojisize']").addClass("min");
     /*
@@ -261,15 +276,16 @@ function Loading_xml(argument) { //json生成评论返回dom
                 commenttmp += commithaed + argument[i].comment + commitzhon + argument[i].time + " </time>";
             }
         }
+        //xml = commenttmp.replace(/src="/g,"source_src=\"");
         xml = commenttmp.replace(/\[em\]e[0-9]+\[\/em\]/g, function (em) {
-            emid = em.substring(4, em.length - 5);
+            var emid = em.substring(4, em.length - 5);
             return "<img class=\"emojisize\" src=\"http://hiqfs.image.alimmdn.com/qq%E8%A1%A8%E6%83%85/" + emid + ".gif\">";
-        });
-        xml = emoji(xml);
+        });//qq 表情
+        xml = emoji(xml);//emoji 表情处理
         if (argument[argument.length - 1] == "duang") { } else {
             $('loadtime').text(argument[argument.length - 1] + "s");
         } //这里要duang一下
-        return "<div class='comm'>"+xml+"</div>";
+        return "<div class='comm'>" + xml + "</div>";
     } else {
         return "<wbi></wbi>";
     }
@@ -294,8 +310,8 @@ function websocketio() {
         //$('status').text('已连接');
         //window.status = 1;
         //$('status').css("background-color", "#0275d8");
-        statusio.innerHTML="已连接";
-        statusio.style.backgroundColor="#0275d8";
+        statusio.innerHTML = "已连接";
+        statusio.style.backgroundColor = "#0275d8";
         check_comment_num();//检查评论数
     });
     iosocket.on('message', function (message) {
@@ -306,7 +322,7 @@ function websocketio() {
         commitNum++;
         notifyMe(text);
         //$("num").text(msnum);
-        document.getElementsByTagName("num")[0].innerHTML=msnum;
+        document.getElementsByTagName("num")[0].innerHTML = msnum;
         if ($(document).scrollTop() > $(window).height()) {
             $('num').show();
         }
@@ -316,8 +332,8 @@ function websocketio() {
         //$('status')[0].text('已断开');
         //$('status').css("background-color", "#d9534f");
         //window.status = 0;
-        statusio.innerHTML="以断开";
-        statusio.style.backgroundColor="#d9534f";
+        statusio.innerHTML = "以断开";
+        statusio.style.backgroundColor = "#d9534f";
     });
 }
 
@@ -369,8 +385,8 @@ function CommentNum(id, error) {
                 stava = true;
             }
             //console.timeEnd("LoadCommentTime");
-            if(error=="timeout"){
-                data[data.length-1]="duang";
+            if (error == "timeout") {
+                data[data.length - 1] = "duang";
                 iosocket.send(JSON.stringify(data));
             }
         },
@@ -395,7 +411,7 @@ function CommentNum(id, error) {
     }
     */
 }
-timetmp = new Date().getTime() + 5000;
+//timetmp = new Date().getTime() + 5000;
 function sjmo() {
     //蛋疼的封装了一堆函数
     // Jquery Code
@@ -404,7 +420,7 @@ function sjmo() {
         iosocket.connect();
     });
     $("#b3").click(function () {
-        scroll(0,900);
+        scroll(0, 900);
         var speed = 200; //滑动的速度
         $('body,html').animate({
             scrollTop: 0
@@ -639,10 +655,10 @@ function check_comment_num(timeout) {
         success: function (data, textStatus) {
             var error_commmit = data - (comment_num + commitNum);
             if (error_commmit) {
-                if(timeout=="timeout"){
+                if (timeout == "timeout") {
                     CommentNum(error_commmit, "timeout");
                     $("#ti").empty();
-                }else{
+                } else {
                     CommentNum(error_commmit, true);
                 }
                 commitNum = commitNum + error_commmit;

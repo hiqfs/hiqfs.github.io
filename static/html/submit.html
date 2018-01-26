@@ -3,9 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>submit from</title>
+    <script src="http://7u2f38.com5.z0.glb.clouddn.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
     <script src="/static/js/api.js"></script>
     <script type="text/javascript" src="/static/js/update.js"></script>
+    <script src="/static/js/base.js" ></script>
   </head>
   <body id="hcon">
     <div>
@@ -13,9 +15,13 @@
     <p>要提交的地址</p>
   <input name="file" type="file" id="qifile" onchange="UpladFile()"/>
 </div>
-<update>
+<update class="text">
 </update>
+<button onclick="emit()">发送到喵窝</button><br>
+<token>未知</token>
+<status>未知</status>
   <div id = "footer"></div>
-  <img src="http://wx2.sinaimg.cn/large/005xR7qygy1fjrg184xx5j307s07sq2p.jpg" alt="">
+  <img id="qr">
+  <img id="qrs">
 </div>
 </body>

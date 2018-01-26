@@ -1,5 +1,5 @@
-stava=false;//评论是否加载失败;
-window.onload=function() {
+stava = false;//评论是否加载失败;
+$(function () {
     //show_code_time();
     //$('#bar').load("/bar.html");
     //hius();
@@ -12,25 +12,25 @@ window.onload=function() {
     });
     box.addEventListener('drop', function (e) {
         var file = e.dataTransfer.files;
-        if(e.dataTransfer.getData("Text")){
-            var html="<img src=\""+e.dataTransfer.getData("Text")+"\">";
+        if (e.dataTransfer.getData("Text")) {
+            var html = "<img src=\"" + e.dataTransfer.getData("Text") + "\">";
             $("#ti").append(html);
         }
         e.preventDefault(); // 阻止默认事件
-        for (var i = 0 ; i < file.length; i++) {
+        for (var i = 0; i < file.length; i++) {
             if (file[i].type.indexOf("image") == 0) {
                 UpladFile(file[i]); //获取文件对象		
             } else {
                 console.log("不是图片");
             }
-    }
+        }
     });
     mob = mobile(); //判断是否为移动端
     if (window.location.hash == "") {//判断地址
         chome();
-    }else if (window.location.hash == "#!/cping") {
+    } else if (window.location.hash == "#!/cping") {
         cping();
-    }else if (window.location.hash == "#!/cabout") {
+    } else if (window.location.hash == "#!/cabout") {
         cabout();
     }
     /*
@@ -40,11 +40,8 @@ window.onload=function() {
     */
     //cache("http://77flfx.com5.z0.glb.clouddn.com/0060lm7Tgw1f55fj7owmuj30fk0fk0td.jpg");
     document.getElementsByTagName("load")[0].remove();
-    document.getElementsByTagName("xmd")[0].style.display="";//显示页面主体
-    $("#musica").click(function() {//音乐栏点击事件
-        /*if($("#musicd").attr("src")==undefined){
-            $("#musicd").attr("src","http://music.163.com/outchain/player?type=0&id=92384486&auto=0&height=430");
-        }*/
+    document.getElementsByTagName("xmd")[0].style.display = "";//显示页面主体
+    $("#musica").click(function () {//音乐栏点击事件
         if ($(this).css("left") == "0px") {
             $(this).animate({
                 left: '280px'
@@ -63,31 +60,31 @@ window.onload=function() {
     });
     //$("xmd").show();
     init_comment();//评论初始化
-    code_time=new Date(parseInt(date_time) * 1000);//获取代码更新时间
-    document.getElementById("banben").innerHTML = 
-        "Code最后更新时间<br>" 
-        + code_time.getFullYear() + "年" 
-        + (code_time.getMonth()+1) + "月"
+    code_time = new Date(parseInt(date_time) * 1000);//获取代码更新时间
+    document.getElementById("banben").innerHTML =
+        "Code最后更新时间<br>"
+        + code_time.getFullYear() + "年"
+        + (code_time.getMonth() + 1) + "月"
         + code_time.getDate() + "日" + " "
         + code_time.getHours() + "时"
         + code_time.getMinutes() + "分"
-        + code_time.getSeconds() +"秒";
+        + code_time.getSeconds() + "秒";
     //获取服务器token和评论数
     $.ajax({
-        url: api.serverphp  + api.php_api.token,
-        async:true,
-        success: function(data, textStatus) {
-            token=data;
+        url: api.serverphp + api.php_api.token,
+        async: true,
+        success: function (data, textStatus) {
+            token = data;
         }
     });
     $.ajax({
-        url: api.serverphp +api.php_api.num,
-        async:true,
-        success: function(data, textStatus) {
+        url: api.serverphp + api.php_api.num,
+        async: true,
+        success: function (data, textStatus) {
             comment_num = data;
         }
     });
-    $(document).keydown(function(event) {
+    $(document).keydown(function (event) {
         if (event.ctrlKey && event.keyCode == 13) {
             if (window.location.hash == "#!/cping") {
                 $("#jiao").click();
@@ -103,7 +100,7 @@ window.onload=function() {
         return true;
     });
     websocketio();//连接socketio
-    document.addEventListener('visibilitychange', function() {
+    document.addEventListener('visibilitychange', function () {
         if (document.hidden) {
             document.title = '(つェ⊂)我藏好了哦~ ' + OriginTitile;
             var titleTime;
@@ -111,12 +108,12 @@ window.onload=function() {
         }
         else {
             document.title = '(*´∇｀*) 被你发现啦~ ' + OriginTitile;
-            titleTime = setTimeout(function() {
+            titleTime = setTimeout(function () {
                 document.title = OriginTitile;
             }, 2000);
         }
     });
-};
+});
 function mobile() {
     $("#root").css("background-attachment", "fixed");
     if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
@@ -124,7 +121,8 @@ function mobile() {
         return true;
     } else {
         $("#root").css("background-image", "url(http://7u2f38.com5.z0.glb.clouddn.com/DwAKdwvY68a7fQAAAABJRU5ErkJggg==.png)");
-        $("#musica").css("display","block");
+        $("#musica").css("display", "block");
+        document.getElementById("musicd").src="http://music.163.com/outchain/player?type=0&id=92384486&auto=0&height=430";
         return false;
     }
 }
@@ -172,34 +170,34 @@ function baidufen(argument) { //百度分享
             "bdTop": "190.5"
         }
     };
-    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src =
+    with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src =
         'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
 }
 var heighttmp;//初始化高度
-    //baidufen();
+//baidufen();
 function cping() {
     //$("#commitload").show();
     $("#ping").show();
     $("#hcond").animate({
         marginTop: '100px'
     });
-    $("#b1").addClass(function() {
+    $("#b1").addClass(function () {
         $("li a").removeClass("active");
         return "active";
     });
-    OriginTitile=document.title="喵窝留言板⊙ω⊙";
+    OriginTitile = document.title = "喵窝留言板⊙ω⊙";
     $("#title").html("喵窝留言板⊙ω⊙");
     $("#ping").show();
     //init_comment();
     init();
     //$("#commitload").hide();
     sjmo();//创建关于留言板事件
-    if(heighttmp>400){
-        scroll(0,heighttmp-400);
-        $('body,html').animate({ scrollTop:heighttmp}, 400);
+    if (heighttmp > 400) {
+        scroll(0, heighttmp - 400);
+        $('body,html').animate({ scrollTop: heighttmp }, 400);
         //该死的特效
-    }else{
-        $('body,html').animate({ scrollTop:heighttmp}, 400);
+    } else {
+        $('body,html').animate({ scrollTop: heighttmp }, 400);
     }
     //$("#ti").focus();
     /*if (heighttmp) {
@@ -212,33 +210,35 @@ function cping() {
 }
 
 function cabout() {
-   // $("#hcond").show();
+    // $("#hcond").show();
     $('#b3').hide("100");
     //$("#ping").empty();
     $(window).unbind();
     $("body,html").unbind();
     $("#b3").unbind();
     $("#hcond").hide();
-    $("#b2").addClass(function() {
+    $("#b2").addClass(function () {
         $("li a").removeClass("active");
         return "active";
     });
     //$("#hcond").fadeOut(500);
-    OriginTitile=document.title="关于喵窝";
+    OriginTitile = document.title = "关于喵窝";
     $("about").fadeIn("5000");
     //$("about").show();
-
+    if(document.getElementById("toux").src){
+        document.getElementById("toux").src = localStorage.toux;
+    }
 }
 
 function chome() {
     $("#hcond").animate({
         marginTop: '150px'
     });
-    $("#home").addClass(function() {
+    $("#home").addClass(function () {
         $("li a").removeClass("active");
         return "active";
     });
-    OriginTitile=document.title="喵窝首页∩ω∩";
+    OriginTitile = document.title = "喵窝首页∩ω∩";
     $("#title").html("欢迎来到喵窝∩ω∩");
     window.location.hash = "";
     $(window).unbind("scroll");
@@ -258,7 +258,7 @@ function urlchenge() {
     $(window).unbind();
     if (window.location.hash == "") {
         chome();
-        $("#b3").hide();    
+        $("#b3").hide();
     }
     if (window.location.hash == "#!/cping") {
         cping();
@@ -282,13 +282,13 @@ function show_code_time() {
     minsold = Math.floor((e_hrsold - hrsold) * 60);
     seconds = Math.floor((e_minsold - minsold) * 60);
     //$("#span_dt_dt").text(daysold + "天" + hrsold + "小时" + minsold + "分" + seconds + "秒");
-    document.getElementById("span_dt_dt").innerHTML=daysold + "天" + hrsold + "小时" + minsold + "分" + seconds + "秒";
+    document.getElementById("span_dt_dt").innerHTML = daysold + "天" + hrsold + "小时" + minsold + "分" + seconds + "秒";
 }
 function UpladFile(file) {
     var obj = document.getElementById('qifile');
-    if(file){
+    if (file) {
         var fileObj = file;
-    }else{
+    } else {
         var fileObj = document.getElementById("qifile").files[0];
     } // 获取文件对象
     var FileController = "http://upload.qiniu.com/";                    // 接收上传文件的后台地址
@@ -297,8 +297,8 @@ function UpladFile(file) {
     form.append("token", window.token);                        // 可以增加表单数据
     form.append("file", fileObj);                           // 文件对象
     var xhr = new XMLHttpRequest();
-    xhr.open("post", FileController,true);
-    xhr.onloadstart = function(evt){
+    xhr.open("post", FileController, true);
+    xhr.onloadstart = function (evt) {
         console.log("触发");
         $("i.upimgicon").toggleClass("fa-plus").toggleClass("fa-circle-o-notch").toggleClass("fa-spin");
     };
@@ -306,27 +306,27 @@ function UpladFile(file) {
         alert("上传完成!");
         $("i.upimgicon").toggleClass("fa-plus").toggleClass("fa-circle-o-notch").toggleClass("fa-spin");
         console.log(xhr.responseText);
-        var tmp=eval("(" + xhr.responseText + ")");
-        $("#ti").append("<img src=\""+servercdnn+tmp.hash+"\" hash=\""+tmp.hash+"\">");
+        var tmp = eval("(" + xhr.responseText + ")");
+        $("#ti").append("<img src=\"" + servercdnn + tmp.hash + "\" hash=\"" + tmp.hash + "\">");
     };
-    if(fileObj==undefined){
+    if (fileObj == undefined) {
         console.log("没有图片");
-    }else if(token==undefined){
+    } else if (token == undefined) {
         alert("服务器未响应");
-    }else{
-        obj.outerHTML=obj.outerHTML; 
+    } else {
+        obj.outerHTML = obj.outerHTML;
         xhr.send(form);
     }
 }
-function debug(){
+function debug() {
     //上帝模式（开发者模式）
-    if(true){
+    if (true) {
         console.log("开发者模式启动");
         return true;
-    }else{
+    } else {
     }
 }
-function battery(){
+function battery() {
     //手机电量
 }
 /*
