@@ -6,8 +6,9 @@ cleancss ./static/css/web.i.css ./src/css/master.css   --s0 > ./static/css/web.c
 uglifyjs ./src/lib/js/canvas-nest.js > ./static/js/canvas-nest.min.js 
 echo "api=$(cat ./src/json/api.json);" > ./static/js/api.js 
 file_compressed=(
+    ./src/lib/js/jquery.min.js
     ./static/js/web.i.js
-    ./static/js/canvas-nest.min.js
+    #./static/js/canvas-nest.min.js
     ./static/js/api.js
     #./src/js/back.js
     #./src/js/cache.js   

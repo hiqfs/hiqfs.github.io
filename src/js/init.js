@@ -213,9 +213,9 @@ function cabout() {
     // $("#hcond").show();
     $('#b3').hide("100");
     //$("#ping").empty();
-    $(window).unbind();
-    $("body,html").unbind();
-    $("#b3").unbind();
+    $(window).off();
+    $("body,html").off();
+    $("#b3").off();
     $("#hcond").hide();
     $("#b2").addClass(function () {
         $("li a").removeClass("active");
@@ -241,7 +241,7 @@ function chome() {
     OriginTitile = document.title = "喵窝首页∩ω∩";
     $("#title").html("欢迎来到喵窝∩ω∩");
     window.location.hash = "";
-    $(window).unbind("scroll");
+    $(window).off("scroll");
 }
 
 function urlchenge() {
@@ -252,10 +252,10 @@ function urlchenge() {
     //$("#commitload").hide();
     $("#hcond").show();
     $("#ping").hide();
-    $("body,html").unbind();
-    $("#b3").unbind();
+    $("body,html").off();
+    $("#b3").off();
     $("about").hide();
-    $(window).unbind();
+    $(window).off();
     if (window.location.hash == "") {
         chome();
         $("#b3").hide();

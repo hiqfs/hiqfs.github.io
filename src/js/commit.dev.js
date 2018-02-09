@@ -196,7 +196,7 @@ function htmlinit() {
         return "http://hiqfs.image.alimmdn.com" + $(this).attr("hash");
     });*/
     $("[hash]").removeAttr("hash");
-    $('img').unbind("click"); //移除事件重新创建
+    $('img').off("click"); //移除事件重新创建
     $(".comment img[class!='emojisize']").click(function () {
         if ($(this).hasClass("min")) {
             //$(this).css("width", "100%");
@@ -217,8 +217,8 @@ function htmlinit() {
             }
         });
     });
-    $('img').unbind("error");
-    $("img").bind("error", function () {
+    $('img').off("error");
+    $("img").on("error", function () {
         if (!this.status) {
             error = this.src;
             error = error.replace(/[a-zA-z]+:\/\/[^\s]*myqq\//, "AA2F");
