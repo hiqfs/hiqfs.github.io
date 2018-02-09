@@ -324,6 +324,14 @@ powered {
     text-align: center;
     display: block;
 }
+powered a{
+    text-shadow:none;
+    font-size: 70%;
+    color: #A9A9A9;
+}
+powered a:hover{
+    color: #A9A9A9;
+}
 
 .qqkj {
     width: 200px;
