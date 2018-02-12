@@ -226,7 +226,11 @@ function cabout() {
     $("about").fadeIn("5000");
     //$("about").show();
     if(document.getElementById("toux").src){
-        document.getElementById("toux").src = localStorage.toux;
+        if(localStorage){
+            document.getElementById("toux").src = localStorage.toux;            
+        }else{
+            document.getElementById("toux").src = "http://77flfx.com5.z0.glb.clouddn.com/0060lm7Tgw1f55fj7owmuj30fk0fk0td.jpg";
+        }
     }
 }
 
