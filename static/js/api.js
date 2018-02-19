@@ -1,7 +1,7 @@
 api={
     "serverjs":"https://hiqfs.herokuapp.com/",
     //"serverphp":"http://jaberservers1.frp2.chuantou.org/",
-    "serverphp":"http://phpserversd.uactv.cn/",
+    "serverphp":"http://phpservers.uactv.cn/",
     "php_api":{
         "read":"jsonread.php",
         "num":"jsonnum.php",
