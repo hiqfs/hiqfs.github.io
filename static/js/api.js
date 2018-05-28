@@ -1,7 +1,8 @@
 api={
     "serverjs":"https://hiqfs.herokuapp.com/",
+    "serverphp":"http://php-servers.hifs.tk/",
     //"serverphp":"http://jaberservers1.frp2.chuantou.org/",
-    "serverphp":"http://phpservers.uactv.cn/",
+    //"serverphp":"http://phpservers.uactv.cn/",
     "php_api":{
         "read":"jsonread.php",
         "num":"jsonnum.php",
@@ -11,8 +12,8 @@ api={
     },
     "servercdn":[
         //"http://7xljsf.com1.z0.glb.clouddn.com/",
-        "http://jaber.uactv.cn/",
-        "http://dev.uactv.cn/",
+        //"http://jaber.uactv.cn/",
+        //"http://dev.uactv.cn/",
         "http://7xr9yh.com1.z0.glb.clouddn.com/",
         "http://jaber-1251630625.file.myqcloud.com/",
         //"http://jaber-cdn.file.alimmdn.com/"

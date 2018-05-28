@@ -24,7 +24,7 @@ file_array=(
 	./index.html 
 	./static/
 	)
-scp  -i ~/router -r ${file_array[@]} root@router:/web/
+#scp  -i ~/router -r ${file_array[@]} root@router:/web/
 #scp -i ~/router -r ./index.html  ./static/ root@router:/web/
 sed -i "s/http:\/\/jaber.77kp.cn\/static/\/static/g" ./index.html ./404.html 
 #获取目录
