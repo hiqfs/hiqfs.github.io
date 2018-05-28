@@ -15,7 +15,7 @@ fi
 #检擦远程代码是否有更新
 git pull
 #推送到git服务器
-#git push origin master
+git push origin master
 git push coding master
 git push gitlab master
 #同步到路由器
