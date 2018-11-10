@@ -4,7 +4,7 @@ export LANG=zh_CN.UTF-8
 #开始处理压缩代码
 source ./web
 #使用七牛cdn减速服务
-//sed -i "s/\/static/http:\/\/jaber.77kp.cn\/static/g" ./index.html ./404.html 
+#sed -i "s/\/static/http:\/\/jaber.77kp.cn\/static/g" ./index.html ./404.html 
 git add --all .
 #判断是否写commit
 if [ -n "$f1" ];then
@@ -26,7 +26,7 @@ file_array=(
 	)
 #scp  -i ~/router -r ${file_array[@]} root@router:/web/
 #scp -i ~/router -r ./index.html  ./static/ root@router:/web/
-//sed -i "s/http:\/\/jaber.77kp.cn\/static/\/static/g" ./index.html ./404.html 
+#sed -i "s/http:\/\/jaber.77kp.cn\/static/\/static/g" ./index.html ./404.html 
 #获取目录
 #Cur_Dir=$(pwd)
 #echo $Cur_Dir
