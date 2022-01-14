@@ -14,11 +14,11 @@ window.onload=()=>{
     Music.src=MusicApiSrc+MusicListId[MusciId]+".mp3";
     var Title=document.getElementById("title");
     Title.onclick=()=>{
-        Music.src=MusicApiSrc+MusicListId[MusciId]+".mp3";
         MusciId++;
         if(MusciId>=MusicListId.length){
             MusciId=0;
         }
+        Music.src=MusicApiSrc+MusicListId[MusciId]+".mp3";
     };
     document.ready();
 };
