@@ -1,12 +1,24 @@
 document.ready=()=>{
-    var time;    
-    fetch("/README.md").then((response) => {
-        console.log(response.headers.get('Date'));
-        time = new Date(response.headers.get('Date'));
-        return response;
-    });
     var time = setInterval(()=>{
         document.getElementById("time").innerHTML = Date();
     },1000);
 };
-document.ready();
+window.onload=()=>{
+    var Music=document.getElementById("music");
+    var MusicListId=[
+        "1906526823",//小时光
+        "1807610339"//晴天派
+    ];
+    var MusciId=0;
+    MusicApiSrc="//music.163.com/song/media/outer/url?id=";
+    Music.src=MusicApiSrc+MusicListId[MusciId]+".mp3";
+    var Title=document.getElementById("title");
+    Title.onclick=()=>{
+        Music.src=MusicApiSrc+MusicListId[MusciId]+".mp3";
+        MusciId++;
+        if(MusciId>=MusicListId.length){
+            MusciId=0;
+        }
+    };
+    document.ready();
+};
