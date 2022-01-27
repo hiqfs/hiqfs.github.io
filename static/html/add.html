@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Img</title>
+    <script>
+        var JsonApiSrc = "https://json.extendsclass.com";
+        var JsonApiId = "bac32c6aa445";
+        var AddImgSrc = (Src, Pass) => {
+            fetch(JsonApiSrc + "/bin/" + JsonApiId, {
+                method: "PATCH",
+                headers: {
+                    "Content-type": "application/json-patch+json",
+                    "Security-key": Pass,
+                },
+                body: JSON.stringify({
+                    op: "add",
+                    path: "/AvatarListId/0",
+                    value: [Src]
+                })
+            })
+                .then(response => response.json())
+                .then(date => {
+                    if (date) console.log("ok");
+                    else console.log(date);
+                });
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
