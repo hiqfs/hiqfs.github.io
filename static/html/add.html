@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Img</title>
     <script>
+        var writeHtml = (obj) => {
+            var objStr = JSON.stringify(obj, null, 4);
+            var html = objStr.replace(/\n/g, '<br>').replace(/\s/g, '&nbsp');
+            document.write(html);
+        }
         var JsonApiSrc = "https://json.extendsclass.com";
         var JsonApiId = "bac32c6aa445";
         var AddImgSrc = (Src, Pass) => {
@@ -19,12 +24,16 @@
                 body: JSON.stringify({
                     op: "add",
                     path: "/AvatarListId/0",
-                    value: [Src]
+                    value: Src
                 })
             })
                 .then(response => response.json())
                 .then(date => {
-                    if (date) console.log("ok");
+                    if (date) {
+                        console.log("ok");
+                        console.log(JSON.parse(date.data));
+                        writeHtml(JSON.parse(date.data));
+                    }
                     else console.log(date);
                 });
         }
