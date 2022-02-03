@@ -9,8 +9,6 @@ var JsonApiId = "bac32c6aa445";
 fetch(JsonApiSrc + "/bin/bac32c6aa445")
     .then(response => response.json())
     .then(data => {
-        asdsad=data;
-        console.log(data);
         document.getElementById("music").src = MusicApiSrc + data.MusicListId[0];
         document.getElementById("avatar").src = PicApiSrc + data.AvatarListId[0];
         document.getElementById("title").onclick = (e) => {
