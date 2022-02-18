@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Img</title>
+    <title>Edit Img</title>
     <script>
         var writeHtml = (obj) => {
             var objStr = JSON.stringify(obj, null, 4);
             var html = objStr.replace(/\n/g, '<br>').replace(/\s/g, '&nbsp');
-            document.getElementById("event").innerHTML=html;
+            document.getElementById("event").innerHTML = html;
         }
         var JsonApiSrc = "https://json.extendsclass.com";
         var JsonApiId = "bac32c6aa445";
-        var AddImgSrc = (Src, Pass) => {
+        var AddImgSrc = (Src, Pass, op) => {
             fetch(JsonApiSrc + "/bin/" + JsonApiId, {
                 method: "PATCH",
                 headers: {
@@ -22,7 +22,7 @@
                     "Security-key": Pass,
                 },
                 body: JSON.stringify({
-                    op: "add",
+                    op: op,
                     path: "/AvatarListId/0",
                     value: Src
                 })
@@ -37,13 +37,21 @@
                     else console.log(date);
                 });
         }
+        var UrlId = () => {
+            var url = new URL(document.getElementById("url").value);
+            var fliename = url.pathname.split("/");
+            fliename = fliename[fliename.length - 1].split(".")[0];
+            return fliename;
+        }
         window.onload = (e) => {
+            fetch(JsonApiSrc + "/bin/" + JsonApiId).then(response => response.json()).then(data => writeHtml(data));
             document.getElementById("button").onclick = (eh) => {
-                var url = new URL(document.getElementById("url").value);
-                var fliename = url.pathname.split("/");
-                fliename=fliename[fliename.length-1].split(".")[0];
                 console.log(document.getElementById("password").value);
-                AddImgSrc(fliename,document.getElementById("password").value);
+                AddImgSrc(UrlId(), document.getElementById("password").value, "add");
+            }
+            document.getElementById("delete").onclick = (eh) => {
+                console.log(document.getElementById("password").value);
+                AddImgSrc("", document.getElementById("password").value, "remove");
             }
         }
     </script>
@@ -53,6 +61,7 @@
     <input id="url">
     <br><input id="password">
     <br><button id="button">发送</button>
+    <br><button id="delete">删除</button>
     <p>返回结果</p>
     <br>
     <div id="event">
