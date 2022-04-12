@@ -46,3 +46,6 @@ window.onload = () => {
         dd = fetch(JsonApiSrc + "/bin/bac32c6aa445", { cache: "no-cache" });
     }
 }
+var help=()=>{
+    alert("Press the Control key to switch pictures\rPress the Enter key to switch muisc");
+}
