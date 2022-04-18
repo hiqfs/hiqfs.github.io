@@ -23,14 +23,14 @@ fetch(JsonApiSrc + "/bin/bac32c6aa445")
     });
 var Click = (ApiUrl, Dom, List, key) => {
     if (key) {
-        Dom.setAttribute('num', parseInt(Dom.getAttribute('num')) - 1);
-        if (parseInt(Dom.getAttribute('num')) < 0) {
-            Dom.setAttribute('num', List.length - 1);
-        }
-    } else {
         Dom.setAttribute('num', parseInt(Dom.getAttribute('num')) + 1);
         if (parseInt(Dom.getAttribute('num')) >= List.length) {
             Dom.setAttribute('num', 0);
+        }
+    } else {
+        Dom.setAttribute('num', parseInt(Dom.getAttribute('num')) - 1);
+        if (parseInt(Dom.getAttribute('num')) < 0) {
+            Dom.setAttribute('num', List.length - 1);
         }
     }
 
@@ -46,16 +46,16 @@ var Click = (ApiUrl, Dom, List, key) => {
 document.addEventListener("keyup", Event => {
     switch (Event.key) {
         case "Enter":
-            document.getElementById("title").onclick();
+            document.getElementById("title").onclick(true);
             break;
         case "Control":
-            document.getElementById("avatar").onclick();
+            document.getElementById("avatar").onclick(true);
             break;
         case "ArrowRight":
-            document.getElementById("avatar").onclick(false);
+            document.getElementById("avatar").onclick(true);
             break;
         case "ArrowLeft":
-            document.getElementById("avatar").onclick(true);
+            document.getElementById("avatar").onclick(false);
             break;
         case "ArrowUp":
             //document.getElementById("title").onclick(false);
