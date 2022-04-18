@@ -14,17 +14,26 @@ fetch(JsonApiSrc + "/bin/bac32c6aa445")
         document.getElementById("music").src = MusicApiSrc + data.MusicListId[0];
         document.getElementById("avatar").src = PicApiSrc + data.AvatarListId[0];
         document.getElementById("title").onclick = (e) => {
-            Click(MusicApiSrc, document.getElementById("music"), data.MusicListId, true);
+            Click(MusicApiSrc, document.getElementById("music"), data.MusicListId, e);
+            document.getElementById("music").play();
         };
         document.getElementById("avatar").onclick = (e) => {
-            Click(PicApiSrc, document.getElementById("avatar"), data.AvatarListId, false);
+            Click(PicApiSrc, document.getElementById("avatar"), data.AvatarListId, e);
         };
     });
-var Click = (ApiUrl, Dom, List, play) => {
-    Dom.setAttribute('num', parseInt(Dom.getAttribute('num')) + 1);
-    if (parseInt(Dom.getAttribute('num')) >= List.length) {
-        Dom.setAttribute('num', 0);
+var Click = (ApiUrl, Dom, List, key) => {
+    if (key) {
+        Dom.setAttribute('num', parseInt(Dom.getAttribute('num')) - 1);
+        if (parseInt(Dom.getAttribute('num')) < 0) {
+            Dom.setAttribute('num', List.length - 1);
+        }
+    } else {
+        Dom.setAttribute('num', parseInt(Dom.getAttribute('num')) + 1);
+        if (parseInt(Dom.getAttribute('num')) >= List.length) {
+            Dom.setAttribute('num', 0);
+        }
     }
+
     if (List[Dom.getAttribute('num')].substr(0, 4) == "bili") {
         console.log(List[Dom.getAttribute('num')]);
         Dom.src = BiliImgSrc + List[Dom.getAttribute('num')] + ".jpg";
@@ -33,19 +42,36 @@ var Click = (ApiUrl, Dom, List, play) => {
         //console.log(List[Dom.getAttribute('num')].substr(0, 4));
         Dom.src = ApiUrl + List[Dom.getAttribute('num')];
     }
-    if (play) Dom.play();
 };
 document.addEventListener("keyup", Event => {
-    if (Event.key == "Enter") document.getElementById("title").onclick();
-    if (Event.key == "Control") document.getElementById("avatar").onclick();
-    return;
+    switch (Event.key) {
+        case "Enter":
+            document.getElementById("title").onclick();
+            break;
+        case "Control":
+            document.getElementById("avatar").onclick();
+            break;
+        case "ArrowRight":
+            document.getElementById("avatar").onclick(false);
+            break;
+        case "ArrowLeft":
+            document.getElementById("avatar").onclick(true);
+            break;
+        case "ArrowUp":
+            //document.getElementById("title").onclick(false);
+            break;
+        case "ArrowDown":
+            //document.getElementById("title").onclick(true);
+            break;
+    }
+    return 0;
 });
 window.onload = () => {
     if (window.location.hash == "#cache") {
-        console.log("hello");
+        console.log("hello debug model");
         dd = fetch(JsonApiSrc + "/bin/bac32c6aa445", { cache: "no-cache" });
     }
 }
-var help=()=>{
+var help = () => {
     alert("Press the Control key to switch pictures\rPress the Enter key to switch muisc");
 }
