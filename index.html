@@ -10,7 +10,18 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Clicker+Script|Open+Sans">
     <link rel="stylesheet" href="/static/css/style.css">
     <script src="/static/js/master.js"></script>
-    <title>Zhao Jiabing's personal pages</title>
+	<script>
+  // 检测是否支持 Service Worker
+  // 也可使用 navigator.serviceWorker 判断
+  if ('serviceWorker' in navigator) {
+    // 为了保证首屏渲染性能，在页面 onload 完之后注册 Service Worker
+    // 不使用 window.onload 以免冲突
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js');
+    });
+  }
+</script> 
+	<title>Zhao Jiabing's personal pages</title>
 </head>
 
 <body>
