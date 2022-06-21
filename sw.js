@@ -4,11 +4,6 @@ importScripts(
 );
 let cacheSuffixVersion = 'v1'; // 缓存版本号
 const maxEntries = 100; // 最大条目数
-if (workbox) {
-    console.log(`Yay! Workbox is loaded `);
-} else {  
-    console.log(`Boo! Workbox didn't load `);
-}
 workbox.core.setCacheNameDetails({
   prefix: '+bing', // 前缀
   suffix: cacheSuffixVersion, // 后缀

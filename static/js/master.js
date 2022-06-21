@@ -10,7 +10,7 @@ var time = setInterval(() => {
 //Calculate the time
 var CDN = "https://bing-web-1251630625.cos-website.ap-nanjing.myqcloud.com/";
 var MusicApiSrc = "//music.163.com/song/media/outer/url?id=";
-var PicApiSrc = "//wx1.sinaimg.cn/large/";
+var PicApiSrc = "//ww1.sinaimg.cn/large/";
 var bili = "https://i0.hdslb.com/bfs/album/541402fb90c8de31a1336a18515e393bbb8a19be.jpg";
 var BiliImgSrc = "//i0.hdslb.com/bfs/album/";
 var JsonApiSrc = "https://json.extendsclass.com";

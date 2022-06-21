@@ -2,52 +2,49 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="no-referrer" />
-    <link rel="shortcut icon" href="https://sdn.geekzu.org/avatar/7bb619a5ee0322a765ef03fa6aee0a01">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Clicker+Script|Open+Sans">
-    <link rel="stylesheet" href="/static/css/style.css">
-    <script src="/static/js/master.js"></script>
-	<script>
-  // 检测是否支持 Service Worker
-  // 也可使用 navigator.serviceWorker 判断
-  if ('serviceWorker' in navigator) {
-    // 为了保证首屏渲染性能，在页面 onload 完之后注册 Service Worker
-    // 不使用 window.onload 以免冲突
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js');
-    });
-  }
-</script> 
-	<title>Zhao Jiabing's personal pages</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer" />
+  <link rel="shortcut icon" href="https://sdn.geekzu.org/avatar/7bb619a5ee0322a765ef03fa6aee0a01">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Clicker+Script|Open+Sans">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="/static/js/master.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js');
+      });
+    }
+  </script>
+  <title>Zhao Jiabing's personal pages</title>
 </head>
 
 <body>
-    <div style="text-align:center">
-        <h1 id="title">Hello World</h1>
-        <p style="margin: 0px;">I Pay Tribute to My Favorite Flowers and Sunny Days </p>
-        <audio id="music" controls preload="auto" num=0></audio>
-        <img id="avatar" num=0>
-        <div class="spinner">
-            <div class="rect1"></div>
-            <div class="rect2"></div>
-            <div class="rect3"></div>
-            <div class="rect4"></div>
-            <div class="rect5"></div>
-        </div>
-        <!--video controls
+  <div style="text-align:center">
+    <h1 id="title">Hello World</h1>
+    <p style="margin: 0px;">I Pay Tribute to My Favorite Flowers and Sunny Days </p>
+    <audio id="music" controls preload="auto" num=0></audio>
+    <img id="avatar" num=0>
+    <div class="spinner">
+      <div class="rect1"></div>
+      <div class="rect2"></div>
+      <div class="rect3"></div>
+      <div class="rect4"></div>
+      <div class="rect5"></div>
+    </div>
+    <!--video loop="loop" controls
             src="https://bing-1251630625.cos.ap-guangzhou.myqcloud.com/00165JMUgx07Veg3VJfx0f0f0100BZAF0k01.mov">have no
             money</video-->
-        <div id="footer">
-            Powered by Github.com pages,Extendsclass.com JSON Stored,Weibo.com Picture,163.com Music
-            <div id="time"></div>
-            Designer:<signature>Zhao Jiabing</signature>
-            <br><a href="mailto:hiqfs@qq.com">Email me</a> & <a onclick="help()">help?</a>
-            <br><p>"life,love,linux"</p>
-        </div>
+    <div id="footer">
+      Powered by Github.com pages,Extendsclass.com JSON Stored,Weibo.com Picture,163.com Music
+      <div id="time"></div>
+      Designer:<signature>Zhao Jiabing</signature>
+      <br><a href="mailto:hiqfs@qq.com">Email me</a> & <a onclick="help()">help?</a>
+      <br>
+      <p>"life,love,linux"</p>
     </div>
+  </div>
 </body>
 
 </html>
