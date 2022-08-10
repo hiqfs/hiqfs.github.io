@@ -23,9 +23,11 @@ fetch(JsonApiSrc + "/bin/" + JsonApiId, { cache: Cache })
         data.AvatarListId.push("https://loli.tc/images/342c59432878961fda1bc3d96e1bd526.png");
         document.getElementById("music").src = MusicApiSrc + data.MusicListId[0];
         document.getElementById("avatar").src = PicApiSrc + data.AvatarListId[0];
+        document.getElementById("title").classList.add("loading");
         document.getElementById("avatar").onload = (e) => {
             //console.log(e);
             e.target.style.display = "inline";
+            document.getElementById("title").classList.remove("loading");
             document.getElementsByClassName("spinner")[0].style.display = "none";
         }
 
@@ -34,6 +36,7 @@ fetch(JsonApiSrc + "/bin/" + JsonApiId, { cache: Cache })
             document.getElementById("music").play();
         };
         document.getElementById("avatar").onclick = (e) => {
+            document.getElementById("title").classList.add("loading");
             Click(PicApiSrc, document.getElementById("avatar"), data.AvatarListId, e);
         };
     });

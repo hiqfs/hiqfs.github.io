@@ -41,7 +41,6 @@ body {
   height: 100%;
   width: 12px;
   display: inline-block;
-
   -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
   animation: sk-stretchdelay 1.2s infinite ease-in-out;
 }
@@ -78,6 +77,9 @@ body {
     -webkit-transform: scaleY(1.0)
   }
 }
+.loading {
+  animation: hue 2s linear infinite;
+}
 
 @keyframes sk-stretchdelay {
 
@@ -92,4 +94,12 @@ body {
     transform: scaleY(1.0);
     -webkit-transform: scaleY(1.0);
   }
+}
+@keyframes hue {
+  from {
+      filter: hue-rotate(0);
+  }
+
+  to {
+      filter: hue-rotate(360deg);
 }
