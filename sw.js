@@ -9,7 +9,7 @@ workbox.core.setCacheNameDetails({
   suffix: cacheSuffixVersion, // 后缀
 });
 workbox.routing.registerRoute(
-  new RegExp('^//wx1\\.sinaimg\\.cn'),
+  new RegExp('^//ww1\\.sinaimg\\.cn'),
   new workbox.strategies.CacheFirst({
     cacheName: 'img-cache' + cacheSuffixVersion,
     fetchOptions: {
