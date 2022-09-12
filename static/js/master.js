@@ -4,14 +4,16 @@ if (window.location.host == "127.0.0.1") {
 } else {
     Cache = "default";
 }
+var $ = (a) => document.querySelector(a);
 var time = setInterval(() => {
-    document.getElementById("time").innerHTML = Date();
+    $("#time").innerHTML = Date();
 }, 1000);
 //Calculate the time
+//init Argument
 var CDN = "https://bing-web-1251630625.cos-website.ap-nanjing.myqcloud.com/";
 var MusicApiSrc = "//music.163.com/song/media/outer/url?id=";
 var PicApiSrc = "//ww1.sinaimg.cn/large/";
-var bili = "https://i0.hdslb.com/bfs/album/541402fb90c8de31a1336a18515e393bbb8a19be.jpg";
+var Bili = "https://i0.hdslb.com/bfs/album/541402fb90c8de31a1336a18515e393bbb8a19be.jpg";
 var BiliImgSrc = "//i0.hdslb.com/bfs/album/";
 var JsonApiSrc = "https://json.extendsclass.com";
 var JsonApiId = "bac32c6aa445";
@@ -19,25 +21,25 @@ fetch(JsonApiSrc + "/bin/" + JsonApiId, { cache: Cache })
     .then(response => response.json())
     .then(data => {
         JsonData = data;
-        data.AvatarListId.push(bili);
+        data.AvatarListId.push(Bili);
         data.AvatarListId.push("https://loli.tc/images/342c59432878961fda1bc3d96e1bd526.png");
-        document.getElementById("music").src = MusicApiSrc + data.MusicListId[0];
-        document.getElementById("avatar").src = PicApiSrc + data.AvatarListId[0];
-        document.getElementById("title").classList.add("loading");
-        document.getElementById("avatar").onload = (e) => {
+        $("#music").src = MusicApiSrc + data.MusicListId[0];
+        $("#avatar").src = PicApiSrc + data.AvatarListId[0];
+        $("#title").classList.add("loading");
+        $("#avatar").onload = (e) => {
             //console.log(e);
             e.target.style.display = "inline";
-            document.getElementById("title").classList.remove("loading");
+            $("#title").classList.remove("loading");
             document.getElementsByClassName("spinner")[0].style.display = "none";
         }
 
-        document.getElementById("title").onclick = (e) => {
-            Click(MusicApiSrc, document.getElementById("music"), data.MusicListId, e);
-            document.getElementById("music").play();
+        $("#title").onclick = (e) => {
+            Click(MusicApiSrc, $("#music"), data.MusicListId, e);
+            $("#music").play();
         };
-        document.getElementById("avatar").onclick = (e) => {
-            document.getElementById("title").classList.add("loading");
-            Click(PicApiSrc, document.getElementById("avatar"), data.AvatarListId, e);
+        $("#avatar").onclick = (e) => {
+            $("#title").classList.add("loading");
+            Click(PicApiSrc, $("#avatar"), data.AvatarListId, e);
         };
     });
 var Click = (ApiUrl, Dom, List, key) => {
@@ -56,7 +58,7 @@ var Click = (ApiUrl, Dom, List, key) => {
     if (List[Dom.getAttribute('num')].substr(0, 4) == "http") {
         console.log(List[Dom.getAttribute('num')]);
         Dom.src = List[Dom.getAttribute('num')];
-        console.log("bilibili yes");
+        console.log("BiliBili yes");
     } else {
         //console.log(List[Dom.getAttribute('num')].substr(0, 4));
         Dom.src = ApiUrl + List[Dom.getAttribute('num')];
@@ -65,26 +67,24 @@ var Click = (ApiUrl, Dom, List, key) => {
 document.addEventListener("keyup", Event => {
     switch (Event.key) {
         case "Enter":
-            document.getElementById("title").onclick(true);
+            $("#title").onclick(true);
             break;
         case "Control":
-            document.getElementById("avatar").onclick(true);
+            $("#avatar").onclick(true);
             break;
         case "ArrowRight":
-            document.getElementById("avatar").onclick(true);
+            $("#avatar").onclick(true);
             break;
         case "ArrowLeft":
-            document.getElementById("avatar").onclick(false);
+            $("#avatar").onclick(false);
             break;
         case "ArrowUp":
-            //document.getElementById("title").onclick(false);
+            //$("#title").onclick(false);
             break;
         case "ArrowDown":
-            //document.getElementById("title").onclick(true);
+            //$("#title").onclick(true);
             break;
     }
     return 0;
 });
-var help = () => {
-    alert("Press the Control key to switch pictures\rPress the Enter key to switch muisc");
-}
+var help = () => alert("Press the Control key to switch pictures\rPress the Enter key to switch muisc");
