@@ -22,7 +22,6 @@ fetch(JsonApiSrc + "/bin/" + JsonApiId, { cache: Cache })
     .then(data => {
         JsonData = data;
         data.AvatarListId.push(Bili);
-        data.AvatarListId.push("https://loli.tc/images/342c59432878961fda1bc3d96e1bd526.png");
         $("#music").src = MusicApiSrc + data.MusicListId[0];
         $("#avatar").src = PicApiSrc + data.AvatarListId[0];
         $("#title").classList.add("loading");
