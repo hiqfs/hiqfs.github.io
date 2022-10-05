@@ -8,7 +8,7 @@ var CDN = "https://bing-web-1251630625.cos-website.ap-nanjing.myqcloud.com/";
 var MusicApiSrc = "//music.163.com/song/media/outer/url?id=";
 var PicApiSrc = "//ww1.sinaimg.cn/large/";
 var Bili = "https://i0.hdslb.com/bfs/album/541402fb90c8de31a1336a18515e393bbb8a19be.jpg";
-var BiliImgSrc = "//i0.hdslb.com/bfs/album/";
+var BiliImgSrc = "//i0.hdslb.com/bfs/new_dyn/";
 var JsonApiSrc = "https://json.extendsclass.com";
 var JsonApiId = "bac32c6aa445";
 var PicNum = 0, MusicNum = 0;
@@ -18,7 +18,7 @@ fetch(JsonApiSrc + "/bin/" + JsonApiId, { cache: Cache }) //Get Data
         JsonData = data;
         data.AvatarListId.push(Bili);
         $("#music").src = MusicApiSrc + data.MusicListId[0];
-        $("#avatar").src = PicApiSrc + data.AvatarListId[0];
+        $("#avatar").src = Click(PicApiSrc, data.AvatarListId);;
         $("#avatar").onload = (e) => {
             //console.log(e);
             e.target.style.display = "inline";
@@ -26,21 +26,25 @@ fetch(JsonApiSrc + "/bin/" + JsonApiId, { cache: Cache }) //Get Data
             $(".spinner").style.display = "none";
         }
         $("#title").onclick = (e) => {
-            MusicNum++;
-            MusicNum = MusicNum > 0 ? MusicNum : data.MusicListId.length + MusicNum;
-            MusicNum = MusicNum % data.MusicListId.length;
+            MusicNum = CheckLength(true, MusicNum, data.MusicListId.length);
             $("#music").src = MusicApiSrc + data.MusicListId[MusicNum];
             $("#music").play();
         };
         $("#avatar").onclick = (e) => {
             $("#title").classList.add("loading");
-            e.offsetX > (e.srcElement.width / 2) ? PicNum++ : PicNum--;
-            PicNum = PicNum > 0 ? PicNum : data.AvatarListId.length + PicNum;
-            PicNum = PicNum % data.AvatarListId.length;
+            PicNum = CheckLength((e.offsetX > (e.srcElement.width / 2)), PicNum, JsonData.AvatarListId.length);
             $("#avatar").src = Click(PicApiSrc, data.AvatarListId);
         };
     });
+var CheckLength = (next, arr, lens) => {
+    next ? arr++ : arr--;
+    return arr >= 0 ? arr % lens : lens + arr;
+}
 var Click = (ApiUrl, List) => {
+    if (List[PicNum].substr(0, 4) == "bili") {
+        console.log(1);
+        return BiliImgSrc + List[PicNum].slice(4) + ".png";
+    }
     if (List[PicNum].substr(0, 4) == "http") {
         return List[PicNum];
     } else {
@@ -51,28 +55,20 @@ var Click = (ApiUrl, List) => {
 document.addEventListener("keyup", Event => { //Bind Key
     switch (Event.key) {
         case "Enter":
-            MusicNum++;
-            MusicNum = MusicNum > 0 ? MusicNum : data.MusicListId.length + MusicNum;
-            MusicNum = MusicNum % data.MusicListId.length;
+            MusicNum = CheckLength(true, MusicNum, data.MusicListId.length);
             $("#music").src = MusicApiSrc + data.MusicListId[MusicNum];
             $("#music").play();
             break;
         case "Control":
-            PicNum++;
-            PicNum = PicNum > 0 ? PicNum : data.AvatarListId.length + PicNum;
-            PicNum = PicNum % data.AvatarListId.length;
+            PicNum = CheckLength(true, PicNum, JsonData.AvatarListId.length);
             $("#avatar").src = Click(PicApiSrc, data.AvatarListId);
             break;
         case "ArrowRight":
-            PicNum++;
-            PicNum = PicNum > 0 ? PicNum : JsonData.AvatarListId.length + PicNum;
-            PicNum = PicNum % JsonData.AvatarListId.length;
+            PicNum = CheckLength(true, PicNum, JsonData.AvatarListId.length);
             $("#avatar").src = Click(PicApiSrc, JsonData.AvatarListId);
             break;
         case "ArrowLeft":
-            PicNum--;
-            PicNum = PicNum > 0 ? PicNum : JsonData.AvatarListId.length + PicNum;
-            PicNum = PicNum % JsonData.AvatarListId.length;
+            PicNum = CheckLength(false, PicNum, JsonData.AvatarListId.length);
             $("#avatar").src = Click(PicApiSrc, JsonData.AvatarListId);
             break;
         case "ArrowUp":
@@ -84,4 +80,4 @@ document.addEventListener("keyup", Event => { //Bind Key
     }
     return 0;
 });
-//var help = () => alert("Press the Control key to switch pictures\rPress the Enter key to switch muisc");
+var help = () => alert("Press the Control key to switch pictures\rPress the Enter key to switch muisc");
