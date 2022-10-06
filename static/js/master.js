@@ -42,7 +42,6 @@ var CheckLength = (next, arr, lens) => {
 }
 var Click = (ApiUrl, List) => {
     if (List[PicNum].substr(0, 4) == "bili") {
-        console.log(1);
         return BiliImgSrc + List[PicNum].slice(4) + ".png";
     }
     if (List[PicNum].substr(0, 4) == "http") {
@@ -55,7 +54,7 @@ var Click = (ApiUrl, List) => {
 document.addEventListener("keyup", Event => { //Bind Key
     switch (Event.key) {
         case "Enter":
-            MusicNum = CheckLength(true, MusicNum, data.MusicListId.length);
+            MusicNum = CheckLength(true, MusicNum, JsonData.data.MusicListId.length);
             $("#music").src = MusicApiSrc + data.MusicListId[MusicNum];
             $("#music").play();
             break;
