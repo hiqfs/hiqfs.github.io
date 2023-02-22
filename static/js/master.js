@@ -7,6 +7,7 @@ setInterval(() => $("#time").innerHTML = Date(), 1000);
 var CDN = "https://bing-web-1251630625.cos-website.ap-nanjing.myqcloud.com/";
 var MusicApiSrc = "//music.163.com/song/media/outer/url?id=";
 var PicApiSrc = "https://bing-web-1251630625.cos.ap-nanjing.myqcloud.com/large/";
+var PicApiSrc = "https://image.baidu.com/search/down?url=https://ww1.sinaimg.cn/large/";
 var Bili = "https://i0.hdslb.com/bfs/album/541402fb90c8de31a1336a18515e393bbb8a19be.jpg";
 var BiliImgSrc = "//i0.hdslb.com/bfs/new_dyn/";
 var JsonApiSrc = "https://json.extendsclass.com";
@@ -69,12 +70,6 @@ document.addEventListener("keyup", Event => { //Bind Key
         case "ArrowLeft":
             PicNum = CheckLength(false, PicNum, JsonData.AvatarListId.length);
             $("#avatar").src = Click(PicApiSrc, JsonData.AvatarListId);
-            break;
-        case "ArrowUp":
-            //$("#title").onclick(false);
-            break;
-        case "ArrowDown":
-            //$("#title").onclick(true);
             break;
     }
     return 0;
