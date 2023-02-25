@@ -8,8 +8,6 @@ var CDN = "https://bing-web-1251630625.cos-website.ap-nanjing.myqcloud.com/";
 var MusicApiSrc = "//music.163.com/song/media/outer/url?id=";
 var PicApiSrc = "https://bing-web-1251630625.cos.ap-nanjing.myqcloud.com/large/";
 var PicApiSrc = "https://image.baidu.com/search/down?url=https://ww1.sinaimg.cn/large/";
-var Bili = "https://i0.hdslb.com/bfs/album/541402fb90c8de31a1336a18515e393bbb8a19be.jpg";
-var BiliImgSrc = "//i0.hdslb.com/bfs/new_dyn/";
 var JsonApiSrc = "https://json.extendsclass.com";
 var JsonApiId = "bac32c6aa445";
 var PicNum = 0, MusicNum = 0;
@@ -17,16 +15,19 @@ fetch(JsonApiSrc + "/bin/" + JsonApiId, { cache: Cache }) //Get Data
     .then(response => response.json())
     .then(data => {
         JsonData = data;
-        data.AvatarListId.push(Bili);
         $("#music").src = MusicApiSrc + data.MusicListId[0];
-        $("#avatar").src = Click(PicApiSrc, data.AvatarListId);;
+        $("#avatar").src = Click(PicApiSrc, data.AvatarListId);
+        $("#avatar").onerror = () => {
+            $("#title").classList.remove("loading");
+            $(".spinner").innerHTML = "<H2>Unable to connect to the image server</H2>";
+        };
         $("#avatar").onload = (e) => {
             //console.log(e);
             e.target.style.display = "inline";
             $("#title").classList.remove("loading");
             $(".spinner").style.display = "none";
         }
-        $("#title").onclick = (e) => {
+        $("#title").onclick = () => {
             MusicNum = CheckLength(true, MusicNum, data.MusicListId.length);
             $("#music").src = MusicApiSrc + data.MusicListId[MusicNum];
             $("#music").play();
@@ -36,15 +37,15 @@ fetch(JsonApiSrc + "/bin/" + JsonApiId, { cache: Cache }) //Get Data
             PicNum = CheckLength((e.offsetX > (e.srcElement.width / 2)), PicNum, JsonData.AvatarListId.length);
             $("#avatar").src = Click(PicApiSrc, data.AvatarListId);
         };
+    })
+    .catch(() => {
+        $(".spinner").innerHTML = "<H2>Unable to connect to the server</H2>";
     });
 var CheckLength = (next, arr, lens) => {
     next ? arr++ : arr--;
     return arr >= 0 ? arr % lens : lens + arr;
 }
 var Click = (ApiUrl, List) => {
-    if (List[PicNum].substr(0, 4) == "bili") {
-        return BiliImgSrc + List[PicNum].slice(4) + ".png";
-    }
     if (List[PicNum].substr(0, 4) == "http") {
         return List[PicNum];
     } else {

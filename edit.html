@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Img</title>
     <script>
+        var $ = (a) => document.querySelector(a);
         var writeHtml = (obj) => {
             var objStr = JSON.stringify(obj, null, 4);
             var html = objStr.replace(/\n/g, '<br>').replace(/\s/g, '&nbsp');
@@ -41,7 +42,11 @@
             var url = new URL(document.getElementById("url").value);
             var fliename = url.pathname.split("/");
             fliename = fliename[fliename.length - 1].split(".")[0];
-            return fliename;
+            if($("#check").checked){
+                return document.getElementById("url").value;
+            }else{
+                return fliename;
+            }
         }
         window.onload = (e) => {
             fetch(JsonApiSrc + "/bin/" + JsonApiId).then(response => response.json()).then(data => writeHtml(data));
@@ -60,6 +65,7 @@
 <body>
     <input id="url">weibo img url</input>
     <br><input id="password">password</input>
+    <br><input id="check" type="checkbox">Url</input>
     <br><button id="button">发送</button>
     <br><button id="delete">删除</button>
     <p>返回结果</p>
