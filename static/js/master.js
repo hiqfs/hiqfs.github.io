@@ -11,18 +11,20 @@ var PicApiSrc = "https://image.baidu.com/search/down?url=https://ww1.sinaimg.cn/
 var JsonApiSrc = "https://json.extendsclass.com";
 var JsonApiId = "bac32c6aa445";
 var PicNum = 0, MusicNum = 0;
+var Arr = new Array();
 fetch(JsonApiSrc + "/bin/" + JsonApiId, { cache: Cache }) //Get Data
     .then(response => response.json())
     .then(data => {
         JsonData = data;
+        for(let i = 1;i<=data.AvatarListId.length;i++){Arr.push(new Image());}
+        Arr[0].src = Click(PicApiSrc, data.AvatarListId,0);
         $("#music").src = MusicApiSrc + data.MusicListId[0];
-        $("#avatar").src = Click(PicApiSrc, data.AvatarListId);
+        $("#avatar").src = Arr[0].src;
         $("#avatar").onerror = () => {
             $("#title").classList.remove("loading");
             $(".spinner").innerHTML = "<H2>Unable to connect to the image server</H2>";
         };
         $("#avatar").onload = (e) => {
-            //console.log(e);
             e.target.style.display = "inline";
             $("#title").classList.remove("loading");
             $(".spinner").style.display = "none";
@@ -35,7 +37,8 @@ fetch(JsonApiSrc + "/bin/" + JsonApiId, { cache: Cache }) //Get Data
         $("#avatar").onclick = (e) => {
             $("#title").classList.add("loading");
             PicNum = CheckLength((e.offsetX > (e.srcElement.width / 2)), PicNum, JsonData.AvatarListId.length);
-            $("#avatar").src = Click(PicApiSrc, data.AvatarListId);
+            Arr[PicNum].src = Click(PicApiSrc, data.AvatarListId);
+            $("#avatar").src = Arr[PicNum].src;
         };
     })
     .catch(() => {
