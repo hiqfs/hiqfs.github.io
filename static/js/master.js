@@ -6,11 +6,11 @@ setInterval(() => $("#time").innerHTML = Date(), 1000);
 //init Argument
 var CDN = "https://bing-web-1251630625.cos-website.ap-nanjing.myqcloud.com/";
 var MusicApiSrc = "//music.163.com/song/media/outer/url?id=";
-var PicApiSrc = "https://bing-web-1251630625.cos.ap-nanjing.myqcloud.com/large/";
+//var PicApiSrc = "https://bing-web-1251630625.cos.ap-nanjing.myqcloud.com/large/";
 var PicApiSrc = "https://image.baidu.com/search/down?url=https://ww1.sinaimg.cn/large/";
 var JsonApiSrc = "https://json.extendsclass.com";
 var JsonApiId = "bac32c6aa445";
-var PicNum = 0, MusicNum = 0;
+var PicNum = 0, MusicNum = 0,Event = true;
 var Arr = new Array();
 fetch(JsonApiSrc + "/bin/" + JsonApiId, { cache: Cache }) //Get Data
     .then(response => response.json())
@@ -28,6 +28,9 @@ fetch(JsonApiSrc + "/bin/" + JsonApiId, { cache: Cache }) //Get Data
             e.target.style.display = "inline";
             $("#title").classList.remove("loading");
             $(".spinner").style.display = "none";
+            var Per = CheckLength(Event, PicNum, JsonData.AvatarListId.length);
+            Arr[Per].src = Click (PicApiSrc, data.AvatarListId, Per);
+            $("#progress").value = PicNum/JsonData.AvatarListId.length;
         }
         $("#title").onclick = () => {
             MusicNum = CheckLength(true, MusicNum, data.MusicListId.length);
@@ -45,14 +48,16 @@ fetch(JsonApiSrc + "/bin/" + JsonApiId, { cache: Cache }) //Get Data
         $(".spinner").innerHTML = "<H2>Unable to connect to the server</H2>";
     });
 var CheckLength = (next, arr, lens) => {
+    Event = next;
     next ? arr++ : arr--;
     return arr >= 0 ? arr % lens : lens + arr;
 }
-var Click = (ApiUrl, List) => {
-    if (List[PicNum].substr(0, 4) == "http") {
-        return List[PicNum];
+var Click = (ApiUrl, List, Per) => {
+    var Num = Per ? Per : PicNum;
+    if (List[Num].substr(0, 4) == "http") {
+        return List[Num];
     } else {
-        return ApiUrl + List[PicNum] + ".jpg";
+        return ApiUrl + List[Num] + ".jpg";
     }
 };
 
@@ -65,15 +70,18 @@ document.addEventListener("keyup", Event => { //Bind Key
             break;
         case "Control":
             PicNum = CheckLength(true, PicNum, JsonData.AvatarListId.length);
-            $("#avatar").src = Click(PicApiSrc, data.AvatarListId);
+            Arr[PicNum].src = Click(PicApiSrc, JsonData.AvatarListId);
+            $("#avatar").src = Arr[PicNum].src;
             break;
         case "ArrowRight":
             PicNum = CheckLength(true, PicNum, JsonData.AvatarListId.length);
-            $("#avatar").src = Click(PicApiSrc, JsonData.AvatarListId);
+            Arr[PicNum].src = Click(PicApiSrc, JsonData.AvatarListId);
+            $("#avatar").src = Arr[PicNum].src;
             break;
         case "ArrowLeft":
             PicNum = CheckLength(false, PicNum, JsonData.AvatarListId.length);
-            $("#avatar").src = Click(PicApiSrc, JsonData.AvatarListId);
+            Arr[PicNum].src = Click(PicApiSrc, JsonData.AvatarListId);
+            $("#avatar").src = Arr[PicNum].src;
             break;
     }
     return 0;
