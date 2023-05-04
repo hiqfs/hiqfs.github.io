@@ -9,7 +9,7 @@ var MusicApiSrc = "//music.163.com/song/media/outer/url?id=";
 //var PicApiSrc = "https://bing-web-1251630625.cos.ap-nanjing.myqcloud.com/large/";
 var PicApiSrc = "https://image.baidu.com/search/down?url=https://ww1.sinaimg.cn/large/";
 var JsonApiSrc = "https://json.extendsclass.com";
-var JsonApiId = "bac32c6aa445";
+var JsonApiId = "06f977f8e566";
 var PicNum = 0, MusicNum = 0,Event = true;
 var Arr = new Array();
 fetch(JsonApiSrc + "/bin/" + JsonApiId, { cache: Cache }) //Get Data
