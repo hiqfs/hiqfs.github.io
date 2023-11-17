@@ -9,6 +9,7 @@ var MusicApiSrc = "//music.163.com/song/media/outer/url?id=";
 //var PicApiSrc = "https://bing-web-1251630625.cos.ap-nanjing.myqcloud.com/large/";
 var PicApiSrc = "https://image.baidu.com/search/down?url=https://ww1.sinaimg.cn/large/";
 var JsonApiSrc = "https://json.extendsclass.com";
+var SupportCode = "https://p.sda1.dev/14/2d4d0436ed9cb72b01e874916bf8965f/D2F6A717-0124-43B3-BB95-93BB431C5C6B.jpeg";
 var JsonApiId = "06f977f8e566";
 var PicNum = 0, MusicNum = 0,Event = true;
 var Arr = new Array();
@@ -87,3 +88,4 @@ document.addEventListener("keyup", Event => { //Bind Key
     return 0;
 });
 var help = () => alert("Press the Control key to switch pictures\rPress the Enter key to switch muisc");
+var support = () =>  $("#avatar").src = SupportCode;
