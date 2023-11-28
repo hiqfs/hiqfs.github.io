@@ -1,11 +1,9 @@
-if (window.location.host == "127.0.0.1") Cache = "no-cache";
-else Cache = "default";
-var $ = (a) => document.querySelector(a);
+var $ = (Event) => document.querySelector(Event);
 setInterval(() => $("#time").innerHTML = Date(), 1000);
 //Calculate the time
 //init Argument
 var CDN = "https://bing-web-1251630625.cos-website.ap-nanjing.myqcloud.com/";
-var MusicApiSrc = "//music.163.com/song/media/outer/url?id=";
+var MusicApiSrc = "https://music.163.com/song/media/outer/url?id=";
 //var PicApiSrc = "https://bing-web-1251630625.cos.ap-nanjing.myqcloud.com/large/";
 //baidu image var PicApiSrc = "https://image.baidu.com/search/down?url=https://ww1.sinaimg.cn/large/";
 var PicApiSrc = "https://i0.wp.com/tvax1.sinaimg.cn/large/";
@@ -14,7 +12,7 @@ var SupportCode = "https://p.sda1.dev/14/2d4d0436ed9cb72b01e874916bf8965f/D2F6A7
 var JsonApiId = "06f977f8e566";
 var PicNum = 0, MusicNum = 0,Event = true;
 var Arr = new Array();
-fetch(JsonApiSrc + "/bin/" + JsonApiId, { cache: Cache }) //Get Data
+fetch(JsonApiSrc + "/bin/" + JsonApiId) //Get Data
     .then(response => response.json())
     .then(data => {
         JsonData = data;
@@ -88,5 +86,5 @@ document.addEventListener("keyup", Event => { //Bind Key
     }
     return 0;
 });
-var help = () => alert("Press the Control key to switch pictures\rPress the Enter key to switch muisc");
+var help = () => alert("Press the Control key to switch pictures\rPress the Enter key to switch muisc\r If you load this website image for the first time, it may be slow to load");
 var support = () =>  $("#avatar").src = SupportCode;
