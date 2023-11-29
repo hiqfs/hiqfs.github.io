@@ -48,7 +48,7 @@
                 return fliename;
             }
         }
-        window.onload = (e) => {
+        window.onload = (Event) => {
             fetch(JsonApiSrc + "/bin/" + JsonApiId).then(response => response.json()).then(data => writeHtml(data));
             document.getElementById("button").onclick = (eh) => {
                 console.log(document.getElementById("password").value);
