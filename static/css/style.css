@@ -3,7 +3,10 @@
   height: 98%;
   display: none;
 }
-
+#slogan{
+  margin-top: 0%;
+  margin-bottom: 0%;
+}
 body {
   font-family: 'Open Sans';
 }

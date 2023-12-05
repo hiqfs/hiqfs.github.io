@@ -1,23 +1,18 @@
 var $ = (Event) => document.querySelector(Event);
 setInterval(() => $("#time").innerHTML = Date(), 1000);
-//Calculate the time
-//init Argument
-var CDN = "https://bing-web-1251630625.cos-website.ap-nanjing.myqcloud.com/";
 var MusicApiSrc = "https://music.163.com/song/media/outer/url?id=";
-//var PicApiSrc = "https://bing-web-1251630625.cos.ap-nanjing.myqcloud.com/large/";
-//var PicApiSrc = "https://image.baidu.com/search/down?url=https://ww1.sinaimg.cn/large/";
 var PicApiSrc = "https://i0.wp.com/tvax1.sinaimg.cn/large/";
 var JsonApiSrc = "https://json.extendsclass.com";
 var SupportCode = "https://p.sda1.dev/14/2d4d0436ed9cb72b01e874916bf8965f/D2F6A717-0124-43B3-BB95-93BB431C5C6B.jpeg";
 var JsonApiId = "06f977f8e566";
-var PicNum = 0, MusicNum = 0,Event = true;
+var PicNum = 0, MusicNum = 0, Event = true;
 var Arr = new Array();
 fetch(JsonApiSrc + "/bin/" + JsonApiId) //Get Data
     .then(response => response.json())
     .then(data => {
         JsonData = data;
-        for(let i = 1;i<=data.AvatarListId.length;i++){Arr.push(new Image());}
-        Arr[0].src = Click(PicApiSrc, data.AvatarListId,0);
+        for (let i = 1; i <= data.AvatarListId.length; i++) { Arr.push(new Image()); }
+        Arr[0].src = Click(PicApiSrc, data.AvatarListId, 0);
         $("#music").src = MusicApiSrc + data.MusicListId[0];
         $("#avatar").src = Arr[0].src;
         $("#avatar").onerror = () => {
@@ -29,8 +24,8 @@ fetch(JsonApiSrc + "/bin/" + JsonApiId) //Get Data
             $("#title").classList.remove("loading");
             $(".spinner").style.display = "none";
             var Per = CheckLength(Event, PicNum, JsonData.AvatarListId.length);
-            Arr[Per].src = Click (PicApiSrc, data.AvatarListId, Per);
-            $("#progress").value = PicNum/JsonData.AvatarListId.length;
+            Arr[Per].src = Click(PicApiSrc, data.AvatarListId, Per);
+            $("#progress").value = PicNum / JsonData.AvatarListId.length;
         }
         $("#title").onclick = () => {
             MusicNum = CheckLength(true, MusicNum, data.MusicListId.length);
@@ -87,4 +82,12 @@ document.addEventListener("keyup", Event => { //Bind Key
     return 0;
 });
 var help = () => alert("Press the Control key to switch pictures\rPress the Enter key to switch muisc\r If you load this website image for the first time, it may be slow to load");
-var support = () =>  $("#avatar").src = SupportCode;
+var support = () => $("#avatar").src = SupportCode;
+window.onload = () => {
+    fetch('https://v1.hitokoto.cn')
+        .then(response => response.json())
+        .then(data => {
+            const hitokoto = document.querySelector('#slogan');
+            hitokoto.innerText = data.hitokoto;
+        });
+}
