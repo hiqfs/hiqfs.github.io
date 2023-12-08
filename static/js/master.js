@@ -5,45 +5,38 @@ var PicApiSrc = "https://i0.wp.com/tvax1.sinaimg.cn/large/";
 var JsonApiSrc = "https://json.extendsclass.com";
 var SupportCode = "https://p.sda1.dev/14/2d4d0436ed9cb72b01e874916bf8965f/D2F6A717-0124-43B3-BB95-93BB431C5C6B.jpeg";
 var JsonApiId = "06f977f8e566";
-var PicNum = 0, MusicNum = 0, Event = true;
-var Arr = new Array();
+var PicNum = 0, MusicNum = 0;
+var PicArr = new Array();
 fetch(JsonApiSrc + "/bin/" + JsonApiId) //Get Data
     .then(response => response.json())
     .then(data => {
         JsonData = data;
-        for (let i = 1; i <= data.AvatarListId.length; i++) { Arr.push(new Image()); }
-        Arr[0].src = Click(PicApiSrc, data.AvatarListId, 0);
+        for (let i = 1; i <= data.AvatarListId.length; i++) { PicArr.push(new Image()); }
         $("#music").src = MusicApiSrc + data.MusicListId[0];
-        $("#avatar").src = Arr[0].src;
+        $("#avatar").src = PicArr[PicNum].src = Click(PicApiSrc, data.AvatarListId, 0);
         $("#avatar").onerror = () => {
             $("#title").classList.remove("loading");
-            $(".spinner").innerHTML = "<H2>Unable to connect to the image server</H2>";
+            $(".spinner").innerHTML = "<H2>Sorry Unable to connect to the image server</H2>";
         };
-        $("#avatar").onload = (e) => {
-            e.target.style.display = "inline";
+        $("#avatar").onload = () => {
             $("#title").classList.remove("loading");
-            $(".spinner").style.display = "none";
-            var Per = CheckLength(Event, PicNum, JsonData.AvatarListId.length);
-            Arr[Per].src = Click(PicApiSrc, data.AvatarListId, Per);
             $("#progress").value = PicNum / JsonData.AvatarListId.length;
         }
         $("#title").onclick = () => {
             MusicNum = CheckLength(true, MusicNum, data.MusicListId.length);
-            $("#music").src = MusicApiSrc + data.MusicListId[MusicNum];
+            $("#music").src= MusicApiSrc + data.MusicListId[MusicNum];
             $("#music").play();
         };
         $("#avatar").onclick = (e) => {
             $("#title").classList.add("loading");
             PicNum = CheckLength((e.offsetX > (e.srcElement.width / 2)), PicNum, JsonData.AvatarListId.length);
-            Arr[PicNum].src = Click(PicApiSrc, data.AvatarListId);
-            $("#avatar").src = Arr[PicNum].src;
+            $("#avatar").src = PicArr[PicNum].src = Click(PicApiSrc, data.AvatarListId);
         };
     })
     .catch(() => {
         $(".spinner").innerHTML = "<H2>Unable to connect to the server</H2>";
     });
 var CheckLength = (next, arr, lens) => {
-    Event = next;
     next ? arr++ : arr--;
     return arr >= 0 ? arr % lens : lens + arr;
 }
@@ -65,29 +58,25 @@ document.addEventListener("keyup", Event => { //Bind Key
             break;
         case "Control":
             PicNum = CheckLength(true, PicNum, JsonData.AvatarListId.length);
-            Arr[PicNum].src = Click(PicApiSrc, JsonData.AvatarListId);
-            $("#avatar").src = Arr[PicNum].src;
+            $("#avatar").src = PicArr[PicNum].src = Click(PicApiSrc, JsonData.AvatarListId);
             break;
         case "ArrowRight":
             PicNum = CheckLength(true, PicNum, JsonData.AvatarListId.length);
-            Arr[PicNum].src = Click(PicApiSrc, JsonData.AvatarListId);
-            $("#avatar").src = Arr[PicNum].src;
+            $("#avatar").src = PicArr[PicNum].src = Click(PicApiSrc, JsonData.AvatarListId);
             break;
         case "ArrowLeft":
             PicNum = CheckLength(false, PicNum, JsonData.AvatarListId.length);
-            Arr[PicNum].src = Click(PicApiSrc, JsonData.AvatarListId);
-            $("#avatar").src = Arr[PicNum].src;
+            $("#avatar").src = PicArr[PicNum].src = Click(PicApiSrc, JsonData.AvatarListId);
             break;
     }
     return 0;
 });
-var help = () => alert("Press the Control key to switch pictures\rPress the Enter key to switch muisc\r If you load this website image for the first time, it may be slow to load");
 var support = () => $("#avatar").src = SupportCode;
 window.onload = () => {
     fetch('https://v1.hitokoto.cn')
         .then(response => response.json())
         .then(data => {
-            const hitokoto = document.querySelector('#slogan');
-            hitokoto.innerText = data.hitokoto;
+            $("#slogan").innerText = data.hitokoto;
         });
+    $(".spinner").remove();
 }
