@@ -18,13 +18,17 @@ fetch(JsonApiSrc + "/bin/" + JsonApiId) //Get Data
             $("#title").classList.remove("loading");
             $(".spinner").innerHTML = "<H2>Sorry Unable to connect to the image server</H2>";
         };
+        $("#avatar").complete = () => {
+            console.log("hell");
+        }
         $("#avatar").onload = () => {
             $("#title").classList.remove("loading");
             $("#progress").value = PicNum / JsonData.AvatarListId.length;
+
         }
         $("#title").onclick = () => {
             MusicNum = CheckLength(true, MusicNum, data.MusicListId.length);
-            $("#music").src= MusicApiSrc + data.MusicListId[MusicNum];
+            $("#music").src = MusicApiSrc + data.MusicListId[MusicNum];
             $("#music").play();
         };
         $("#avatar").onclick = (e) => {
@@ -32,6 +36,7 @@ fetch(JsonApiSrc + "/bin/" + JsonApiId) //Get Data
             PicNum = CheckLength((e.offsetX > (e.srcElement.width / 2)), PicNum, JsonData.AvatarListId.length);
             $("#avatar").src = PicArr[PicNum].src = Click(PicApiSrc, data.AvatarListId);
         };
+        $(".spinner").remove();
     })
     .catch(() => {
         $(".spinner").innerHTML = "<H2>Unable to connect to the server</H2>";
@@ -78,5 +83,4 @@ window.onload = () => {
         .then(data => {
             $("#slogan").innerText = data.hitokoto;
         });
-    $(".spinner").remove();
 }
