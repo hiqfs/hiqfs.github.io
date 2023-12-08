@@ -18,9 +18,6 @@ fetch(JsonApiSrc + "/bin/" + JsonApiId) //Get Data
             $("#title").classList.remove("loading");
             $(".spinner").innerHTML = "<H2>Sorry Unable to connect to the image server</H2>";
         };
-        $("#avatar").complete = () => {
-            console.log("hell");
-        }
         $("#avatar").onload = () => {
             $("#title").classList.remove("loading");
             $("#progress").value = PicNum / JsonData.AvatarListId.length;
