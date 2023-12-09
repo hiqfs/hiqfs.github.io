@@ -47,7 +47,7 @@ var Click = (ApiUrl, List, Per) => {
     if (List[Num].substr(0, 4) == "http") {
         return List[Num];
     } else {
-        return ApiUrl + List[Num];
+        return ApiUrl + List[Num] + ".jpg";
     }
 };
 
