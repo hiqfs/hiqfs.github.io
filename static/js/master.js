@@ -44,6 +44,7 @@ var CheckLength = (next, arr, lens) => {
 }
 var Click = (ApiUrl, List, Per) => {
     var Num = Per ? Per : PicNum;
+    total(Num);
     if (List[Num].substr(0, 4) == "http") {
         return List[Num];
     } else {
@@ -73,6 +74,9 @@ document.addEventListener("keyup", Event => { //Bind Key
     }
     return 0;
 });
+var total = (Num) => {
+    $("total").innerHTML = "<total>Total images: " + (Num + 1) + "/" + JsonData.AvatarListId.length + "</total><br>";
+}
 var support = () => $("#avatar").src = SupportCode;
 window.onload = () => {
     fetch('https://v1.hitokoto.cn')
