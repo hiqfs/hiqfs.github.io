@@ -16,9 +16,11 @@ fetch(JsonApiSrc + "/bin/" + JsonApiId) //Get Data
         $("#avatar").src = PicArr[PicNum].src = Click(PicApiSrc, data.AvatarListId, 0);
         $("#avatar").onerror = () => {
             $("#title").classList.remove("loading");
-            $(".spinner").innerHTML = "<H2>Sorry Unable to connect to the image server</H2>";
+            $("#error").style.display = "block";
+            $("#error").innerHTML = "Sorry Unable to connect to the image server <br>" + $("#avatar").src;
         };
         $("#avatar").onload = () => {
+            $("#error").style.display = "none";
             $("#title").classList.remove("loading");
             $("#progress").value = PicNum / JsonData.AvatarListId.length;
 
@@ -79,9 +81,12 @@ var total = (Num) => {
 }
 var support = () => $("#avatar").src = SupportCode;
 window.onload = () => {
-    fetch('https://v1.hitokoto.cn')
-        .then(response => response.json())
-        .then(data => {
-            $("#slogan").innerText = data.hitokoto;
-        });
+    $("#slogan").onclick = () => {
+        fetch('https://v1.hitokoto.cn')
+            .then(response => response.json())
+            .then(data => {
+                $("#slogan").innerText = data.hitokoto;
+            });
+    };
+    $("#slogan").onclick();
 }
