@@ -1,7 +1,7 @@
 var $ = (Event) => document.querySelector(Event);
 setInterval(() => $("#time").innerHTML = Date(), 1000);
 var MusicApiSrc = "https://music.163.com/song/media/outer/url?id=";
-var PicApiSrc = "https://i0.wp.com/tvax3.sinaimg.cn/large/";
+var PicApiSrc = "https://i1.wp.com/tvax3.sinaimg.cn/large/";
 var JsonApiSrc = "https://json.extendsclass.com";
 var SupportCode = "https://p.sda1.dev/14/2d4d0436ed9cb72b01e874916bf8965f/D2F6A717-0124-43B3-BB95-93BB431C5C6B.jpeg";
 var JsonApiId = "06f977f8e566";
@@ -14,7 +14,7 @@ fetch(JsonApiSrc + "/bin/" + JsonApiId) //Get Data
         for (let i = 1; i <= data.AvatarListId.length; i++) { PicArr.push(new Image()); }
         $("#music").src = MusicApiSrc + data.MusicListId[0];
         $("#avatar").src = PicArr[PicNum].src = Click(PicApiSrc, data.AvatarListId, 0);
-        $("#avatar").onerror = () => {
+        $("#avatar").onerror = (Event) => {
             $("#title").classList.remove("loading");
             $("#error").style.display = "block";
             $("#error").innerHTML = "Sorry Unable to connect to the image server <br>" + $("#avatar").src;
