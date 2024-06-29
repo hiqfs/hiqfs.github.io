@@ -1,7 +1,7 @@
 var $ = (Event) => document.querySelector(Event);
 setInterval(() => $("#time").innerHTML = Date(), 1000);
 var MusicApiSrc = "https://music.163.com/song/media/outer/url?id=";
-var PicApiSrc = " https://cdn.ipfsscan.io/weibo/large/";
+var PicApiSrc = "https://i0.wp.com/wx2.sinaimg.cn/large/";
 var JsonApiSrc = "https://json.extendsclass.com";
 var SupportCode = "https://p.sda1.dev/14/2d4d0436ed9cb72b01e874916bf8965f/D2F6A717-0124-43B3-BB95-93BB431C5C6B.jpeg";
 var JsonApiId = "06f977f8e566";
